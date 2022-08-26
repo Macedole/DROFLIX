@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+body {
+  font-family: "poppins", sans-serif;
+  background: #f4f4f4;
+}
+
+/* utils */
+.cover {
+  min-height: 100vh;
+}
+
+.img-small {
+  width: 5rem;
+}
+
+/* navbar */
+.navbar {
+  background-color: #0c564d;
+}
+
+.navbar-brand {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.btn-dropdown {
+  font-size: 1.5rem;
+}
+
+/* buttons */
+.product-btn,
+.login-btn,
+.signup-btn,
+.agendar-btn,
+.compra-btn {
+  text-decoration: none;
+  color: #0c564d;
+  border: 1px solid #0c564d;
+  font-weight: 400;
+  font-size: 0.7rem;
+}
+
+.product-btn:hover,
+.login-btn:hover,
+.signup-btn:hover,
+.agendar-btn:hover,
+.compra-btn:hover {
+  background-color: #0c564d;
+  color: white;
+}
+
+.login-btn,
+.compra-btn {
+  font-size: 0.9rem;
+}
+
+/* cards */
+.card-promo {
+  padding: 2rem;
+  width: 15rem;
+}
+
+.card-servico {
+  width: 20rem;
+  padding: 1rem;
+}
+
+.produto {
+  font-weight: 500;
+  padding: 2.5rem;
+  width: 15rem;
+}
+
+/* features */
+.features-card {
+  width: 16rem;
+  padding: 2.5rem;
+}
+
+.features-card-icon {
+  color: #0c564d;
+  font-size: 3rem;
+}
+
+/* login */
+.login-form {
+  width: 40rem;
+}
+
+/* minha conta */
+.opcao-conta:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* footer */
+footer {
+  background-color: #0c564d;
+}

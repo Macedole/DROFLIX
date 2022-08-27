@@ -1,8 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 body {
+  margin: 0;
   font-family: "poppins", sans-serif;
   background: #f4f4f4;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* utils */
@@ -94,7 +98,17 @@ body {
   cursor: pointer;
 }
 
+/* erros */
+.svg-error {
+  width: 25rem;
+}
+
+.txt-error {
+  font-size: 1.8rem;
+}
+
 /* footer */
 footer {
+  margin-top: auto;
   background-color: #0c564d;
 }

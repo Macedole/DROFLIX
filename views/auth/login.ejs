@@ -1,0 +1,23 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+<main class="cover d-flex justify-content-center align-items-center">
+  <div class="container login-form">
+    <form>
+      <div class="mb-3">
+        <label class="form-label">E-mail/CPF</label>
+        <input type="email" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label for="password">Senha</label>
+        <input type="password" class="form-control" />
+      </div>
+    </form>
+
+    <div class="mt-5">
+      <a href="inicio.html" class="btn login-btn">Login</a>
+      <a class="ms-3 text-primary">Redefinir senha</a>
+      <a href="/cadastro" class="ms-3 text-primary">Criar conta</a>
+    </div>
+  </div>
+  <%-include('../includes/end.ejs')%>

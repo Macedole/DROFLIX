@@ -1,0 +1,82 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+<main class="cover d-flex justify-content-center align-items-center">
+  <div class="container p-5 login-form">
+    <form class="row mt-5">
+      <!-- coluna -->
+      <div class="col col-6">
+        <div class="mb-3">
+          <label for="">Nome*</label>
+          <input class="form-control" type="text" name="" id="" />
+        </div>
+        <div class="mb-3">
+          <label for="">Sobrenome*</label>
+          <input class="form-control" type="text" name="" id="" />
+        </div>
+        <div class="mb-3">
+          <label for="">E-mail*</label>
+          <input class="form-control" type="email" name="" id="" />
+        </div>
+        <div class="mb-3">
+          <label for="">CPF*</label>
+          <input class="form-control" type="number" name="" id="" />
+        </div>
+        <div class="mb-3">
+          <label for="">Data de nascimento*</label>
+          <input class="form-control" type="date" />
+        </div>
+        <div class="mb-3">
+          <label for="">Senha*</label>
+          <input type="password" name="" id="" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="">Confirmar senha*</label>
+          <input type="password" name="" id="" class="form-control" />
+        </div>
+      </div>
+
+      <!-- coluna -->
+      <div class="col col-6">
+        <div class="mb-3">
+          <label for="">Telefone*</label>
+          <input type="number" name="" id="" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="">CEP*</label>
+          <input type="number" name="" id="" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="">Cidade*</label>
+          <input type="text" name="" id="" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="">Endereço*</label>
+          <input type="text" name="" id="" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="">Número residencial*</label>
+          <input type="number" name="" id="" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="">Complemento</label>
+          <input type="text" name="" id="" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="">Convênio</label>
+          <input type="text" name="" id="" class="form-control" />
+        </div>
+      </div>
+    </form>
+    <div class="form-check mt-2">
+      <input class="form-check-input" type="checkbox" />
+      <label class="form-check-label">Sou PCD</label>
+    </div>
+    <div class="form-check mt-2">
+      <input class="form-check-input" type="checkbox" />
+      <label class="form-check-label">Quero receber notificações por e-mail</label>
+    </div>
+    <div class="mt-2">
+      <a href="/login" class="btn login-btn">Cadastrar</a>
+    </div>
+  </div>
+<%-include('../includes/end.ejs')-%>

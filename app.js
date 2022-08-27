@@ -9,7 +9,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({extended: false}));
 
 const shopRoutes = require("./routes/shop");
+const authRoutes = require("./routes/auth");
 
 app.use(shopRoutes);
+app.use(authRoutes);
 
 app.listen(3000);

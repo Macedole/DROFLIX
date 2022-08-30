@@ -49,12 +49,39 @@ const produtos = [
   },
 ];
 
+const servicos = [
+  {
+    titulo: "Teste de COVID-19",
+    img: "https://images.unsplash.com/photo-1599493758267-c6c884c7071f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    titulo: "Aplicação de vacinas",
+    img: "https://images.unsplash.com/photo-1599493758267-c6c884c7071f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    titulo: "Teste de diabetes",
+    img: "https://images.unsplash.com/photo-1599493758267-c6c884c7071f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    titulo: "Medição de pressão",
+    img: "https://images.unsplash.com/photo-1599493758267-c6c884c7071f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    titulo: "Perfuração de orelha",
+    img: "https://images.unsplash.com/photo-1599493758267-c6c884c7071f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  },
+  {
+    titulo: "Realização de curativos",
+    img: "https://images.unsplash.com/photo-1599493758267-c6c884c7071f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  },
+];
+
 exports.getIndex = (req, res) => {
   res.render("shop/index", {
     paginaTitulo: "Droflix",
     produtosPromocao: produtosPromocao,
     produtos: produtos,
-    servicos: [],
+    servicos: servicos,
   });
 };
 

@@ -16,7 +16,7 @@
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Droflix Drogarias</title>
   </head>
   <body>
@@ -28,13 +28,13 @@
             <a href="#" class="btn-dropdown" data-bs-toggle="dropdown"><i class="text-light fas fa-bars"></i></a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Medicamentos</a></li>
+              <li><a class="dropdown-item" href="produtos.html">Medicamentos</a></li>
               <li><a class="dropdown-item" href="#">Maternidade</a></li>
               <li><a class="dropdown-item" href="#">Higiene pessoal</a></li>
               <li><a class="dropdown-item" href="#">Cosméticos</a></li>
               <li><a class="dropdown-item" href="#servicos">Serviços</a></li>
               <li class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Seja nosso parceiro</a></li>
+              <li><a class="dropdown-item" href="solicitacao.html">Seja nosso parceiro</a></li>
             </ul>
           </div>
 
@@ -58,54 +58,47 @@
             <!-- links -->
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="login.html">Login</a>
+                <a class="nav-link" href="minha-conta.html">Minha conta</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="cadastro.html">Cadastrar</a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+                <a href="carrinho.html" class="nav-link text-white"><i class="fas fa-shopping-cart"></i></a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-    <main class="cover d-flex justify-content-center align-items-center">
-      <div class="container p-5">
-        <form class="row mt-5">
-          <!-- coluna -->
-          <div class="col col-5">
-            <div class="mb-3">
-              <label for="">Nome*</label>
-              <input class="form-control" type="text" name="" id="" />
-            </div>
-            <div class="mb-3">
-              <label for="">E-mail*</label>
-              <input class="form-control" type="email" name="" id="" />
-            </div>
-            <div class="mb-3">
-              <label for="">CNPJ*</label>
-              <input class="form-control" type="number" name="" id="" />
-            </div>
-            <div class="mb-3">
-              <label for="">Telefone*</label>
-              <input type="number" name="" id="" class="form-control" />
-            </div>
-            <div class="mb-3">
-              <label for="">Nome da loja*</label>
-              <input type="text" name="" id="" class="form-control" />
-            </div>
-          </div>
 
-          <!-- coluna -->
-          <div class="col-7">
-            <label for="">Descrição da solicitação</label>
-            <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+    <main class="pt-5 cover d-flex align-items-center">
+      <div class="container p-5">
+        <div class="d-flex flex-column align-items-center">
+          <div class="row bg-white p-3 mb-3 w-75 align-items-center">
+            <div class="col col-md-2">
+              <img class="img-fluid" src="img/desodorante.webp" />
+            </div>
+            <div class="col col-md-10">
+              <p><strong>Desodorante</strong></p>
+              <p class="text-muted"><strong>R$9,99</strong></p>
+              <p><strong>Quantidade:</strong> 1</p>
+            </div>
+            <button class="btn btn-outline-danger col-12 mt-3">Remover do carrinho</button>
           </div>
-        </form>
-        <div class="mt-2">
-          <a href="inicio.html" class="btn login-btn">Enviar solicitação</a>
+          <div class="row bg-white p-3 mb-3 w-75 align-items-center">
+            <div class="col col-md-2">
+              <img class="img-fluid" src="img/novalgina.webp" />
+            </div>
+            <div class="col col-md-10">
+              <p><strong>Novalgina</strong></p>
+              <p class="text-muted"><strong>R$25,99</strong></p>
+              <p><strong>Quantidade:</strong> 1</p>
+            </div>
+            <button class="btn btn-outline-danger col-12 mt-3">Remover do carrinho</button>
+          </div>
+        </div>
+        <hr />
+        <div class="info ms-5">
+          <h1 class="text-muted">Total: R$35,99</h1>
+          <a class="btn compra-btn" href="confirmacao.html">Confirmar compra</a>
         </div>
       </div>
     </main>

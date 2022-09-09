@@ -16,8 +16,8 @@
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/style.css" />
-    <title>Droflix Drogarias</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Minha conta</title>
   </head>
   <body>
     <header>
@@ -28,13 +28,13 @@
             <a href="#" class="btn-dropdown" data-bs-toggle="dropdown"><i class="text-light fas fa-bars"></i></a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="produtos.html">Medicamentos</a></li>
+              <li><a class="dropdown-item" href="#">Medicamentos</a></li>
               <li><a class="dropdown-item" href="#">Maternidade</a></li>
               <li><a class="dropdown-item" href="#">Higiene pessoal</a></li>
               <li><a class="dropdown-item" href="#">Cosméticos</a></li>
               <li><a class="dropdown-item" href="#servicos">Serviços</a></li>
               <li class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="solicitacao.html">Seja nosso parceiro</a></li>
+              <li><a class="dropdown-item" href="#">Seja nosso parceiro</a></li>
             </ul>
           </div>
 
@@ -58,7 +58,7 @@
             <!-- links -->
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="minha-conta.html">Minha conta</a>
+                <a class="nav-link text-light" href="login.html">Minha conta</a>
               </li>
               <li class="nav-item">
                 <a href="carrinho.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
@@ -69,33 +69,31 @@
       </nav>
     </header>
 
-    <main class="pt-5 cover d-flex align-items-center">
-      <div class="row p-5">
-        <div class="col-5">
-          <img class="rounded" src="img/desodorante.webp" alt="" />
-        </div>
-        <div class="col-7">
-          <div class="info">
-            <h2>Desodorante</h2>
-            <p class="small text-muted">Vendido por: Droflix Drogarias</p>
-            <h3 class="text-muted mb-5"><strong>R$19,99</strong></h3>
-          </div>
-          <div class="decricao">
-            <p>
-              O Desodorante Aerosol Dove Original 150ml é o único que cuida da delicada pele das suas axilas, ajudando na recuperação depois da depilação e deixando sua pele
-              visivelmente mais macia e hidratada. Além de proteger 48 horas, possui ¼ de creme hidratante e agora o dobro de vitamina E, além do cheirinho insubstituível de Dove.
-              Só o antitranspirante preferido do Brasil pode garantir axilas mais lindas em apenas 7 dias. Como Usar: Para uma melhor sensação de frescor, o jeito mais fácil de
-              tirar o máximo proveito do seu aerosol é agitar bem, garantindo que todos os ingredientes se misturem corretamente. Para cobrir uma área mais homogênea, aplique o
-              produto a uma distância de 15cm das axilas. Aperte a válvula por cerca de dois segundos para cada axila.
-            </p>
-
-            <button class="btn product-btn">Adicionar ao carrinho</button>
+    <main class="pt-5 cover d-flex">
+      <div class="container p-5">
+        <div class="row">
+          <ul class="col-3">
+            <p><strong>Opções</strong></p>
+            <li class="opcao-conta"><a href="minha-conta.html"><i class="fas fa-chevron-right"></i> Meus dados</a></p>
+            <li class="opcao-conta"><a href="historico-compras.html">Histórico de compras</a></p>
+            <li class="opcao-conta"><a href="editar-dados.html">Editar dados pessoais</a></p>
+            <li class="opcao-conta text-danger">Encerrar conta</p>
+          </ul>
+          <div class="col-9">
+            <img class="rounded-circle img-small mb-3" src="img/perfil.webp" alt="" />
+            <p><strong>Nome:</strong> Vanessa Ike</p>
+            <p><strong>E-mail:</strong> vanessaike7@gmail.com</p>
+            <p><strong>CPF:</strong> XXX.XXX.XXX-XX</p>
+            <p><strong>Endereço: </strong> Rua XXXX, 123 - São Paulo, SP</p>
+            <p><strong>Telefone:</strong> (11) 123456789</p>
+            <p><strong>Convênio:</strong> Não</p>
+            <p><strong>PCD:</strong> Não</p>
           </div>
         </div>
       </div>
     </main>
 
-    <footer class="p-5 text-center">
+    <footer class="p-5 text-center mt-auto">
       <p class="text-light">Copyright © <a class="text-light" href="#">DROFLIX</a>. All rights reserved.</p>
     </footer>
 

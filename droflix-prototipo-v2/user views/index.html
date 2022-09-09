@@ -16,7 +16,7 @@
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Droflix Drogarias</title>
   </head>
   <body>
@@ -50,18 +50,21 @@
             <!-- search bar -->
             <form action="/search" method="POST" class="form-inline my-3 my-md-0">
               <div class="input-group">
-                <input type="text" name="productTitle" class="nav-input form-control" placeholder="Pesquisar produtos" />
-                <button class="input-group-text" type="submit" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></button>
+                <input type="text" class="nav-input form-control" placeholder="Pesquisar produtos" />
+                <button class="input-group-text"><i class="fas fa-search"></i></button>
               </div>
             </form>
 
             <!-- links -->
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="minha-conta.html">Minha conta</a>
+                <a class="nav-link" href="login.html">Login</a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+                <a class="nav-link" href="cadastro.html">Cadastrar</a>
+              </li>
+              <li class="nav-item">
+                <a href="carrinho.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
               </li>
             </ul>
           </div>
@@ -140,38 +143,6 @@
           </div>
         </div>
       </section>
-
-      <!-- DIFERENCIAIS -->
-      <!-- <section class="mb-5">
-        <div class="container">
-          <div class="features-cards d-flex justify-content-center align-items-center p-2">
-            <div class="features-card d-flex flex-column justify-content-center align-items-center text-center">
-              <i aria-hidden="true" class="features-card-icon mb-3 fas fa-shipping-fast"></i>
-              <p class="card__text">Facilidades no frete.</p>
-            </div>
-
-            <div class="features-card d-flex flex-column justify-content-center align-items-center text-center">
-              <i aria-hidden="true" class="features-card-icon mb-3 far fa-handshake"></i>
-              <p class="card__text">Parceiros de qualidade.</p>
-            </div>
-
-            <div class="features-card d-flex flex-column justify-content-center align-items-center text-center">
-              <i aria-hidden="true" class="features-card-icon mb-3 fas fa-user-check"></i>
-              <p class="card__text">Profissionais qualificados.</p>
-            </div>
-
-            <div class="features-card d-flex flex-column justify-content-center align-items-center text-center">
-              <i class="features-card-icon mb-3 fas fa-clinic-medical"></i>
-              <p class="card__text">Produtos de confiança.</p>
-            </div>
-
-            <div class="features-card d-flex flex-column justify-content-center align-items-center text-center">
-              <i class="features-card-icon mb-3 fas fa-lock"></i>
-              <p class="card__text">Segurança na hora da compra.</p>
-            </div>
-          </div>
-        </div>
-      </section> -->
 
       <!-- MAIS VENDIDOS -->
       <section class="mais-vendidos">
@@ -253,7 +224,7 @@
               <img src="img/teste-covid.jpg" class="card-img-top" />
               <div class="card-body">
                 <h5 class="card-title">Teste de COVID-19</h5>
-                <a href="#" class="btn agendar-btn">Agende agora</a>
+                <a href="detalhes-servico.html" class="btn agendar-btn">Saiba mais</a>
               </div>
             </div>
 
@@ -262,7 +233,7 @@
               <img src="img/vacina.jpg" class="card-img-top" />
               <div class="card-body">
                 <h5 class="card-title">Aplicação de vacinas</h5>
-                <a href="#" class="btn agendar-btn">Agende agora</a>
+                <a href="#" class="btn agendar-btn">Saiba mais</a>
               </div>
             </div>
 

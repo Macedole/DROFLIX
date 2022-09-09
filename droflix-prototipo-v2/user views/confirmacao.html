@@ -16,7 +16,7 @@
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Droflix Drogarias</title>
   </head>
   <body>
@@ -58,10 +58,7 @@
             <!-- links -->
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link text-light" href="login.html">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="cadastro.html">Cadastrar</a>
+                <a class="nav-link" href="minha-conta.html">Minha conta</a>
               </li>
               <li class="nav-item">
                 <a href="carrinho.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
@@ -71,28 +68,58 @@
         </div>
       </nav>
     </header>
-    <main class="cover d-flex justify-content-center align-items-center">
-      <div class="container login-form">
-        <form>
-          <div class="mb-3">
-            <label class="form-label">E-mail/CPF</label>
-            <input type="email" class="form-control" />
-          </div>
 
-          <div class="mb-3">
-            <label for="password">Senha</label>
-            <input type="password" class="form-control" />
+    <main class="pt-5 cover d-flex align-items-center">
+      <div class="container p-5">
+        <div class="row d-flex">
+          <div class="card col-4 d-flex align-items-center p-2">
+            <p class="text-muted">1. Identificação</p>
+            <div class="dados">
+              <p class="small">Nome: <strong>Vanessa Ike</strong></p>
+              <p class="small">E-mail: <strong>vanessaike7@gmail.com</strong></p>
+              <p class="small">Endereço para entrega: <strong>Rua Manuel de Sá, 148</strong></p>
+              <a class="text-muted" href="#">Alterar endereço</a>
+            </div>
           </div>
-        </form>
-
-        <div class="mt-5">
-          <a href="inicio.html" class="btn login-btn">Login</a>
-          <a class="ms-3 text-primary">Redefinir senha</a>
+          <div class="card col-4 d-flex align-items-center p-2">
+            <p class="text-muted">2. Pagamento</p>
+            <div class="pagamento d-flex flex-column align-items-start justify-content-center">
+              <button class="btn "><i class="fas fa-credit-card"></i> Cartão de crédito</p>
+              <button class="btn "><i class="fas fa-barcode"></i> Boleto</p>
+              <button class="btn "><i class="fas fa-qrcode"></i> PIX</p>
+            </div>
+          </div>
+          <div class="card col-4 d-flex align-items-center p-2">
+            <p class="text-muted">3. Resumo do pedido</p>
+            <div class="info row p-2">
+              <div class="col-3">
+                <img src="img/desodorante.webp" class="img-fluid img-small col-3" alt="">
+              </div>
+              <div class="col-9">
+                <p>Desodorante</p>
+                <p>R$9,99</p>
+              </div>
+              <hr>
+              <div class="info row">
+                <div class="col-3">
+                  <img src="img/novalgina.webp" class="img-fluid img-small col-3" alt="">
+                </div>
+                <div class="col-9">
+                  <p>Novalgina</p>
+                  <p>R$25,99</p>
+                </div>
+                <hr>
+                <div class="info">
+                  <p><strong>Total: R$40,98</strong></p>
+                  <p>Frete: R$5,00</p>
+                </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
 
-    <footer class="p-5 text-center">
+    <footer class="p-5 text-center mt-auto">
       <p class="text-light">Copyright © <a class="text-light" href="#">DROFLIX</a>. All rights reserved.</p>
     </footer>
 

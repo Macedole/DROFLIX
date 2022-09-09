@@ -16,8 +16,8 @@
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/style.css" />
-    <title>Droflix Drogarias</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Cadastrar funcionário</title>
   </head>
   <body>
     <header>
@@ -33,8 +33,6 @@
               <li><a class="dropdown-item" href="#">Higiene pessoal</a></li>
               <li><a class="dropdown-item" href="#">Cosméticos</a></li>
               <li><a class="dropdown-item" href="#servicos">Serviços</a></li>
-              <li class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="solicitacao.html">Seja nosso parceiro</a></li>
             </ul>
           </div>
 
@@ -60,8 +58,18 @@
               <li class="nav-item">
                 <a class="nav-link" href="minha-conta.html">Minha conta</a>
               </li>
-              <li class="nav-item">
-                <a href="carrinho.html" class="nav-link text-white"><i class="fas fa-shopping-cart"></i></a>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown">Admin</a>
+                <ul class="dropdown-menu">
+                  <li><a href="cadastrar-produto.html" class="dropdown-item">Cadastrar produto</a></li>
+                  <li><a href="cadastrar-servico.html" class="dropdown-item">Cadastrar serviço</a></li>
+                  <li><a href="cadastrar-funcionario.html" class="dropdown-item">Cadastrar funcionário</a></li>
+                  <li><a href="receitas-medicas.html" class="dropdown-item">Receitas médicas</a></li>
+                  <li><a href="usuarios.html" class="dropdown-item">Procurar usuários</a></li>
+                  <li><a href="enviar-solicitacao.html" class="dropdown-item">Enviar solicitações</a></li>
+                  <li><a href="solicitacoes.html" class="dropdown-item">Solicitações</a></li>
+                  <li><a href="entregas.html" class="dropdown-item">Entregas pendentes</a></li>
+                </ul>
               </li>
             </ul>
           </div>
@@ -69,37 +77,49 @@
       </nav>
     </header>
 
-    <main class="pt-5 cover d-flex align-items-center">
-      <div class="container p-5">
-        <div class="d-flex flex-column align-items-center">
-          <div class="row bg-white p-3 mb-3 w-75 align-items-center">
-            <div class="col col-md-2">
-              <img class="img-fluid" src="img/desodorante.webp" />
-            </div>
-            <div class="col col-md-10">
-              <p><strong>Desodorante</strong></p>
-              <p class="text-muted"><strong>R$9,99</strong></p>
-              <p><strong>Quantidade:</strong> 1</p>
-            </div>
-            <button class="btn btn-outline-danger col-12 mt-3">Remover do carrinho</button>
+    <main class="cover d-flex align-items-center justify-content-center">
+      <div class="p-5 container">
+        <form action="" class="p-5">
+          <div class="mb-3">
+            <label for="">Foto de perfil</label>
+            <input type="file" class="form-control" name="" id="" />
           </div>
-          <div class="row bg-white p-3 mb-3 w-75 align-items-center">
-            <div class="col col-md-2">
-              <img class="img-fluid" src="img/novalgina.webp" />
+          <div class="mb-3 row">
+            <div class="col-6">
+              <label for="">Nome</label>
+              <input type="text" class="form-control" name="" id="" />
             </div>
-            <div class="col col-md-10">
-              <p><strong>Novalgina</strong></p>
-              <p class="text-muted"><strong>R$25,99</strong></p>
-              <p><strong>Quantidade:</strong> 1</p>
+            <div class="col-6">
+              <label for="">Sobrenome</label>
+              <input type="text" class="form-control" name="" id="" />
             </div>
-            <button class="btn btn-outline-danger col-12 mt-3">Remover do carrinho</button>
           </div>
-        </div>
-        <hr />
-        <div class="info ms-5">
-          <h1 class="text-muted">Total: R$35,99</h1>
-          <a class="btn compra-btn" href="confirmacao.html">Confirmar compra</a>
-        </div>
+          <div class="row">
+            <div class="mb-3 col-6">
+              <label for="">CPF</label>
+              <input type="text" name="" class="form-control" id="" />
+            </div>
+            <div class="mb-3 col-6">
+              <label for="">E-mail</label>
+              <input type="email" name="" class="form-control" id="" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="">Endereço</label>
+            <input type="text" class="form-control" />
+          </div>
+          <div class="row mb-3">
+            <div class="col-6">
+              <label for="">Cargo</label>
+              <input type="text" class="form-control" name="" id="" />
+            </div>
+            <div class="col-6">
+              <label for="">Departamento</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+          <button class="btn default-btn fs-6">Cadastrar funcionário</button>
+        </form>
       </div>
     </main>
 

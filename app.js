@@ -5,14 +5,18 @@ const port = 3000;
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.urlencoded({extended: true}));
 
 const shopRoutes = require("./routes/shop");
 const authRoutes = require("./routes/auth");
+const funcionarioRoutes = require("./routes/funcionario");
 
 app.use(shopRoutes);
 app.use(authRoutes);
+app.use(funcionarioRoutes);
 
 app.listen(port, () => console.log(`Servidor em execução na porta ${port}...`));

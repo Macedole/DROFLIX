@@ -13,7 +13,7 @@ function preencheCampos(conteudo) {
         document.querySelector('#cidade').value = (conteudo.localidade);
 
         // Preenche o estado
-        const estados = document.querySelectorAll('#estado .option');
+        const estados = document.querySelectorAll('#uf .option');
         for(i = 0; i < estados.length; i++){
             if(estados[i].value === conteudo.uf){
                 estados[i].setAttribute('selected', 'selected');
@@ -30,6 +30,10 @@ function preencheCampos(conteudo) {
             document.querySelector('#logradouro').setAttribute('readonly', 'readonly');
             document.querySelector('#bairro').classList.add('readonly');
             document.querySelector('#bairro').setAttribute('readonly', 'readonly');
+            document.querySelector('#cidade').classList.add('readonly');
+            document.querySelector('#cidade').setAttribute('readonly', 'readonly');
+            document.querySelector('#uf').classList.add('readonly');
+            document.querySelector('#uf').setAttribute('disabled', 'disabled');
         }
     }
     else {

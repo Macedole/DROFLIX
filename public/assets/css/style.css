@@ -9,6 +9,20 @@ body {
   flex-direction: column;
 }
 
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: inherit;
+  color: inherit;
+}
+
 /* utils */
 .cover {
   min-height: 100vh;
@@ -37,7 +51,8 @@ body {
 .login-btn,
 .signup-btn,
 .agendar-btn,
-.compra-btn {
+.compra-btn,
+.default-btn {
   text-decoration: none;
   color: #0c564d;
   border: 1px solid #0c564d;
@@ -49,7 +64,8 @@ body {
 .login-btn:hover,
 .signup-btn:hover,
 .agendar-btn:hover,
-.compra-btn:hover {
+.compra-btn:hover,
+.default-btn:hover {
   background-color: #0c564d;
   color: white;
 }
@@ -74,17 +90,6 @@ body {
   font-weight: 500;
   padding: 2.5rem;
   width: 15rem;
-}
-
-/* features */
-.features-card {
-  width: 16rem;
-  padding: 2.5rem;
-}
-
-.features-card-icon {
-  color: #0c564d;
-  font-size: 3rem;
 }
 
 /* login */

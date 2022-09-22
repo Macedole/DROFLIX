@@ -1,0 +1,42 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+    <main class="pt-5 cover d-flex align-items-center justify-content-center">
+      <div class="">
+        <form action="">
+          <div class="mb-3">
+            <label for="">URL da imagem</label>
+            <input type="url" class="form-control" name="" id="" />
+          </div>
+          <div class="mb-3">
+            <label for="">Título</label>
+            <input type="text" class="form-control" name="" id="" />
+          </div>
+          <div class="mb-3 row">
+            <div class="col-6">
+              <label for="">Preço</label>
+              <input type="number" class="form-control" name="" id="" />
+            </div>
+            <div class="col-6">
+              <label for="">Quantidade em estoque</label>
+              <input type="number" name="" id="" class="form-control" />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-6">
+              <label for="">Data de validade do lote</label>
+              <input type="date" name="" id="" class="form-control" />
+            </div>
+            <div class="col-6">
+              <label for="">Nº de identificação do lote</label>
+              <input type="number" name="" id="" class="form-control" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="">Descrição</label>
+            <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+          </div>
+          <button class="btn default-btn fs-6">Cadastrar produto</button>
+        </form>
+      </div>
+    </main>
+    <%-include('../includes/end.ejs')%>

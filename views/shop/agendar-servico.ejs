@@ -1,0 +1,44 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+    <main class="pt-5 cover d-flex align-items-center">
+      <div class="container p-5">
+        <h2 class="text-muted">Agendamento de serviço</h2>
+        <form class="row justify-content-center">
+          <!-- coluna -->
+          <div class="col col-4">
+            <div class="mt-3">
+              <label for="dia">Informe o dia em que deseja realizar o exame</label>
+              <input class="form-control" type="date" name="" id="" />
+            </div>
+            <div class="mt-3">
+              <label for="horario">Informe o horário em que deseja realizar o exame</label>
+              <input class="form-control" type="time" name="" id="" />
+            </div>
+            <div class="mt-3">
+              <label for="nome">Informe o nome do paciente</label>
+              <input type="text" class="form-control" />
+            </div>
+            <div class="mt-3">
+              <label for="sobrenome">Informe o sobrenome do paciente</label>
+              <input type="text" class="form-control" />
+            </div>
+            <div class="mt-3">
+              <label for="cpf">Informe o CPF do paciente</label>
+              <input class="form-control" type="number" name="" id="" />
+            </div>
+          </div>
+          <!-- coluna -->
+          <div class="col col-4">
+            <div class="mt-3">
+              <label for="informacoes">Informações adicionais</label>
+              <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="mt-3">
+              <a href="inicio.html" class="btn agendar-btn fs-6">Agendar serviço</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <%-include('../includes/end.ejs')%>
+

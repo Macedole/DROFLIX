@@ -14,11 +14,13 @@
               <div class="card-text mt-3">
                 <p class="card-title"><%=produto.titulo%></p>
                 <p class="card-text text-muted"><del>R$<%=produto.precoAnterior%></del></p>
-                <p class="card-text text-danger"><strong>R$<%=produto.precoAtual%></strong></p>
+                <p class="card-text text-danger"><strong>R$<%=produto.preco%></strong></p>
               </div>
               <div class="mt-3 d-flex flex-column justify-content-center">
-                <a class="btn product-btn me-2" href="#">Detalhes</a>
-                <a class="btn product-btn me-2 mt-2" href="#">Adicionar ao carrinho</a>
+                <a class="btn product-btn me-2" href="/produto/<%=produto.id%>">Detalhes</a>
+                <% if (!isAdmin) { %>
+                  <a class="btn product-btn me-2 mt-2" href="#">Adicionar ao carrinho</a>
+                <% } %>
               </div>
             </div>
           <% } %> 
@@ -43,8 +45,10 @@
                   <p class="card-text text-muted">R$<%=produto.preco%></p>
                 </div>
                 <div class="mt-3 d-flex flex-column justify-content-center">
-                  <a class="btn product-btn me-2" href="#">Detalhes</a>
-                  <a class="btn product-btn me-2 mt-2" href="#">Adicionar ao carrinho</a>
+                  <a class="btn product-btn me-2" href="/produto/<%=produto.id%>">Detalhes</a>
+                  <% if (!isAdmin) { %>
+                    <a class="btn product-btn me-2 mt-2" href="#">Adicionar ao carrinho</a>
+                  <% } %>
                 </div>
               </div>
             <% } %>
@@ -66,7 +70,7 @@
             <img src="<%=servico.img%>" class="card-img-top" />
             <div class="card-body">
               <h5 class="card-title"><%=servico.titulo%></h5>
-              <a href="#" class="btn agendar-btn">Saiba mais</a>
+              <a href="/servico/<%=servico.id%>" class="btn agendar-btn">Saiba mais</a>
             </div>
           </div>
         <% } %>

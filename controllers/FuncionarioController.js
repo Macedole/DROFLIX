@@ -1,5 +1,6 @@
 const modelFuncionario = require("../models/Funcionario.js");
 const modelEndereco = require("../models/Endereco.js");
+const dadosTeste = require("../dados-teste/dados.json");
 
 const formatDate = require("../public/assets/utils/formatDate.js");
 
@@ -7,6 +8,8 @@ class FuncionarioController {
   renderCadastro(req, res) {
     res.render("admin/cadastrar-funcionario.ejs", {
       paginaTitulo: "Cadastro de Funcionário",
+      isLoggedIn: true,
+      isAdmin: true,
     });
   }
 
@@ -99,6 +102,52 @@ class FuncionarioController {
       mensagem: funcionario[0].mensagem,
     });
   }
+
+  async renderCadastroProduto(req, res) {
+    res.render("admin/cadastrar-produto", {
+      paginaTitulo: "Cadastrar produto",
+      isLoggedIn: true,
+      isAdmin: true,
+    });
+  }
+
+  async renderCadastroServico(req, res) {
+    res.render("admin/cadastrar-servico", {
+      paginaTitulo: "Cadastrar serviço",
+      isLoggedIn: true,
+      isAdmin: true,
+    });
+  }
+
+  async procurarUsuario(req, res) {
+    res.render("admin/procurar-usuarios", {
+      paginaTitulo: "Procurar usuários",
+      isLoggedIn: true,
+      isAdmin: true,
+    });
+  }
+
+  async getSolicitacoes(req, res) {
+    res.render("admin/solicitacoes", {
+      paginaTitulo: "Solicitações",
+      solicitacoes: dadosTeste.solicitacoes,
+      isLoggedIn: true,
+      isAdmin: true,
+    });
+  }
+
+  async getSolicitacao(req, res) {
+    const solicitacaoId = req.params.solicitacaoId;
+    const solicitacao = dadosTeste.solicitacoes.find((solicitacao) => solicitacao.id.toString() === solicitacaoId);
+    res.render("admin/solicitacao", {
+      solicitacao: solicitacao,
+      paginaTitulo: `Solicitação de ${solicitacao.nome}`,
+      isAdmin: true,
+      isLoggedIn: true,
+    });
+  }
+
+  async getEnderecos(req, res) {}
 
   async teste(req, res) {
     return res.json({req: req.body});

@@ -11,6 +11,8 @@
           <li><a class="dropdown-item" href="#">Higiene pessoal</a></li>
           <li><a class="dropdown-item" href="#">Cosméticos</a></li>
           <li><a class="dropdown-item" href="#servicos">Serviços</a></li>
+          <li class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="/enviar-parcerias">Seja nosso parceiro</a></li>
         </ul>
       </div>
 
@@ -33,22 +35,44 @@
 
         <!-- links -->
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="minha-conta.html">Minha conta</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin</a>
-            <ul class="dropdown-menu">
-              <li><a href="cadastrar-produto.html" class="dropdown-item">Cadastrar produto</a></li>
-              <li><a href="cadastrar-servico.html" class="dropdown-item">Cadastrar serviço</a></li>
-              <li><a href="/funcionario" class="dropdown-item">Cadastrar funcionário</a></li>
-              <li><a href="receitas-medicas.html" class="dropdown-item">Receitas médicas</a></li>
-              <li><a href="usuarios.html" class="dropdown-item">Procurar usuários</a></li>
-              <li><a href="enviar-solicitacao.html" class="dropdown-item">Enviar solicitações</a></li>
-              <li><a href="solicitacoes.html" class="dropdown-item">Solicitações</a></li>
-              <li><a href="entregas.html" class="dropdown-item">Entregas pendentes</a></li>
-            </ul>
-          </li>
+          <% if (!isLoggedIn) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/cadastro">Cadastrar</a>
+            </li>
+          <% } else if (isLoggedIn && isAdmin) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="minha-conta.html">Minha conta</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin</a>
+              <ul class="dropdown-menu">
+                <li><a href="/cadastrar-produto" class="dropdown-item">Cadastrar produto</a></li>
+                <li><a href="/funcionario" class="dropdown-item">Cadastrar funcionário</a></li>
+                <li><a href="/cadastrar-servico" class="dropdown-item">Cadastrar serviço</a></li>
+                <li><a href="" class="dropdown-item">Cadastrar loja parceira</a></li>
+                <li><a href="" class="dropdown-item">Cadastrar cupom</a></li>
+                <li><a href="" class="dropdown-item">Agendamentos</a></li>
+                <li><a href="" class="dropdown-item">Relatórios</a></li>
+                <li><a href="/procurar-usuario" class="dropdown-item">Procurar usuários</a></li>
+                <li><a href="/solicitacoes" class="dropdown-item">Solicitações</a></li>
+                <li><a href="entregas.html" class="dropdown-item">Entregas pendentes</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href=""><i class="fas fa-bell"></i></a>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="minha-conta.html">Minha conta</a>
+            </li>
+            <li class="nav-item">
+              <a href="carrinho.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+            </li>
+          <% } %>
+
         </ul>
       </div>
     </div>

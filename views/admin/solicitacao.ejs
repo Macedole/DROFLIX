@@ -1,0 +1,22 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+    <main class="cover d-flex align-items-center justify-content-center pt-5">
+      <div class="container d-flex align-items-center justify-content-start p-5">
+        <div class="d-flex flex-column">
+          <h3><%=solicitacao.nomeLoja%></h3>
+          <p class="text-muted"><strong>De: </strong><%=solicitacao.email%></p>
+          <p class="text-muted"><strong>CNPJ: </strong><%=solicitacao.cnpj%></p>
+          <div class="bg-white rounded p-3">
+            <p><%=solicitacao.descricao%></p>
+          </div>
+          <form action="" class="mt-3">
+            <label for="">Responder solicitação</label>
+            <textarea class="form-control" name="" id="" cols="10" rows="5"></textarea>
+            <button class="btn default-btn fs-6 mt-3">Enviar</button>
+            <button class="btn btn-danger mt-3">Excluir solicitação</button>
+          </form>
+        </div>
+      </div>  
+    </main>
+    <%-include('../includes/end.ejs')%>
+

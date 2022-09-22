@@ -1,0 +1,71 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+<% if (isAdmin && isLoggedIn) { %>
+  <main class="pt-5 cover d-flex align-items-center justify-content-center">
+    <div class="row p-5">
+      <div class="col-5">
+        <img class="rounded img-fluid" src="<%=produto.img%>" alt="" />
+      </div>
+      <div class="col-7">
+        <form action="">
+          <div class="mb-3">
+            <label for="">URL da imagem</label>
+            <input type="url" class="form-control" name="" id="" value="<%=produto.img%>"/>
+          </div>
+          <div class="mb-3">
+            <label for="">Título</label>
+            <input type="text" class="form-control" name="" id="" value="<%=produto.titulo%>" />
+          </div>
+          <div class="mb-3 row">
+            <div class="col-6">
+              <label for="">Preço</label>
+              <input type="number" class="form-control" name="" id="" value="<%=produto.preco%>" />
+            </div>
+            <div class="col-6">
+              <label for="">Quantidade em estoque</label>
+              <input type="number" name="" id="" class="form-control" value="<%=produto.quantEstoque%>" />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-6">
+              <label for="">Data de validade do lote</label>
+              <input type="date" name="" id="" class="form-control" value="<%=produto.validadeLote%>" />
+            </div>
+            <div class="col-6">
+              <label for="">Nº de identificação do lote</label>
+              <input type="number" name="" id="" class="form-control" value="<%=produto.idLote%>" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="">Descrição</label>
+            <textarea class="form-control" name="" id="" cols="30" rows="5"><%=produto.descricao%></textarea>
+          </div>
+          <button class="btn default-btn fs-6">Salvar</button>
+          <a href="#" class="btn btn-danger">Excluir produto</a>
+        </form>
+      </div>
+    </div>
+  </main>
+<% } else { %>
+  <main class="pt-5 cover d-flex align-items-center">
+    <div class="row p-5">
+      <div class="col-5">
+        <img class="rounded" src="<%=produto.img%>" alt="" />
+      </div>
+      <div class="col-7">
+        <div class="info">
+          <h2><%=produto.titulo%></h2>
+          <p class="small text-muted">Vendido por: Droflix Drogarias</p>
+          <h3 class="text-muted mb-5"><strong>R$<%=produto.preco%></strong></h3>
+        </div>
+        <div class="decricao">
+          <p>
+            <%=produto.descricao%>
+          </p>
+          <button class="btn product-btn">Adicionar ao carrinho</button>
+        </div>
+      </div>
+    </div>
+  </main>
+<% } %>
+<%-include('../includes/end.ejs')%>

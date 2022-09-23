@@ -8,6 +8,8 @@ router.get("/funcionario", funcionarioController.renderCadastro);
 router.post("/funcionario", funcionarioController.storeFuncionario);
 router.get("/procurar-usuario", funcionarioController.procurarUsuario);
 router.get("/solicitacoes", funcionarioController.getSolicitacoes);
+router.get("/cupons", funcionarioController.getCupons);
+router.get("/entregas", funcionarioController.getEntregas);
 router.get("/cadastrar-produto", funcionarioController.renderCadastroProduto);
 router.get("/cadastrar-servico", funcionarioController.renderCadastroServico);
 router.get("/solicitacao/:solicitacaoId", funcionarioController.getSolicitacao);

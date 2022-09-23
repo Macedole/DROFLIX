@@ -147,7 +147,23 @@ class FuncionarioController {
     });
   }
 
-  async getEnderecos(req, res) {}
+  async getCupons(req, res) {
+    res.render("admin/cupons", {
+      cupons: dadosTeste.cupons,
+      paginaTitulo: "Cupons de desconto",
+      isAdmin: true,
+      isLoggedIn: true,
+    });
+  }
+
+  async getEntregas(req, res) {
+    res.render("admin/entregas", {
+      paginaTitulo: "Entregas realizadas",
+      entregas: dadosTeste.entregas,
+      isAdmin: true,
+      isLoggedIn: true,
+    });
+  }
 
   async teste(req, res) {
     return res.json({req: req.body});

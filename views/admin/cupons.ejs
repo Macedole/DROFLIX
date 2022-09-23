@@ -1,0 +1,55 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+    <main class="cover pt-5">
+      <div class="container p-5">
+        <div class="d-flex flex-row justify-content-between">
+          <h3 class="text-muted">Cupons de desconto</h3>
+          <button class="btn default-btn fs-6" data-bs-toggle="modal" data-bs-target="#modalCadastro">Cadastrar cupom</button>
+        </div>
+        <ul class="mt-4 d-flex justify-content-center flex-column">
+          <% for (const cupom of cupons) { %>
+            <li class="bg-white p-3 d-flex flex-row justify-content-between rounded mb-2">
+              <div>
+                <p><strong>Código:</strong> <%=cupom.codigo%></>
+                <p><strong>Porcentagem de desconto:</strong> <%=cupom.porcentagem%>%</p>
+                <p><strong>Produtos em que este cupom pode ser utilizado:</strong> <%=cupom.produtos%></p>
+              </div>
+              <div>
+                <a href=""><i class="fas fa-trash text-danger"></i></a>
+              </div>
+            </li>
+          <% } %>
+        </ul>
+      </div>  
+    </main>
+
+    <div class="modal" id="modalCadastro" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Cadastrar cupom</h3>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form action="">
+              <div class="mb-3">
+                <label for="">Código do cupom</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="">Porcentagem de desconto</label>
+                <input type="number" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="">Produtos em que este cupom pode ser utilizado</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="modal-footer">
+                <button class="btn default-btn fs-6">Cadastrar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%-include('../includes/end.ejs')%>

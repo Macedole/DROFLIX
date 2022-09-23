@@ -1,0 +1,23 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+    <main class="cover pt-5">
+      <div class="container p-5">
+        <h3 class="text-muted">Entregas realizadas</h3>
+        <ul class="mt-4 d-flex justify-content-center flex-column">
+          <% for (const entrega of entregas) { %>
+            <li class="bg-white p-3 rounded mb-2">
+              <h5 class="text-muted">Id da entrega: <%=entrega.id%></h5>
+              <p><strong>Nome:</strong> <%=entrega.nome%></p>
+              <p><strong>CPF:</strong> <%=entrega.cpf%></p>
+              <p><strong>CEP:</strong> <%=entrega.cep%></p>
+              <p><strong>Número residencial:</strong> <%=entrega.numeroResidencial%></p>
+              <p><strong>Recebido por:</strong> <%=entrega.recebidoPor%></p>
+              <p><strong>Horário da entrega:</strong> <%=entrega.horarioEntrega%></p>
+              <p><strong>Data da entrega:</strong> <%=entrega.dataEntrega%></p>
+              <p><strong>Entregador:</strong> <%=entrega.entregador%></p>
+            </li>
+          <% } %>
+        </ul>
+      </div>  
+    </main>
+    <%-include('../includes/end.ejs')%>

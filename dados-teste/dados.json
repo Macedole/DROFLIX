@@ -208,7 +208,29 @@
       "img": "https://images.unsplash.com/photo-1609840533741-62c180d0be79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
     }
   ],
-  "enderecos": [],
+  "entregas": [
+    {
+      "id": "abcdEhdjHSf565546",
+      "nome": "Vanessa Ike",
+      "cpf": "XXXXXXXXXXX",
+      "cep": "08020-050",
+      "numeroResidencial": "123",
+      "recebidoPor": "Wesley",
+      "dataEntrega": "23/09/2022",
+      "horarioEntrega": "14:28",
+      "entregador": "Pedrinho"
+    },
+    {
+      "id": "abcdEhdjHSf565546",
+      "nome": "Vanessa Ike",
+      "cpf": "XXXXXXXXXXX",
+      "cep": "08020-050",
+      "numeroResidencial": "123",
+      "recebidoPor": "Wesley",
+      "horarioEntrega": "14:28",
+      "entregador": "Pedrinho"
+    }
+  ],
   "solicitacoes": [
     {
       "id": 1,
@@ -225,6 +247,18 @@
       "cnpj": "35587207000199",
       "nomeLoja": "Tidinha Perfumaria",
       "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis hendrerit lectus. In vitae nisi vitae leo posuere ultrices. Morbi ultricies purus nec magna euismod euismod. Etiam vehicula ex libero, ut fermentum nibh semper eu. Nam sit amet neque nec nisl pharetra cursus. Aliquam erat volutpat. Quisque aliquam enim et mi tincidunt blandit. Suspendisse volutpat ante quam, quis ornare magna bibendum quis. Praesent eu felis ac ligula pulvinar cursus. Nulla egestas hendrerit sodales. Phasellus ut lacus diam. Maecenas blandit arcu eu justo eleifend, at aliquet ligula egestas."
+    }
+  ],
+  "cupons": [
+    {
+      "codigo": "DROG123456",
+      "porcentagem": 10,
+      "produtos": "Higiene pessoal"
+    },
+    {
+      "codigo": "FLIX789546",
+      "porcentagem": 20,
+      "produtos": "Maternidade"
     }
   ]
 }

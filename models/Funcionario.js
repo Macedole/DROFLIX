@@ -40,19 +40,18 @@ class Funcionario {
 
     storeFuncionario(dados) {
         const {
-            cpf, 
-            nome, 
-            email, 
-            dataNasc, 
-            telefone, 
-            cargo,
-            salario,
-            idEndereco, 
-            idDepartamento
+            acao,
+            idFuncionario,
+            cpf,
+            nome,
+            email,
+            dataNasc,
+            telefone,
+            idEndereco
         } = dados;
 
-        const sql = 'CALL proc_store_funcionario (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        const values = [cpf, nome, email, dataNasc, telefone, cargo, salario, idEndereco, idDepartamento];
+        const sql = 'CALL proc_store_funcionario (?, ?, ?, ?, ?, ?, ?, ?)';
+        const values = [acao, idFuncionario, cpf, nome, email, dataNasc, telefone, idEndereco];
 
         try {
             return new Promise((res, rej) => {

@@ -3,7 +3,6 @@ window.addEventListener('load', () => {
     maskData('dataNasc');
     maskCel('telefone');
     maskCep('cep');
-    maskMoney('salario');
 });
 
 const cep = document.querySelector('#cep');
@@ -15,13 +14,12 @@ btnCadastro.addEventListener('click', validaForm);
 async function validaForm(event) {
     event.preventDefault();
 
+    const acao = document.querySelector('#acao').value;
     const cpf = document.querySelector('#cpf').value;
     const nome = document.querySelector('#nome').value;
     const dataNasc = document.querySelector('#dataNasc').value;
     const email = document.querySelector('#email').value;
     const telefone = document.querySelector('#telefone').value;
-    const cargo = document.querySelector('#cargo').value;
-    const departamento = document.querySelector('#departamento').value;
     const cep = document.querySelector('#cep').value;
     const logradouro = document.querySelector('#logradouro').value;
     const numero = document.querySelector('#numero').value;
@@ -29,7 +27,6 @@ async function validaForm(event) {
     const bairro = document.querySelector('#bairro').value;
     const cidade = document.querySelector('#cidade').value;
     const uf = document.querySelector('#uf').value;
-    const salario = document.querySelector('#salario').value;
 
     let mensagem = '';
     if(!nome) {
@@ -54,10 +51,6 @@ async function validaForm(event) {
         mensagem = 'Preencha a cidade da residência corretamente!';
     }else if(!uf) {
         mensagem = 'Preencha o UF da residência corretamente!';
-    }else if(!cargo) {
-        mensagem = 'Preencha o cargo corretamente!';
-    }else if(!salario) {
-        mensagem = 'Preencha o salário corretamente!';
     }
 
     if(mensagem !== '') {
@@ -65,21 +58,19 @@ async function validaForm(event) {
     }
 
     const dados = {
-        cpf: cpf, 
-        nome: nome, 
-        email: email, 
-        dataNasc: dataNasc, 
-        telefone: telefone, 
-        cargo: cargo, 
-        departamento: departamento,
-        salario: salario,
-        logradouro: logradouro,
-        numero: numero,
-        bairro: bairro,
-        complemento: complemento,
-        cidade: cidade,
-        uf: uf,
-        cep: cep
+        acao,
+        cpf,
+        nome, 
+        email, 
+        dataNasc, 
+        telefone, 
+        logradouro,
+        numero,
+        bairro,
+        complemento,
+        cidade,
+        uf,
+        cep
     }
 
     try {
@@ -91,9 +82,13 @@ async function validaForm(event) {
             });
         }
 
-        return successAlert({
+        successAlert({
             titulo: funcionario.data.mensagem
         });
+
+        return setTimeout(() => {
+            location.href = `/funcionario/${funcionario.data.idFuncionario}`;
+        }, 3000);
 
     } catch (error) {
         return warningAlert({ descricao: error });

@@ -2,7 +2,7 @@ const modelFuncionario = require("../models/Funcionario.js");
 const modelEndereco = require("../models/Endereco.js");
 const dadosTeste = require("../dados-teste/dados.json");
 
-const formatDate = require("../public/assets/utils/formatDate.js");
+const formatDate = require('../public/assets/utils/formatDate.js');
 
 class FuncionarioController {
   renderCadastro(req, res) {
@@ -10,11 +10,12 @@ class FuncionarioController {
       paginaTitulo: "Cadastro de Funcionário",
       isLoggedIn: true,
       isAdmin: true,
+      acao: 'C'
     });
   }
 
   async storeFuncionario(req, res) {
-    const {cpf, nome, email, dataNasc, telefone, cargo, departamento, salario, logradouro, numero, bairro, complemento, cidade, uf, cep} = req.body;
+    const {acao, cpf, nome, email, dataNasc, telefone, logradouro, numero, bairro, complemento, cidade, uf, cep} = req.body;
 
     let mensagem = "";
     if (cpf.length < 14) {
@@ -27,12 +28,6 @@ class FuncionarioController {
       mensagem = "Preencha a data de nascimento corretamente!";
     } else if (!telefone) {
       mensagem = "Preencha o telefone corretamente!";
-    } else if (!cargo) {
-      mensagem = "Preencha o cargo corretamente!";
-    } else if (!departamento) {
-      mensagem = "Selecione o departamento!";
-    } else if (!salario) {
-      mensagem = "Preencha o salário corretamente!";
     } else if (!logradouro) {
       mensagem = "Preencha o logradouro da residência corretamente!";
     } else if (!numero) {
@@ -52,7 +47,6 @@ class FuncionarioController {
     const telefoneFormatado = telefone.replace(/[^\d]/g, "");
     let dataNascFormatada = dataNasc.split("/");
     dataNascFormatada = `${dataNascFormatada[2]}-${dataNascFormatada[1]}-${dataNascFormatada[0]}`;
-    const salarioFormatado = salario.replace(".", "").replace(",", ".");
 
     if (mensagem !== "") {
       return res.json({mensagem, erro: true});
@@ -73,11 +67,11 @@ class FuncionarioController {
     }
 
     let funcionario = await modelFuncionario.getFuncionario({
-      dado: "cpf",
+      campo: 'cpf',
       valor: cpfFormatado,
     });
 
-    if (funcionario.length > 0) {
+    if (funcionario.length > 0 && acao !== 'U') {
       return res.json({
         erro: true,
         mensagem: "Já existe um funcionário com o esse CPF cadastrado!",
@@ -85,21 +79,45 @@ class FuncionarioController {
     }
 
     funcionario = await modelFuncionario.storeFuncionario({
+      acao,
+      idFuncionario: funcionario.length > 0 ? funcionario[0].id_funcionario : null,
       cpf: cpfFormatado,
       nome,
       email,
       dataNasc: dataNascFormatada,
       telefone: telefoneFormatado,
-      cargo,
-      salario: salarioFormatado,
-      idEndereco: idEndereco[0].id_endereco,
-      idDepartamento: departamento,
+      idEndereco: idEndereco[0].id_endereco
     });
 
     return res.json({
       erro: false,
       idFuncionario: funcionario[0].id_funcionario,
       mensagem: funcionario[0].mensagem,
+    });
+  }
+
+  async getFuncionario(req, res) {
+    const { id } = req.params;
+
+    const funcionario = await modelFuncionario.getFuncionario({
+      campo: 'id',
+      valor: id,
+    });
+
+    if (funcionario.length == 0) {
+      return res.status(404).render('erro/404.ejs', {
+        item: 'funcionário'
+      });
+    }
+
+    funcionario[0].dataNasc = formatDate(funcionario[0].dataNasc);
+
+    res.render("admin/cadastrar-funcionario.ejs", {
+      paginaTitulo: "Cadastro de Funcionário",
+      isLoggedIn: true,
+      isAdmin: true,
+      funcionario: funcionario[0],
+      acao: 'U'
     });
   }
 

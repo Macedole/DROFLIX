@@ -117,3 +117,17 @@ footer {
   margin-top: auto;
   background-color: #0c564d;
 }
+
+/* cadastro funcionário */
+.link-cep{
+  height: 60px;
+  line-height: 60px;
+}
+
+.link-cep a{
+  color: #0c564d;
+}
+
+.required{
+  color: #ff0000;
+}

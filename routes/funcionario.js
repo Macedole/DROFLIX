@@ -6,6 +6,8 @@ const funcionarioController = require("../controllers/FuncionarioController.js")
 
 router.get("/funcionario", funcionarioController.renderCadastro);
 router.post("/funcionario", funcionarioController.storeFuncionario);
+router.get("/funcionario/:id", funcionarioController.getFuncionario);
+
 router.get("/procurar-usuario", funcionarioController.procurarUsuario);
 router.get("/solicitacoes", funcionarioController.getSolicitacoes);
 router.get("/cupons", funcionarioController.getCupons);

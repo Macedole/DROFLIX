@@ -17,7 +17,7 @@
       </div>
 
       <!-- logo -->
-      <a href="/" class="navbar-brand me-5 ms-5">DROFLIX <i class="fas fa-solid fa-capsules"></i></a>
+      <a href="/" class="navbar-brand me-5 ms-5"><i class="fas fa-solid fa-capsules"></i></a>
 
       <!-- responsive nav -->
       <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
@@ -40,26 +40,14 @@
               <a class="nav-link" href="/login">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/cadastro">Cadastrar</a>
+              <a class="nav-link" href="/cliente">Cadastrar</a>
             </li>
           <% } else if (isLoggedIn && isAdmin) { %>
             <li class="nav-item">
               <a class="nav-link" href="minha-conta.html">Minha conta</a>
             </li>
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin</a>
-              <ul class="dropdown-menu">
-                <li><a href="/cadastrar-produto" class="dropdown-item">Cadastrar produto</a></li>
-                <li><a href="/funcionario" class="dropdown-item">Cadastrar funcionário</a></li>
-                <li><a href="/cadastrar-servico" class="dropdown-item">Cadastrar serviço</a></li>
-                <li><a href="" class="dropdown-item">Cadastrar loja parceira</a></li>
-                <li><a href="/cupons" class="dropdown-item">Cupons de desconto</a></li>
-                <li><a href="" class="dropdown-item">Agendamentos</a></li>
-                <li><a href="" class="dropdown-item">Relatórios</a></li>
-                <li><a href="/procurar-usuario" class="dropdown-item">Procurar usuários</a></li>
-                <li><a href="/solicitacoes" class="dropdown-item">Solicitações</a></li>
-                <li><a href="/entregas" class="dropdown-item">Entregas realizadas</a></li>
-              </ul>
+            <li role="button" class="nav-item dropdown nav-link open-sidebar">
+              Admin
             </li>
             <li class="nav-item">
               <a class="nav-link" href=""><i class="fas fa-bell"></i></a>
@@ -72,9 +60,25 @@
               <a href="carrinho.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
             </li>
           <% } %>
-
         </ul>
       </div>
     </div>
   </nav>
+  <div class="overlay hidden"></div>
+  <navbar class="navbar-dark sidebar hidden">
+    <ul class="navbar-nav ">
+      <li class="nav-item"><a href="/cadastrar-produto" class="nav-link">Cadastrar produto</a></li>
+      <li class="nav-item"><a href="/funcionario" class="nav-link">Cadastrar funcionário</a></li>
+      <li class="nav-item"><a href="/cadastrar-servico" class="nav-link">Cadastrar serviço</a></li>
+      <li class="nav-item"><a href="" class="nav-link">Cadastrar loja parceira</a></li>
+      <li class="nav-item"><a href="/cupons" class="nav-link">Cupons de desconto</a></li>
+      <li class="nav-item"><a href="" class="nav-link">Agendamentos</a></li>
+      <li class="nav-item"><a href="" class="nav-link">Relatórios</a></li>
+      <li class="nav-item"><a href="/procurar-usuario" class="nav-link">Procurar usuários</a></li>
+      <li class="nav-item"><a href="/solicitacoes" class="nav-link">Solicitações</a></li>
+      <li class="nav-item"><a href="/entregas" class="nav-link">Entregas realizadas</a></li>
+      <li class="dropdown-divider bg-light"></li>
+      <li class="nav-item"><a href="" class="nav-link">Sair <i class="fas fa-sign-out-alt"></i></a></li>
+    </ul>
+  </navbar>
 </header>

@@ -2,21 +2,21 @@ const modelCliente = require("../models/Cliente.js");
 const modelEndereco = require("../models/Endereco.js");
 const dadosTeste = require("../dados-teste/dados.json");
 
-const formatDate = require('../public/assets/utils/formatDate.js');
+const formatDate = require("../public/assets/utils/formatDate.js");
 
 class ClienteController {
   renderCadastro(req, res) {
     res.render("auth/cadastro.ejs", {
       paginaTitulo: "Cadastro de Cliente",
-      isLoggedIn: true,
+      isLoggedIn: false,
       isAdmin: false,
-      acao: 'C'
+      acao: "C",
     });
   }
 
   async storeCustomer(req, res) {
     const {acao, cpf, nome, email, dataNasc, telefone, logradouro, numero, bairro, complemento, cidade, uf, cep, receberNotificacao} = req.body;
-    console.log(acao)
+    console.log(acao);
     let mensagem = "";
     if (cpf.length < 14) {
       mensagem = "Preencha o CPF corretamente!";
@@ -67,11 +67,11 @@ class ClienteController {
     }
 
     let customer = await modelCliente.getCustomer({
-      campo: 'cpf',
+      campo: "cpf",
       valor: cpfFormatado,
     });
 
-    if (customer.length > 0 && acao !== 'U') {
+    if (customer.length > 0 && acao !== "U") {
       return res.json({
         erro: true,
         mensagem: "Já existe um Cliente com o esse CPF cadastrado!",
@@ -87,7 +87,7 @@ class ClienteController {
       telefone: telefoneFormatado,
       receberNotificacao: receberNotificacao ? 1 : 0,
       idEndereco: idEndereco[0].id_endereco,
-      idConvenio: 1
+      idConvenio: 1,
     });
     return res.json({
       erro: false,
@@ -97,31 +97,29 @@ class ClienteController {
   }
 
   async getCustomer(req, res) {
-    const { id } = req.params;
+    const {id} = req.params;
 
     const customer = await modelCliente.getCustomer({
-      campo: 'id',
+      campo: "id",
       valor: id,
     });
 
     if (customer.length == 0) {
-      return res.status(404).render('erro/404.ejs', {
-        item: 'cliente'
+      return res.status(404).render("erro/404.ejs", {
+        item: "cliente",
       });
     }
 
     customer[0].dataNascCliente = formatDate(customer[0].dataNascCliente);
 
     res.render("auth/cadastro.ejs", {
-      paginaTitulo: "Cadastro de Cliente",
+      paginaTitulo: "Dados do cliente",
       isLoggedIn: true,
       isAdmin: false,
       cliente: customer[0],
-      acao: 'U'
+      acao: "U",
     });
   }
-
- 
 
   async teste(req, res) {
     return res.json({req: req.body});

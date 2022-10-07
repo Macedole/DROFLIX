@@ -10,10 +10,10 @@
 			id="acao" 
 			value="<%= acao %>">
 			
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label for="">Foto de perfil</label>
         <input type="file" class="form-control" name="" id="" />
-      </div>
+      </div> -->
 
 	  <h5>Informações Básicas</h5>
 
@@ -72,18 +72,18 @@
 	  <h5>Endereço</h5>
 
 	  <div class="mb-3 row">
-		<div class="col-3">
-			<label for="cep">CEP <span class="required">*</span></label>
-			<input 
-				type="text" 
-				name="cep" 
-				id="cep" 
-				class="form-control" 
-				value="<%= acao == 'U' ? funcionario.cep : '' %>"/>
-		</div>
-		<div class="col-3 link-cep">
-			<a target="_blank" href="https://buscacepinter.correios.com.br/app/endereco/index.php">Não sei o CEP</a>
-		</div>
+			<div class="col-3">
+				<label for="cep">CEP <span class="required">*</span></label>
+				<input 
+					type="text" 
+					name="cep" 
+					id="cep" 
+					class="form-control" 
+					value="<%= acao == 'U' ? funcionario.cep : '' %>"/>
+			</div>
+			<div class="col-3 link-cep">
+				<a class="text-success" target="_blank" href="https://buscacepinter.correios.com.br/app/endereco/index.php">Não sei o CEP</a>
+			</div>
 	  </div>
 	  <div class="mb-3 row">
 		<div class="col-6">

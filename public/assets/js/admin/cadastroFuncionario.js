@@ -11,6 +11,15 @@ cep.addEventListener('blur', event => pesquisaCep(event.target.value));
 const btnCadastro = document.querySelector('#btnCadastro');
 btnCadastro.addEventListener('click', validaForm);
 
+var inputNome = document.querySelector("#nome");
+nome.addEventListener("keypress", function(e) {
+    var keyCode = (e.keyCode ? e.keyCode : e.which);
+  
+  if (keyCode > 47 && keyCode < 58) {
+    e.preventDefault();
+  }
+});
+
 async function validaForm(event) {
     event.preventDefault();
 

@@ -3,6 +3,7 @@ function limpaFormCep() {
     document.querySelector('#logradouro').value = ("");
     document.querySelector('#bairro').value = ("");
     document.querySelector('#cidade').value = ("");
+    document.querySelector('#uf').value = ("");
 }
 
 function preencheCampos(conteudo) {
@@ -11,6 +12,7 @@ function preencheCampos(conteudo) {
         document.querySelector('#logradouro').value = (conteudo.logradouro);
         document.querySelector('#bairro').value = (conteudo.bairro);
         document.querySelector('#cidade').value = (conteudo.localidade);
+        document.querySelector('#uf').value = (conteudo.uf);
 
         // Preenche o estado
         const estados = document.querySelectorAll('#uf .option');

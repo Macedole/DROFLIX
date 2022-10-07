@@ -14,9 +14,11 @@ app.use(express.static(path.join(__dirname, "public")));
 const shopRoutes = require("./routes/shop");
 const authRoutes = require("./routes/auth");
 const funcionarioRoutes = require("./routes/funcionario");
+const clienteRoutes = require("./routes/cliente");
 
 app.use(shopRoutes);
 app.use(authRoutes);
 app.use(funcionarioRoutes);
+app.use(clienteRoutes);
 
 app.listen(port, () => console.log(`Servidor em execução na porta ${port}...`));

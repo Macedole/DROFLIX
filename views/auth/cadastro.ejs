@@ -1,82 +1,114 @@
 <%-include('../includes/head.ejs')%>
 <%-include('../includes/nav.ejs')%>
 <main class="cover d-flex justify-content-center align-items-center">
-  <div class="container p-5 login-form">
-    <form class="row mt-5">
-      <!-- coluna -->
-      <div class="col col-6">
-        <div class="mb-3">
-          <label for="">Nome*</label>
-          <input class="form-control" type="text" name="" id="" />
+  <div class=" pt-5 login-form">
+    <form class="mt-5">
+      <h5>Informações básicas</h5>
+      <div class="row">
+        <div class="mb-3 col-8">
+          <input  type="hidden" name="acao" id="acao" value="<%= acao %>">
+          <label for="">Nome completo<span class="required">*</span></label>
+          <input class="form-control" type="text" name="nome" id="nome" autocomplete="off" value="<%= acao == 'U' ? cliente.nome : '' %>" <%= acao == 'U' ? 'readonly' : '' %>/>
         </div>
-        <div class="mb-3">
-          <label for="">Sobrenome*</label>
-          <input class="form-control" type="text" name="" id="" />
+
+        <div class="mb-3 col-6">
+          <label for="">E-mail<span class="required">*</span></label>
+          <input class="form-control" type="email" name="email" id="email" autocomplete="off" value="<%= acao == 'U' ? cliente.email : '' %>"/>
         </div>
-        <div class="mb-3">
-          <label for="">E-mail*</label>
-          <input class="form-control" type="email" name="" id="" />
-        </div>
-        <div class="mb-3">
-          <label for="">CPF*</label>
-          <input class="form-control" type="number" name="" id="" />
-        </div>
-        <div class="mb-3">
-          <label for="">Data de nascimento*</label>
-          <input class="form-control" type="date" />
-        </div>
-        <div class="mb-3">
-          <label for="">Senha*</label>
-          <input type="password" name="" id="" class="form-control" />
-        </div>
-        <div class="mb-3">
-          <label for="">Confirmar senha*</label>
-          <input type="password" name="" id="" class="form-control" />
+
+        <div class="mb-3 col-6">
+          <label for="">CPF<span class="required">*</span></label>
+          <input class="form-control" type="text" name="cpf" id="cpf" autocomplete="off" value="<%= acao == 'U' ? cliente.cpf : '' %>" <%= acao == 'U' ? 'readonly' : '' %>/>
         </div>
       </div>
 
-      <!-- coluna -->
-      <div class="col col-6">
-        <div class="mb-3">
-          <label for="">Telefone*</label>
-          <input type="number" name="" id="" class="form-control" />
+      <div class="row">
+        <div class="mb-3 col-6">
+          <label for="">Telefone<span class="required">*</span></label>
+          <input type="text" class="form-control" name="telefone" id="telefone"  autocomplete="off" value="<%= acao == 'U' ? cliente.telefone : '' %>"/>
         </div>
-        <div class="mb-3">
-          <label for="">CEP*</label>
-          <input type="number" name="" id="" class="form-control" />
+
+        <div class="mb-3 col-4">
+          <label for="">Data de nascimento<span class="required">*</span></label>
+          <input class="form-control" type="text" name="dataNasc" id="dataNasc" autocomplete="off" value="<%= acao == 'U' ? cliente.dataNascCliente : '' %>"/>
         </div>
-        <div class="mb-3">
-          <label for="">Cidade*</label>
-          <input type="text" name="" id="" class="form-control" />
-        </div>
-        <div class="mb-3">
-          <label for="">Endereço*</label>
-          <input type="text" name="" id="" class="form-control" />
-        </div>
-        <div class="mb-3">
-          <label for="">Número residencial*</label>
-          <input type="number" name="" id="" class="form-control" />
-        </div>
-        <div class="mb-3">
-          <label for="">Complemento</label>
-          <input type="text" name="" id="" class="form-control" />
-        </div>
-        <div class="mb-3">
+
+        <div class="mb-3 col-5">
           <label for="">Convênio</label>
-          <input type="text" name="" id="" class="form-control" />
+          <input type="text" class="form-control" name="convenio" id="convenio"  autocomplete="off" value="<%= acao == 'U' ? '' : '' %>"/>
         </div>
       </div>
+
+      <h5 class="mt-3">Endereço</h5>
+      <div class="row">
+        <div class="mb-3 col-5">
+          <label for="">CEP<span class="required">*</span></label>
+          <input type="text" name="cep" id="cep" class="form-control" autocomplete="off" value="<%= acao == 'U' ? cliente.cep : '' %>" />
+        </div>
+        <div class="mt-4 col-5">
+          <a class="text-success" href="https://buscacepinter.correios.com.br/app/endereco/index.php" title="Clique aqui para procurar seu CEP" target="_blank">Não sei o CEP</a>
+        </div>
+      </div>
+        
+      <div class="row">
+        <div class="mb-3 col-5">
+          <label for="">Cidade<span class="required">*</span></label>
+          <input type="text" class="form-control" name="cidade" id="cidade" autocomplete="off" readonly value="<%= acao == 'U' ? cliente.cidade : '' %>"/>
+        </div>
+
+        <div class="mb-3 col-2">
+          <div class="containerUf"></div>
+            <label for="">UF<span class="required">*</span></label>
+            <input type="text" name="uf" id="uf" class="form-control" autocomplete="off" readonly value="<%= acao == 'U' ? cliente.uf : '' %>"/>
+        </div>
+
+        <div class="mb-3 col-5">
+          <label for="">Bairro<span class="required">*</span></label>
+          <input type="text" class="form-control" name="bairro" id="bairro" autocomplete="off" readonly value="<%= acao == 'U' ? cliente.bairro : '' %>"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="mb-3 col-6">
+          <label for="">Endereço<span class="required">*</span></label>
+          <input type="text"  class="form-control" name="logradouro" id="logradouro" autocomplete="off" readonly value="<%= acao == 'U' ? cliente.logradouro : '' %>"/>
+        </div>
+
+        <div class="mb-3 col-3">
+          <label for="">Nº residencial<span class="required">*</span></label>
+          <input type="text" class="form-control" name="numResidencial" id="numResidencial" autocomplete="off" value="<%= acao == 'U' ? cliente.numero : '' %>"/>
+        </div>
+
+        <div class="mb-3 col-8">
+          <label for="">Complemento</label>
+          <input type="text" class="form-control" name="complemento" id="complemento"  autocomplete="off" value="<%= acao == 'U' ? cliente.complemento : '' %>"/>
+        </div>
+      </div>
+
+        <div class="row">
+          <% if(acao == "C"){ %>
+            <div class="mb-3 mt-4 col-6">
+              <label for="">Senha<span class="required">*</span></label>
+              <input type="password" class="form-control" name="senha" id="senha"  autocomplete="off"/>
+            </div>
+            <div class="mb-3 mt-4 col-6">
+              <label for="">Confirmar senha<span class="required">*</span></label>
+              <input type="password" class="form-control" name="confirmaSenha" id="confirmaSenha" autocomplete="off" />
+            </div>
+            <% } %>
+        </div>
+
+
+      <div class="form-check mt-2">
+        <input class="form-check-input" type="checkbox" name="receberNotificacao" id="receberNotificacao" />
+        <label class="form-check-label">Quero receber notificações por e-mail</label>
+      </div>
+      <div class="mt-2 mb-5">
+        <button class="btn default-btn fs-6" id="btnCadastro">Salvar</button>
+      </div>
     </form>
-    <div class="form-check mt-2">
-      <input class="form-check-input" type="checkbox" />
-      <label class="form-check-label">Sou PCD</label>
-    </div>
-    <div class="form-check mt-2">
-      <input class="form-check-input" type="checkbox" />
-      <label class="form-check-label">Quero receber notificações por e-mail</label>
-    </div>
-    <div class="mt-2">
-      <a href="/login" class="btn login-btn">Cadastrar</a>
-    </div>
+    
+    
   </div>
+  <script src="/assets/js/admin/cadastroCliente.js"></script>
 <%-include('../includes/end.ejs')-%>

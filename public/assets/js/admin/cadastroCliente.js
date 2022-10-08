@@ -1,58 +1,77 @@
 window.addEventListener('load', () => {
-    maskCpf('cpf');
-    maskData('dataNasc');
+    
     maskCel('telefone');
+    maskCpf('cpf');
     maskCep('cep');
-});
+    maskData('dataNasc');
 
-const confirmSenha = document.querySelector('#confirmSenha');
-confirmSenha.addEventListener('blur', validaSenhas);
-
-function validaSenhas() {
-    const senha = document.querySelector('#senha');
-    if(senha.value !== confirmSenha.value && confirmSenha.value.length > 0) {
-        return warningAlert({ descricao: 'As senhas devem ser idênticas!' });
+    if(document.querySelector("#acao").value === "C"){
+        const confirmaSenha = document.querySelector('#confirmaSenha');
+        confirmaSenha.addEventListener('blur', event => {
+        let senha = document.querySelector('#senha');
+        if(senha.value != (event.target.value)){
+            warningAlert({ descricao: 'Senhas diferentes' });
+            event.target.value = "";
+            senha.value = '';
+        }
+        })
     }
-}
+
+});
 
 const cep = document.querySelector('#cep');
 cep.addEventListener('blur', event => pesquisaCep(event.target.value));
 
-const btnCadastro = document.querySelector('#btnCadastro');
-btnCadastro.addEventListener('click', validaForm);
 
-var inputNome = document.querySelector("#nome");
+const cpf = document.querySelector('#cpf');
+cpf.addEventListener('blur', event =>  {
+
+    let validar = TestaCPF(event.target.value.replace(/[^\d]/g, ""));
+    if(!validar){
+        warningAlert({ descricao: 'CPF digitado é inválido' });
+        event.target.value = "";
+    }});
+
+const inputNome = document.querySelector("#nome");
 nome.addEventListener("keypress", function(e) {
     var keyCode = (e.keyCode ? e.keyCode : e.which);
-  
-  if (keyCode > 47 && keyCode < 58) {
+    
+    if (keyCode > 47 && keyCode < 58) {
     e.preventDefault();
-  }
+    }
 });
+
+const btnCadastro = document.querySelector('#btnCadastro');
+btnCadastro.addEventListener('click',validaForm)
 
 async function validaForm(event) {
     event.preventDefault();
 
-    const acao = document.querySelector('#acao').value;
     const cpf = document.querySelector('#cpf').value;
     const nome = document.querySelector('#nome').value;
     const dataNasc = document.querySelector('#dataNasc').value;
     const email = document.querySelector('#email').value;
-    const telefone = document.querySelector('#telefone').value;
-    const senha = document.querySelector('#senha').value;
-    const confirmSenha = document.querySelector('#confirmSenha').value;
+    const telefone = document.querySelector('#telefone').value; 
     const cep = document.querySelector('#cep').value;
     const logradouro = document.querySelector('#logradouro').value;
-    const numero = document.querySelector('#numero').value;
+    const numero = document.querySelector('#numResidencial').value;
     const complemento = document.querySelector('#complemento').value;
     const bairro = document.querySelector('#bairro').value;
     const cidade = document.querySelector('#cidade').value;
     const uf = document.querySelector('#uf').value;
+    if(document.querySelector("#acao").value === "C"){
+    const senha = document.querySelector('#senha').value;
+    const confirmaSenha = document.querySelector('#confirmaSenha').value;
+    }
+    const senha = 1540;
+    const confirmaSenha = 1540;
+    const receberNotificacao = document.querySelector('#receberNotificacao').checked;
+    const acao = document.querySelector('#acao').value;
 
     let mensagem = '';
     if(!nome) {
         mensagem = 'Preencha o nome corretamente!';
-    }else if(cpf.length < 14) {
+    }else if(!cpf) {
         mensagem = 'Preencha o CPF corretamente!';
     }else if(!dataNasc) {
         mensagem = 'Preencha a data de nascimento corretamente!';
@@ -60,11 +79,6 @@ async function validaForm(event) {
         mensagem = 'Preencha o e-mail corretamente!';
     }else if(!telefone) {
         mensagem = 'Preencha o celular corretamente!';
-    }else if(!senha.length < 6) {
-        console.log(senha, senha.length);
-        mensagem = 'A senha deve possuir pelo menos 6 caracteres!';
-    }else if(!confirmSenha) {
-        mensagem = 'Preencha a confirmação da senha corretamente!';
     }else if(!cep) {
         mensagem = 'Preencha o CEP da residência corretamente!';
     }else if(!logradouro) {
@@ -77,6 +91,10 @@ async function validaForm(event) {
         mensagem = 'Preencha a cidade da residência corretamente!';
     }else if(!uf) {
         mensagem = 'Preencha o UF da residência corretamente!';
+    }else if(!senha){
+        mensagem = 'Preencha a senha corretamente!';
+    }else if(!confirmaSenha){
+        mensagem = 'Preencha a senha corretamente!';
     }
 
     if(mensagem !== '') {
@@ -85,37 +103,36 @@ async function validaForm(event) {
 
     const dados = {
         acao,
-        cpf,
-        nome, 
+        cpf, 
+        nome,
         email, 
         dataNasc, 
-        telefone,
-        senha,
-        confirmSenha,
+        telefone, 
         logradouro,
         numero,
         bairro,
         complemento,
         cidade,
         uf,
-        cep
+        cep,
+        receberNotificacao
     }
-
+    
     try {
-        const funcionario = await axios.post('/funcionario', dados);
+        const cadastro = await axios.post('/cliente', dados);
 
-        if(funcionario.data.erro) {
+        if(cadastro.data.erro) {
             return warningAlert({
-                descricao: funcionario.data.mensagem
+                descricao: cadastro.data.mensagem
             });
         }
-
+        
+        
         successAlert({
-            titulo: funcionario.data.mensagem
+            titulo: cadastro.data.mensagem
         });
-
         return setTimeout(() => {
-            location.href = `/funcionario/${funcionario.data.idFuncionario}`;
+            location.href = `/cliente/${cadastro.data.idCustomer}`;
         }, 3000);
 
     } catch (error) {

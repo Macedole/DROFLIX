@@ -35,7 +35,14 @@
 
         <div class="mb-3 col-5">
           <label for="">Convênio</label>
-          <input type="text" class="form-control" name="convenio" id="convenio"  autocomplete="off" value="<%= acao == 'U' ? '' : '' %>"/>
+          <select name="convenio" id="convenio" class="form-control">
+            <option value="">Selecione</option>
+            <% convenios.forEach(convenio => { %>
+              <option value="<%= convenio.id_convenio %>" <%= acao == 'U' && convenio.id_convenio == cliente.id_convenio ? 'selected' : '' %>>
+                <%= convenio.nome %>
+              </option>
+            <% }) %>
+          </select>
         </div>
       </div>
 

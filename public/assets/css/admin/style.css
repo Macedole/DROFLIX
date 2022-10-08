@@ -60,6 +60,10 @@ a:hover {
   font-size: 0.7rem;
 }
 
+.gif-loading{
+  width: 30px;
+}
+
 .product-btn:hover,
 .login-btn:hover,
 .signup-btn:hover,

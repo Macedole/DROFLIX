@@ -5,8 +5,10 @@ window.addEventListener('load', () => {
     maskCep('cep');
 });
 
-const confirmSenha = document.querySelector('#confirmSenha');
-confirmSenha.addEventListener('blur', validaSenhas);
+if(document.querySelector('#acao').value === 'C') {
+    const confirmSenha = document.querySelector('#confirmSenha');
+    confirmSenha.addEventListener('blur', validaSenhas);
+}
 
 function validaSenhas() {
     const senha = document.querySelector('#senha');
@@ -39,8 +41,8 @@ async function validaForm(event) {
     const dataNasc = document.querySelector('#dataNasc').value;
     const email = document.querySelector('#email').value;
     const telefone = document.querySelector('#telefone').value;
-    const senha = document.querySelector('#senha').value;
-    const confirmSenha = document.querySelector('#confirmSenha').value;
+    const senha = acao === 'C' ? document.querySelector('#senha').value : '';
+    const confirmSenha = acao === 'C' ? document.querySelector('#confirmSenha').value : '';
     const cep = document.querySelector('#cep').value;
     const logradouro = document.querySelector('#logradouro').value;
     const numero = document.querySelector('#numero').value;
@@ -60,10 +62,9 @@ async function validaForm(event) {
         mensagem = 'Preencha o e-mail corretamente!';
     }else if(!telefone) {
         mensagem = 'Preencha o celular corretamente!';
-    }else if(!senha.length < 6) {
-        console.log(senha, senha.length);
+    }else if(acao === 'C' && senha.length < 6) {
         mensagem = 'A senha deve possuir pelo menos 6 caracteres!';
-    }else if(!confirmSenha) {
+    }else if(acao === 'C' && !confirmSenha) {
         mensagem = 'Preencha a confirmação da senha corretamente!';
     }else if(!cep) {
         mensagem = 'Preencha o CEP da residência corretamente!';
@@ -102,6 +103,7 @@ async function validaForm(event) {
     }
 
     try {
+        disableButton('btnCadastro');
         const funcionario = await axios.post('/funcionario', dados);
 
         if(funcionario.data.erro) {
@@ -109,6 +111,8 @@ async function validaForm(event) {
                 descricao: funcionario.data.mensagem
             });
         }
+
+        enableButton('btnCadastro', 'Salvar');
 
         successAlert({
             titulo: funcionario.data.mensagem
@@ -119,6 +123,7 @@ async function validaForm(event) {
         }, 3000);
 
     } catch (error) {
+        enableButton('btnCadastro', 'Salvar');
         return warningAlert({ descricao: error });
     }
 }

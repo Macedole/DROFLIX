@@ -4,6 +4,8 @@ const dadosTeste = require("../dados-teste/dados.json");
 
 const formatDate = require('../public/assets/utils/formatDate.js');
 
+const bcrypt = require('bcryptjs');
+
 class FuncionarioController {
   renderCadastro(req, res) {
     res.render("admin/cadastrar-funcionario.ejs", {
@@ -77,6 +79,12 @@ class FuncionarioController {
         mensagem: "Já existe um funcionário com o esse CPF cadastrado!",
       });
     }
+
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(senha, salt);
+
+    console.log({senha, hash});
+    return false;
 
     funcionario = await modelFuncionario.storeFuncionario({
       acao,

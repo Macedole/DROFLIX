@@ -4,6 +4,8 @@ const dadosTeste = require("../dados-teste/dados.json");
 
 const formatDate = require('../public/assets/utils/formatDate.js');
 
+const bcrypt = require('bcryptjs');
+
 class FuncionarioController {
   renderCadastro(req, res) {
     res.render("admin/cadastrar-funcionario.ejs", {
@@ -15,7 +17,7 @@ class FuncionarioController {
   }
 
   async storeFuncionario(req, res) {
-    const {acao, cpf, nome, email, dataNasc, telefone, logradouro, numero, bairro, complemento, cidade, uf, cep} = req.body;
+    const {acao, cpf, nome, email, dataNasc, telefone, senha, confirmSenha, logradouro, numero, bairro, complemento, cidade, uf, cep} = req.body;
 
     let mensagem = "";
     if (cpf.length < 14) {
@@ -28,6 +30,10 @@ class FuncionarioController {
       mensagem = "Preencha a data de nascimento corretamente!";
     } else if (!telefone) {
       mensagem = "Preencha o telefone corretamente!";
+    } else if(acao === 'C' && senha.length < 6) {
+      mensagem = 'A senha deve possuir pelo menos 6 caracteres!';
+    } else if(acao === 'C' && !confirmSenha) {
+      mensagem = 'Preencha a confirmação da senha corretamente!';
     } else if (!logradouro) {
       mensagem = "Preencha o logradouro da residência corretamente!";
     } else if (!numero) {
@@ -78,6 +84,9 @@ class FuncionarioController {
       });
     }
 
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(senha, salt);
+
     funcionario = await modelFuncionario.storeFuncionario({
       acao,
       idFuncionario: funcionario.length > 0 ? funcionario[0].id_funcionario : null,
@@ -86,6 +95,7 @@ class FuncionarioController {
       email,
       dataNasc: dataNascFormatada,
       telefone: telefoneFormatado,
+      senha: hash,
       idEndereco: idEndereco[0].id_endereco
     });
 

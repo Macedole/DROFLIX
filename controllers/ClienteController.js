@@ -13,12 +13,12 @@ class ClienteController {
       isLoggedIn: false,
       isAdmin: false,
       acao: "C",
-      convenios
+      convenios,
     });
   }
 
   async storeCustomer(req, res) {
-    const { acao, cpf, nome, email, dataNasc, telefone, idConvenio, logradouro, numero, bairro, complemento, cidade, uf, cep, receberNotificacao, senha, confirmaSenha } = req.body;
+    const {acao, cpf, nome, email, dataNasc, telefone, idConvenio, logradouro, numero, bairro, complemento, cidade, uf, cep, receberNotificacao, senha, confirmaSenha} = req.body;
     let mensagem = "";
     if (cpf.length < 14) {
       mensagem = "Preencha o CPF corretamente!";
@@ -30,10 +30,10 @@ class ClienteController {
       mensagem = "Preencha a data de nascimento corretamente!";
     } else if (!telefone) {
       mensagem = "Preencha o telefone corretamente!";
-    } else if(acao === 'C' && senha.length < 6) {
-      mensagem = 'A senha deve possuir pelo menos 6 caracteres!';
-    } else if(acao === 'C' && !confirmaSenha) {
-      mensagem = 'Preencha a confirmação da senha corretamente!';
+    } else if (acao === "C" && senha.length < 6) {
+      mensagem = "A senha deve possuir pelo menos 6 caracteres!";
+    } else if (acao === "C" && !confirmaSenha) {
+      mensagem = "Preencha a confirmação da senha corretamente!";
     } else if (!logradouro) {
       mensagem = "Preencha o logradouro da residência corretamente!";
     } else if (!numero) {
@@ -68,7 +68,7 @@ class ClienteController {
         complemento,
         bairro,
         cidade,
-        uf
+        uf,
       });
     }
 
@@ -93,7 +93,7 @@ class ClienteController {
       telefone: telefoneFormatado,
       receberNotificacao: receberNotificacao ? 1 : 0,
       idEndereco: idEndereco[0].id_endereco,
-      idConvenio
+      idConvenio,
     });
 
     return res.json({
@@ -114,6 +114,9 @@ class ClienteController {
     if (customer.length == 0) {
       return res.status(404).render("erro/404.ejs", {
         item: "cliente",
+        paginaTitulo: "Erro",
+        isLoggedIn: true,
+        isAdmin: true,
       });
     }
 
@@ -127,7 +130,7 @@ class ClienteController {
       isAdmin: false,
       cliente: customer[0],
       acao: "U",
-      convenios
+      convenios,
     });
   }
 

@@ -1,22 +1,24 @@
 const modelCliente = require("../models/Cliente.js");
 const modelEndereco = require("../models/Endereco.js");
-const dadosTeste = require("../dados-teste/dados.json");
+const modelConvenio = require("../models/Convenio.js");
 
 const formatDate = require("../public/assets/utils/formatDate.js");
 
 class ClienteController {
-  renderCadastro(req, res) {
+  async renderCadastro(req, res) {
+    const convenios = await modelConvenio.getConvenios();
+
     res.render("auth/cadastro.ejs", {
       paginaTitulo: "Cadastro de Cliente",
       isLoggedIn: false,
       isAdmin: false,
       acao: "C",
+      convenios,
     });
   }
 
   async storeCustomer(req, res) {
-    const {acao, cpf, nome, email, dataNasc, telefone, logradouro, numero, bairro, complemento, cidade, uf, cep, receberNotificacao} = req.body;
-    console.log(acao);
+    const {acao, cpf, nome, email, dataNasc, telefone, idConvenio, logradouro, numero, bairro, complemento, cidade, uf, cep, receberNotificacao, senha, confirmaSenha} = req.body;
     let mensagem = "";
     if (cpf.length < 14) {
       mensagem = "Preencha o CPF corretamente!";
@@ -28,6 +30,10 @@ class ClienteController {
       mensagem = "Preencha a data de nascimento corretamente!";
     } else if (!telefone) {
       mensagem = "Preencha o telefone corretamente!";
+    } else if (acao === "C" && senha.length < 6) {
+      mensagem = "A senha deve possuir pelo menos 6 caracteres!";
+    } else if (acao === "C" && !confirmaSenha) {
+      mensagem = "Preencha a confirmação da senha corretamente!";
     } else if (!logradouro) {
       mensagem = "Preencha o logradouro da residência corretamente!";
     } else if (!numero) {
@@ -87,8 +93,9 @@ class ClienteController {
       telefone: telefoneFormatado,
       receberNotificacao: receberNotificacao ? 1 : 0,
       idEndereco: idEndereco[0].id_endereco,
-      idConvenio: 1,
+      idConvenio,
     });
+
     return res.json({
       erro: false,
       idCustomer: customer[0].idCliente,
@@ -107,10 +114,15 @@ class ClienteController {
     if (customer.length == 0) {
       return res.status(404).render("erro/404.ejs", {
         item: "cliente",
+        paginaTitulo: "Erro",
+        isLoggedIn: true,
+        isAdmin: true,
       });
     }
 
     customer[0].dataNascCliente = formatDate(customer[0].dataNascCliente);
+
+    const convenios = await modelConvenio.getConvenios();
 
     res.render("auth/cadastro.ejs", {
       paginaTitulo: "Dados do cliente",
@@ -118,6 +130,7 @@ class ClienteController {
       isAdmin: false,
       cliente: customer[0],
       acao: "U",
+      convenios,
     });
   }
 

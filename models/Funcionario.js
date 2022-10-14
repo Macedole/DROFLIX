@@ -47,11 +47,12 @@ class Funcionario {
             email,
             dataNasc,
             telefone,
+            senha,
             idEndereco
         } = dados;
 
-        const sql = 'CALL proc_store_funcionario (?, ?, ?, ?, ?, ?, ?, ?)';
-        const values = [acao, idFuncionario, cpf, nome, email, dataNasc, telefone, idEndereco];
+        const sql = 'CALL proc_store_funcionario (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        const values = [acao, idFuncionario, cpf, nome, email, dataNasc, telefone, senha, idEndereco];
 
         try {
             return new Promise((res, rej) => {

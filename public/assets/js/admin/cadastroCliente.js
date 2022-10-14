@@ -16,28 +16,26 @@ window.addEventListener('load', () => {
         }
         })
     }
-
 });
 
 const cep = document.querySelector('#cep');
 cep.addEventListener('blur', event => pesquisaCep(event.target.value));
 
-
 const cpf = document.querySelector('#cpf');
 cpf.addEventListener('blur', event =>  {
-
     let validar = TestaCPF(event.target.value.replace(/[^\d]/g, ""));
     if(!validar){
         warningAlert({ descricao: 'CPF digitado é inválido' });
         event.target.value = "";
-    }});
+    }
+});
 
 const inputNome = document.querySelector("#nome");
-nome.addEventListener("keypress", function(e) {
+inputNome.addEventListener("keypress", function(e) {
     var keyCode = (e.keyCode ? e.keyCode : e.which);
     
     if (keyCode > 47 && keyCode < 58) {
-    e.preventDefault();
+        e.preventDefault();
     }
 });
 
@@ -47,6 +45,7 @@ btnCadastro.addEventListener('click',validaForm)
 async function validaForm(event) {
     event.preventDefault();
 
+    const acao = document.querySelector('#acao').value;
     const cpf = document.querySelector('#cpf').value;
     const nome = document.querySelector('#nome').value;
     const dataNasc = document.querySelector('#dataNasc').value;
@@ -59,14 +58,10 @@ async function validaForm(event) {
     const bairro = document.querySelector('#bairro').value;
     const cidade = document.querySelector('#cidade').value;
     const uf = document.querySelector('#uf').value;
-    if(document.querySelector("#acao").value === "C"){
-    const senha = document.querySelector('#senha').value;
-    const confirmaSenha = document.querySelector('#confirmaSenha').value;
-    }
-    const senha = 1540;
-    const confirmaSenha = 1540;
+    const senha = acao === 'C' ? document.querySelector('#senha').value : '';
+    const confirmaSenha = acao === 'C' ? document.querySelector('#confirmaSenha').value : '';
     const receberNotificacao = document.querySelector('#receberNotificacao').checked;
-    const acao = document.querySelector('#acao').value;
+    const idConvenio = document.querySelector('#convenio').value;
 
     let mensagem = '';
     if(!nome) {
@@ -91,9 +86,9 @@ async function validaForm(event) {
         mensagem = 'Preencha a cidade da residência corretamente!';
     }else if(!uf) {
         mensagem = 'Preencha o UF da residência corretamente!';
-    }else if(!senha){
+    }else if(acao === 'C' && !senha){
         mensagem = 'Preencha a senha corretamente!';
-    }else if(!confirmaSenha){
+    }else if(acao === 'C' && !confirmaSenha){
         mensagem = 'Preencha a senha corretamente!';
     }
 
@@ -107,7 +102,10 @@ async function validaForm(event) {
         nome,
         email, 
         dataNasc, 
-        telefone, 
+        telefone,
+        senha,
+        confirmaSenha,
+        idConvenio,
         logradouro,
         numero,
         bairro,
@@ -126,7 +124,6 @@ async function validaForm(event) {
                 descricao: cadastro.data.mensagem
             });
         }
-        
         
         successAlert({
             titulo: cadastro.data.mensagem

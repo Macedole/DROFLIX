@@ -1,8 +1,12 @@
 const modelFuncionario = require("../models/Funcionario.js");
+const modelCliente = require("../models/Cliente.js");
 const modelEndereco = require("../models/Endereco.js");
+const modelConvenio = require("../models/Convenio.js");
 const dadosTeste = require("../dados-teste/dados.json");
 
-const formatDate = require('../public/assets/utils/formatDate.js');
+const formatDate = require("../public/assets/utils/formatDate.js");
+
+const bcrypt = require("bcryptjs");
 
 class FuncionarioController {
   renderCadastro(req, res) {
@@ -10,12 +14,12 @@ class FuncionarioController {
       paginaTitulo: "Cadastro de Funcionário",
       isLoggedIn: true,
       isAdmin: true,
-      acao: 'C'
+      acao: "C",
     });
   }
 
   async storeFuncionario(req, res) {
-    const {acao, cpf, nome, email, dataNasc, telefone, logradouro, numero, bairro, complemento, cidade, uf, cep} = req.body;
+    const {acao, cpf, nome, email, dataNasc, telefone, senha, confirmSenha, logradouro, numero, bairro, complemento, cidade, uf, cep} = req.body;
 
     let mensagem = "";
     if (cpf.length < 14) {
@@ -28,6 +32,10 @@ class FuncionarioController {
       mensagem = "Preencha a data de nascimento corretamente!";
     } else if (!telefone) {
       mensagem = "Preencha o telefone corretamente!";
+    } else if (acao === "C" && senha.length < 6) {
+      mensagem = "A senha deve possuir pelo menos 6 caracteres!";
+    } else if (acao === "C" && !confirmSenha) {
+      mensagem = "Preencha a confirmação da senha corretamente!";
     } else if (!logradouro) {
       mensagem = "Preencha o logradouro da residência corretamente!";
     } else if (!numero) {
@@ -67,16 +75,19 @@ class FuncionarioController {
     }
 
     let funcionario = await modelFuncionario.getFuncionario({
-      campo: 'cpf',
+      campo: "cpf",
       valor: cpfFormatado,
     });
 
-    if (funcionario.length > 0 && acao !== 'U') {
+    if (funcionario.length > 0 && acao !== "U") {
       return res.json({
         erro: true,
         mensagem: "Já existe um funcionário com o esse CPF cadastrado!",
       });
     }
+
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(senha, salt);
 
     funcionario = await modelFuncionario.storeFuncionario({
       acao,
@@ -86,7 +97,8 @@ class FuncionarioController {
       email,
       dataNasc: dataNascFormatada,
       telefone: telefoneFormatado,
-      idEndereco: idEndereco[0].id_endereco
+      senha: hash,
+      idEndereco: idEndereco[0].id_endereco,
     });
 
     return res.json({
@@ -97,16 +109,19 @@ class FuncionarioController {
   }
 
   async getFuncionario(req, res) {
-    const { id } = req.params;
+    const {id} = req.params;
 
     const funcionario = await modelFuncionario.getFuncionario({
-      campo: 'id',
+      campo: "id",
       valor: id,
     });
 
     if (funcionario.length == 0) {
-      return res.status(404).render('erro/404.ejs', {
-        item: 'funcionário'
+      return res.status(404).render("erro/404.ejs", {
+        item: "funcionário",
+        paginaTitulo: "Erro",
+        isLoggedIn: true,
+        isAdmin: true,
       });
     }
 
@@ -117,11 +132,75 @@ class FuncionarioController {
       isLoggedIn: true,
       isAdmin: true,
       funcionario: funcionario[0],
-      acao: 'U'
+      acao: "U",
     });
   }
 
-  
+  async pesquisaUsuario(req, res) {
+    const {email} = req.body;
+    const {usuario} = req.body;
+
+    if (usuario === "funcionario") {
+      const funcionario = await modelFuncionario.getFuncionario({
+        campo: "email",
+        valor: email,
+      });
+
+      if (funcionario.length == 0) {
+        return res.status(404).render("erro/404.ejs", {
+          item: "funcionário",
+          paginaTitulo: "Erro",
+          isLoggedIn: true,
+          isAdmin: true,
+        });
+      }
+
+      funcionario[0].dataNasc = formatDate(funcionario[0].dataNasc);
+
+      res.render("admin/cadastrar-funcionario.ejs", {
+        paginaTitulo: "Dados do funcionário",
+        isLoggedIn: true,
+        isAdmin: true,
+        funcionario: funcionario[0],
+        acao: "U",
+      });
+    } else {
+      const customer = await modelCliente.getCustomer({
+        campo: "email",
+        valor: email,
+      });
+
+      if (customer.length == 0) {
+        return res.status(404).render("erro/404.ejs", {
+          item: "cliente",
+          paginaTitulo: "Erro",
+          isLoggedIn: true,
+          isAdmin: true,
+        });
+      }
+
+      customer[0].dataNascCliente = formatDate(customer[0].dataNascCliente);
+
+      const convenios = await modelConvenio.getConvenios();
+
+      res.render("auth/cadastro.ejs", {
+        paginaTitulo: "Dados do cliente",
+        isLoggedIn: true,
+        isAdmin: false,
+        cliente: customer[0],
+        acao: "U",
+        convenios,
+      });
+    }
+  }
+
+  async renderCadastroProduto(req, res) {
+    res.render("admin/cadastrar-produto", {
+      paginaTitulo: "Cadastrar produto",
+      isLoggedIn: true,
+      isAdmin: true,
+    });
+  }
 
   async renderCadastroServico(req, res) {
     res.render("admin/cadastrar-servico", {

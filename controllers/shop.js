@@ -1,11 +1,12 @@
 const dadosTeste = require("../dados-teste/dados.json");
+const Produto = require("../models/Produto");
 
 class ShopController {
   async getIndex(req, res) {
+    const produtos = await Produto.getProdutos(true);
     res.render("shop/index", {
       paginaTitulo: "Droflix",
-      produtosPromocao: dadosTeste.produtosPromocao,
-      produtos: dadosTeste.produtos,
+      produtos: produtos,
       servicos: dadosTeste.servicos,
       isLoggedIn: false,
       isAdmin: false,
@@ -15,17 +16,6 @@ class ShopController {
   async getEnviarParcerias(req, res) {
     res.render("shop/enviar-parcerias", {
       paginaTitulo: "Enviar parcerias",
-      isLoggedIn: false,
-      isAdmin: false,
-    });
-  }
-
-  async getProduto(req, res) {
-    const produtoId = req.params.produtoId;
-    const produto = dadosTeste.produtos.find((produto) => produto.id.toString() === produtoId);
-    res.render("shop/detalhes-produto", {
-      produto: produto,
-      paginaTitulo: `Detalhes - ${produto.titulo}`,
       isLoggedIn: false,
       isAdmin: false,
     });

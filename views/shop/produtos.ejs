@@ -1,0 +1,31 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+<main class="pt-5">
+  <section class="produtos">
+    <div class="container">
+      <div class="row py-5 justify-content-center">
+          <% if (produtos.length >= 1) { %>
+            <% for (const produto of produtos) { %>
+              <div class="card produto col-lg-4 text-center mb-3 me-md-3">
+                <div class="h-75">
+                  <img class="card-img-top img-fluid" src="<%=produto.urlImagem%>" />
+                </div>
+                <div class="card-text mt-3">
+                  <p class="card-title"><%=produto.nomeProduto%></p>
+                  <p class="card-text text-muted">R$<%=produto.preco%></p>
+                </div>
+                <div class="mt-3 d-flex flex-column justify-content-center">
+                  <a class="btn product-btn me-2" href="/produto/<%=produto.PK_idProduto%>">Detalhes</a>
+                  <% if (!isAdmin) { %>
+                    <a class="btn product-btn me-2 mt-2" href="#">Adicionar ao carrinho</a>
+                  <% } %>
+                </div>
+              </div>
+            <% } %>
+          <% } else { %>
+            <%-include('../erro/404.ejs')%>
+          <% } %>
+      </div>
+    </div>
+  </section>
+<%-include('../includes/end.ejs')%>

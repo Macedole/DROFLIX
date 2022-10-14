@@ -93,6 +93,7 @@ a:hover {
   position: absolute;
   min-height: 100vh;
   min-width: 100vw;
+  z-index: 3;
   top: 0;
   left: 0;
   background-color: #2525259d;

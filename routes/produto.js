@@ -4,6 +4,6 @@ const produtoController = require("../controllers/ProdutoController");
 router.get("/produto", produtoController.renderCadastroProduto);
 router.post("/produto", produtoController.storeProduto);
 router.get("/produtos", produtoController.getProdutos);
-router.get("/produto/:id", produtoController.getProduto);
+router.get("/produto/detalhes/:id", produtoController.getProduto);
 
 module.exports = router;

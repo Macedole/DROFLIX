@@ -24,7 +24,12 @@
               <select class="form-select" id='categorias' autocomplete="off">
                 <option value="0">NENHUMA</option>
                 <% categorias.forEach(categoria => { %>
-                  <option value="<%= acao == 'U' ? categoria.PK_idCategoria : categoria.nome %>"></option>
+
+                  <% if( acao == 'U'){%>
+                    <option value="<%= categoria.PK_idCategoria %>"><%= categoria.PK_idCategoria %></option>
+                  <%}else{%>
+                    <option value="<%= categoria.PK_idCategoria %>" ><%= categoria.nome%></option>
+                  <%}%>
                 <% }); %>
               </select>
             </div>

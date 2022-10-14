@@ -160,6 +160,7 @@ a:hover {
 
 .txt-error {
   font-size: 1.8rem;
+  font-family: inherit;
 }
 
 /* footer */

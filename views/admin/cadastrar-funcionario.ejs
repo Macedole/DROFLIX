@@ -5,7 +5,7 @@
   <div class="p-5 container">
     <form action="" class="p-5">
       <input type="hidden" name="acao" id="acao" value="<%= acao %>">
-      
+      <h3>Cadastro de Funcionário</h3>
       <h5>Informações Básicas</h5>
 
       <div class="mb-3 row">
@@ -37,6 +37,13 @@
         <div class="col-6">
           <label for="senha">Senha <span class="required">*</span></label>
           <input type="password" name="senha" class="form-control" id="senha">
+          <div id="validadorSenha">
+            <div id="loadSenha">
+
+            </div>
+          </div>
+          <p id="labelValidadorSenha">Senha Fraca</p>
+          <input type="hidden" name="nivelSenha" id="nivelSenha" value="0">
         </div>
         <div class="col-6">
           <label for="confirmSenha">Confirme a Senha <span class="required">*</span></label>

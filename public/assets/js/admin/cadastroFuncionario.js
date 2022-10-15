@@ -6,8 +6,67 @@ window.addEventListener('load', () => {
 });
 
 if(document.querySelector('#acao').value === 'C') {
+    const senha = document.querySelector('#senha');
+    senha.addEventListener('keyup', (event) => verificaNivelSenha(event));
+
     const confirmSenha = document.querySelector('#confirmSenha');
     confirmSenha.addEventListener('blur', validaSenhas);
+}
+
+function verificaNivelSenha(event) {
+    let keyCode = event.keyCode;
+    if(keyCode !== 13 && keyCode !== 16 && keyCode !== 17 && keyCode !== 18 && keyCode !== 20 && keyCode !== 32) {
+        let senha = document.querySelector('#senha').value;
+        senha = senha.split('');
+        const loadSenha = document.querySelector('#loadSenha');
+        const labelSenha = document.querySelector('#labelValidadorSenha');
+        const nivelSenha = document.querySelector('#nivelSenha');
+        let qtdNums = 0;
+        let qtdEspeciais = 0;
+
+        const numeros = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+        const carateres = ['!', '@', '#', '$', '%', '&', '?', '_'];
+
+        if(senha.length < 6) {
+            loadSenha.style.width = '25%';
+            loadSenha.style.backgroundColor = '#ff0000';
+            labelSenha.innerText = 'Senha Fraca';
+            nivelSenha.value = 0;
+        } else {
+            numeros.forEach(num => {
+                if(senha.indexOf(num) != -1) {
+                    qtdNums++;
+                }
+            });
+
+            carateres.forEach(carac => {
+                if(senha.indexOf(carac) != -1) {
+                    qtdEspeciais++;
+                };
+            });
+
+            if(qtdNums === 1 && qtdEspeciais === 0) {
+                loadSenha.style.width = '50%';
+                loadSenha.style.backgroundColor = '#ffbb00';
+                labelSenha.innerText = 'Senha Razoável';
+                nivelSenha.value = 1;
+            }
+            if(qtdNums > 1 && qtdEspeciais == 0) {
+                loadSenha.style.width = '75%';
+                loadSenha.style.backgroundColor = '#66ff00';
+                labelSenha.innerText = 'Senha Boa';
+                nivelSenha.value = 2;
+            }
+            if(qtdNums > 1 && qtdEspeciais > 1) {
+                loadSenha.style.width = '100%';
+                loadSenha.style.backgroundColor = '#0c564d';
+                labelSenha.innerText = 'Senha Ótima';
+                nivelSenha.value = 3;
+            }
+        }
+    } else {
+        event.preventDefault();
+    }
 }
 
 function validaSenhas() {
@@ -43,6 +102,7 @@ async function validaForm(event) {
     const telefone = document.querySelector('#telefone').value;
     const senha = acao === 'C' ? document.querySelector('#senha').value : '';
     const confirmSenha = acao === 'C' ? document.querySelector('#confirmSenha').value : '';
+    const nivelSenha = acao === 'C' ? document.querySelector('#nivelSenha').value : '';
     const cep = document.querySelector('#cep').value;
     const logradouro = document.querySelector('#logradouro').value;
     const numero = document.querySelector('#numero').value;
@@ -66,6 +126,8 @@ async function validaForm(event) {
         mensagem = 'A senha deve possuir pelo menos 6 caracteres!';
     }else if(acao === 'C' && !confirmSenha) {
         mensagem = 'Preencha a confirmação da senha corretamente!';
+    }else if(acao === 'C' && nivelSenha < 2) {
+        mensagem = 'A senha é muito fraca!';
     }else if(!cep) {
         mensagem = 'Preencha o CEP da residência corretamente!';
     }else if(!logradouro) {

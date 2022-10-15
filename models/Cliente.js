@@ -10,14 +10,13 @@ class Cliente{
             dataNasc, 
             telefone, 
             receberNotificacao,
+            senha,
             idEndereco,
             idConvenio
-            
         } = dados;
         
-        
-        const sql = 'CALL proc_store_customer(?,?,?,?,?,?,?,?,?)';
-        const values = [acao, cpf, nome, email, dataNasc, telefone, receberNotificacao, idEndereco, idConvenio];
+        const sql = 'CALL proc_store_customer(?,?,?,?,?,?,?,?,?,?)';
+        const values = [acao, cpf, nome, email, dataNasc, telefone, receberNotificacao, senha, idEndereco, idConvenio];
 
         try {
             return new Promise((res, rej) => {

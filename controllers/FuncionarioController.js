@@ -143,7 +143,7 @@ class FuncionarioController {
     if (usuario === "funcionario") {
       const funcionario = await modelFuncionario.getFuncionario({
         campo: "email",
-        valor: email,
+        valor: `%${email}%`,
       });
 
       if (funcionario.length == 0) {

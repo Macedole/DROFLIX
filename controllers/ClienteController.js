@@ -4,6 +4,10 @@ const modelConvenio = require("../models/Convenio.js");
 
 const formatDate = require("../public/assets/utils/formatDate.js");
 
+const jwt = require('jsonwebtoken');
+const jwtSecret = require('../middlewares/authConfig.json');
+const bcrypt = require("bcryptjs");
+
 class ClienteController {
   async renderCadastro(req, res) {
     const convenios = await modelConvenio.getConvenios();
@@ -84,6 +88,9 @@ class ClienteController {
       });
     }
 
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(senha, salt);
+
     customer = await modelCliente.storeCustomer({
       acao,
       cpf: cpfFormatado,
@@ -92,6 +99,7 @@ class ClienteController {
       dataNasc: dataNascFormatada,
       telefone: telefoneFormatado,
       receberNotificacao: receberNotificacao ? 1 : 0,
+      senha: hash,
       idEndereco: idEndereco[0].id_endereco,
       idConvenio,
     });
@@ -105,6 +113,7 @@ class ClienteController {
 
   async getCustomer(req, res) {
     const {id} = req.params;
+    console.log(req.idCliente);
 
     const customer = await modelCliente.getCustomer({
       campo: "id",
@@ -134,8 +143,27 @@ class ClienteController {
     });
   }
 
-  async teste(req, res) {
-    return res.json({req: req.body});
+  async getCustomerLogin(req, res) {
+    const { email, senha } = req.body;
+
+    const customer = await modelCliente.getCustomer({ campo: 'email', valor: email });
+
+    if (customer.length == 0) {
+      return res.json({ erro: true, mensagem: 'Cliente não localizado em nossa base de dados!' });
+    }
+
+    if(!bcrypt.compareSync(senha, customer[0].senhaCliente)){
+      return res.json({ erro: true, mensagem: 'E-mail ou senha incorretos!' });
+    }else{
+      jwt.sign({idCliente: customer[0].id_Cliente}, jwtSecret.secret, {expiresIn: '3h'}, (err, token) => {
+        if(err){
+          return res.json({ erro: true, mensagem: 'Houve um erro ao validar o cliente!' });
+        }else{
+          req.session.token = `Bearer ${token}`;
+          return res.json({ erro: false, id: customer[0].id_Cliente });
+        }
+      });
+    }
   }
 }
 

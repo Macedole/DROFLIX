@@ -23,10 +23,12 @@ cep.addEventListener('blur', event => pesquisaCep(event.target.value));
 
 const cpf = document.querySelector('#cpf');
 cpf.addEventListener('blur', event =>  {
-    let validar = TestaCPF(event.target.value.replace(/[^\d]/g, ""));
-    if(!validar){
-        warningAlert({ descricao: 'CPF digitado é inválido' });
-        event.target.value = "";
+    if(event.target.value.length == 14) {
+        let validar = TestaCPF(event.target.value.replace(/[^\d]/g, ""));
+        if(!validar){
+            warningAlert({ descricao: 'CPF digitado é inválido' });
+            event.target.value = "";
+        }
     }
 });
 
@@ -89,7 +91,7 @@ async function validaForm(event) {
     }else if(acao === 'C' && !senha){
         mensagem = 'Preencha a senha corretamente!';
     }else if(acao === 'C' && !confirmaSenha){
-        mensagem = 'Preencha a senha corretamente!';
+        mensagem = 'Preencha a confirmação da senha corretamente!';
     }
 
     if(mensagem !== '') {

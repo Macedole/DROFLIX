@@ -4,20 +4,22 @@
   <div class="container login-form">
     <form>
       <div class="mb-3">
-        <label class="form-label">E-mail/CPF</label>
-        <input type="email" class="form-control" />
+        <label class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="email"/>
       </div>
 
       <div class="mb-3">
         <label for="password">Senha</label>
-        <input type="password" class="form-control" />
+        <input type="password" class="form-control" id="senha"/>
+      </div>
+
+      <div class="mt-5">
+        <button type="submit" class="btn default-btn fs-6" id="btnLogin">Entrar</button>
+        <a class="ms-3 text-success">Redefinir senha</a>
+        <a href="/cliente" class="ms-3 text-success">Criar conta</a>
       </div>
     </form>
-
-    <div class="mt-5">
-      <a href="inicio.html" class="btn login-btn">Login</a>
-      <a class="ms-3 text-success">Redefinir senha</a>
-      <a href="/cliente" class="ms-3 text-success">Criar conta</a>
-    </div>
   </div>
+
+  <script src="/assets/js/admin/loginCliente.js"></script>
   <%-include('../includes/end.ejs')%>

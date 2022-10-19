@@ -16,7 +16,7 @@
                 </div>
                 <div class="mt-3 d-flex flex-column justify-content-center">
                   <a class="btn product-btn me-2" href="/produto/detalhes/<%=produto.PK_idProduto%>">Detalhes</a>
-                  <% if (!isAdmin) { %>
+                  <% if (!isAdmin && isLoggedIn) { %>
                     <a class="btn product-btn me-2 mt-2" href="#">Adicionar ao carrinho</a>
                   <% } %>
                 </div>

@@ -20,7 +20,9 @@
             <p>
               <%=produto.descricao%>
             </p>
-            <button class="btn product-btn">Adicionar ao carrinho</button>
+            <% if (isLoggedIn) { %>
+              <button class="btn product-btn">Adicionar ao carrinho</button>
+            <% } %>
           </div>
           <form action="" class="mt-5 col-5 bg-white p-3 rounded">
             <label for="" class="text-muted text-small fs-6"><small>Calcular frete e prazo de entrega</small></label>

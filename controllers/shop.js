@@ -8,7 +8,6 @@ class ShopController {
       paginaTitulo: "Droflix",
       produtos: produtos,
       servicos: dadosTeste.servicos,
-      isLoggedIn: false,
       isAdmin: false,
     });
   }
@@ -26,7 +25,7 @@ class ShopController {
     const servico = dadosTeste.servicos.find((servico) => servico.id.toString() === servicoId);
     res.render("shop/detalhes-servico", {
       servico: servico,
-      paginaTitulo: `Detalhes - ${servico.titulo}`,
+      paginaTitulo: `${servico.titulo}`,
       isAdmin: false,
       isLoggedIn: false,
     });

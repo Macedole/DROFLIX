@@ -7,7 +7,9 @@
       <div class="container">
         <h1 class="text-white display-1">DROFLIX</h1>
         <p class="text-white lead">Oferecendo o melhor para a sua saúde</p>
-        <a href="/cliente" class="btn btn-success fs-5 text-decoration-none">Comece agora</a>
+        <% if (!isLoggedIn) { %>
+          <a href="/cliente" class="btn btn-success fs-5 text-decoration-none">Comece agora</a>
+        <% } %>
       </div>
     </div>
   </section>
@@ -50,7 +52,7 @@
                 </div>
                 <div class="mt-3 d-flex flex-column justify-content-center">
                   <a class="btn product-btn me-2" href="/produto/detalhes/<%=produto.PK_idProduto%>">Detalhes</a>
-                  <% if (!isAdmin) { %>
+                  <% if (!isAdmin && isLoggedIn) { %>
                     <a class="btn product-btn me-2 mt-2" href="#">Adicionar ao carrinho</a>
                   <% } %>
                 </div>

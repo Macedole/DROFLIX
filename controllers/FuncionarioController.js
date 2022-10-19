@@ -12,7 +12,6 @@ class FuncionarioController {
   renderCadastro(req, res) {
     res.render("admin/cadastrar-funcionario.ejs", {
       paginaTitulo: "Cadastro de Funcionário",
-      isLoggedIn: true,
       isAdmin: true,
       acao: "C",
     });
@@ -120,7 +119,6 @@ class FuncionarioController {
       return res.status(404).render("erro/404.ejs", {
         item: "funcionário",
         paginaTitulo: "Erro",
-        isLoggedIn: true,
         isAdmin: true,
       });
     }
@@ -129,7 +127,6 @@ class FuncionarioController {
 
     res.render("admin/cadastrar-funcionario.ejs", {
       paginaTitulo: "Cadastro de Funcionário",
-      isLoggedIn: true,
       isAdmin: true,
       funcionario: funcionario[0],
       acao: "U",
@@ -150,7 +147,6 @@ class FuncionarioController {
         return res.status(404).render("erro/404.ejs", {
           item: "funcionário",
           paginaTitulo: "Erro",
-          isLoggedIn: true,
           isAdmin: true,
         });
       }
@@ -159,7 +155,6 @@ class FuncionarioController {
 
       res.render("admin/cadastrar-funcionario.ejs", {
         paginaTitulo: "Dados do funcionário",
-        isLoggedIn: true,
         isAdmin: true,
         funcionario: funcionario[0],
         acao: "U",
@@ -174,7 +169,6 @@ class FuncionarioController {
         return res.status(404).render("erro/404.ejs", {
           item: "cliente",
           paginaTitulo: "Erro",
-          isLoggedIn: true,
           isAdmin: true,
         });
       }
@@ -185,7 +179,6 @@ class FuncionarioController {
 
       res.render("auth/cadastro.ejs", {
         paginaTitulo: "Dados do cliente",
-        isLoggedIn: true,
         isAdmin: false,
         cliente: customer[0],
         acao: "U",
@@ -197,7 +190,6 @@ class FuncionarioController {
   async renderCadastroProduto(req, res) {
     res.render("admin/cadastrar-produto", {
       paginaTitulo: "Cadastrar produto",
-      isLoggedIn: true,
       isAdmin: true,
     });
   }
@@ -205,7 +197,6 @@ class FuncionarioController {
   async renderCadastroServico(req, res) {
     res.render("admin/cadastrar-servico", {
       paginaTitulo: "Cadastrar serviço",
-      isLoggedIn: true,
       isAdmin: true,
     });
   }
@@ -213,7 +204,6 @@ class FuncionarioController {
   async procurarUsuario(req, res) {
     res.render("admin/procurar-usuarios", {
       paginaTitulo: "Procurar usuários",
-      isLoggedIn: true,
       isAdmin: true,
     });
   }
@@ -222,7 +212,6 @@ class FuncionarioController {
     res.render("admin/solicitacoes", {
       paginaTitulo: "Solicitações",
       solicitacoes: dadosTeste.solicitacoes,
-      isLoggedIn: true,
       isAdmin: true,
     });
   }
@@ -234,7 +223,6 @@ class FuncionarioController {
       solicitacao: solicitacao,
       paginaTitulo: `Solicitação de ${solicitacao.nome}`,
       isAdmin: true,
-      isLoggedIn: true,
     });
   }
 
@@ -243,7 +231,6 @@ class FuncionarioController {
       cupons: dadosTeste.cupons,
       paginaTitulo: "Cupons de desconto",
       isAdmin: true,
-      isLoggedIn: true,
     });
   }
 
@@ -252,7 +239,6 @@ class FuncionarioController {
       paginaTitulo: "Entregas realizadas",
       entregas: dadosTeste.entregas,
       isAdmin: true,
-      isLoggedIn: true,
     });
   }
 

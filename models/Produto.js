@@ -81,15 +81,22 @@ class Produto {
   }
 
   getProdutos(index = false) {
-    const sql = index ? "SELECT * FROM leandromacedo.TB_PRODUTO LIMIT 0, 4" : "SELECT * FROM leandromacedo.TB_PRODUTO ";
+    const sql = "CALL proc_get_produto(?, ?)";
+    let values;
+
+    if (index) {
+      values = [null, 1];
+    } else {
+      values = [null, 0];
+    }
 
     try {
       return new Promise((res, rej) => {
         pool.getConnection((err, connection) => {
           if (err) rej(err);
-          connection.query(sql, (err, rows) => {
+          connection.query(sql, values, (err, rows) => {
             if (err) rej(err);
-            else res(rows);
+            else res(rows[0]);
             connection.release();
           });
         });
@@ -100,14 +107,14 @@ class Produto {
   }
 
   getProduto(id) {
-    const sql = "SELECT * FROM leandromacedo.TB_PRODUTO WHERE PK_idProduto = ?";
-    const value = id;
+    const sql = "CALL proc_get_produto(?, ?)";
+    const values = [id, 0];
 
     try {
       return new Promise((res, rej) => {
         pool.getConnection((err, connection) => {
           if (err) rej(err);
-          connection.query(sql, value, (err, rows) => {
+          connection.query(sql, values, (err, rows) => {
             if (err) rej(err);
             else res(rows[0]);
             connection.release();
@@ -115,7 +122,7 @@ class Produto {
         });
       });
     } catch (error) {
-      throw new Error("Erro ao encontrar os produtos!", error);
+      throw new Error("Erro ao encontrar o produto!", error);
     }
   }
 }

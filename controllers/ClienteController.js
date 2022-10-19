@@ -4,8 +4,8 @@ const modelConvenio = require("../models/Convenio.js");
 
 const formatDate = require("../public/assets/utils/formatDate.js");
 
-const jwt = require('jsonwebtoken');
-const jwtSecret = require('../middlewares/authConfig.json');
+const jwt = require("jsonwebtoken");
+const jwtSecret = require("../middlewares/authConfig.json");
 const bcrypt = require("bcryptjs");
 
 class ClienteController {
@@ -14,7 +14,6 @@ class ClienteController {
 
     res.render("auth/cadastro.ejs", {
       paginaTitulo: "Cadastro de Cliente",
-      isLoggedIn: false,
       isAdmin: false,
       acao: "C",
       convenios,
@@ -113,7 +112,6 @@ class ClienteController {
 
   async getCustomer(req, res) {
     const {id} = req.params;
-    console.log(req.idCliente);
 
     const customer = await modelCliente.getCustomer({
       campo: "id",
@@ -124,7 +122,6 @@ class ClienteController {
       return res.status(404).render("erro/404.ejs", {
         item: "cliente",
         paginaTitulo: "Erro",
-        isLoggedIn: true,
         isAdmin: true,
       });
     }
@@ -135,7 +132,6 @@ class ClienteController {
 
     res.render("auth/cadastro.ejs", {
       paginaTitulo: "Dados do cliente",
-      isLoggedIn: true,
       isAdmin: false,
       cliente: customer[0],
       acao: "U",
@@ -144,23 +140,25 @@ class ClienteController {
   }
 
   async getCustomerLogin(req, res) {
-    const { email, senha } = req.body;
+    const {email, senha} = req.body;
 
-    const customer = await modelCliente.getCustomer({ campo: 'email', valor: email });
+    const customer = await modelCliente.getCustomer({campo: "email", valor: email});
 
     if (customer.length == 0) {
-      return res.json({ erro: true, mensagem: 'Cliente não localizado em nossa base de dados!' });
+      return res.json({erro: true, mensagem: "Cliente não localizado em nossa base de dados!"});
     }
 
-    if(!bcrypt.compareSync(senha, customer[0].senhaCliente)){
-      return res.json({ erro: true, mensagem: 'E-mail ou senha incorretos!' });
-    }else{
-      jwt.sign({idCliente: customer[0].id_Cliente}, jwtSecret.secret, {expiresIn: '3h'}, (err, token) => {
-        if(err){
-          return res.json({ erro: true, mensagem: 'Houve um erro ao validar o cliente!' });
-        }else{
+    if (!bcrypt.compareSync(senha, customer[0].senhaCliente)) {
+      return res.json({erro: true, mensagem: "E-mail ou senha incorretos!"});
+    } else {
+      jwt.sign({idCliente: customer[0].id_Cliente}, jwtSecret.secret, {expiresIn: "3h"}, (err, token) => {
+        if (err) {
+          return res.json({erro: true, mensagem: "Houve um erro ao validar o cliente!"});
+        } else {
           req.session.token = `Bearer ${token}`;
-          return res.json({ erro: false, id: customer[0].id_Cliente });
+          req.session.isLoggedIn = true;
+          req.session.cliente = customer[0].id_Cliente;
+          return res.json({erro: false, id: customer[0].id_Cliente});
         }
       });
     }

@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 const port = 3000;
 
 const app = express();
@@ -13,16 +13,25 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 // Config session
-app.use(session({
-    secret: 'keyboard cat',
+app.use(
+  session({
+    secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
     cookie: {
-        maxAge: 60000
-    }
-}));
+      maxAge: 60000,
+    },
+  })
+);
 
-app.use(cookieParser('zlatanibrahimovic'));
+app.use(cookieParser("zlatanibrahimovic"));
+
+app.use((req, res, next) => {
+  res.locals.isLoggedIn = req.session.isLoggedIn;
+  // res.locals.isLoggedIn = true;
+  res.locals.clienteId = req.session.cliente;
+  next();
+});
 
 const shopRoutes = require("./routes/shop");
 const authRoutes = require("./routes/auth");

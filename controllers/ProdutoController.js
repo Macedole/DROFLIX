@@ -79,7 +79,6 @@ class ProdutoController {
     res.render("shop/produtos", {
       produtos: produtos,
       paginaTitulo: "Produtos",
-      isLoggedIn: false,
       isAdmin: false,
     });
   }
@@ -88,9 +87,8 @@ class ProdutoController {
     const {id} = req.params;
     const produto = await modelProduto.getProduto(id);
     res.render("shop/detalhes-produto", {
-      produto: produto,
-      paginaTitulo: `Detalhes - ${produto.nomeProduto}`,
-      isLoggedIn: false,
+      produto: produto[0],
+      paginaTitulo: `${produto[0].nomeProduto}`,
       isAdmin: false,
     });
   }

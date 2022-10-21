@@ -138,7 +138,7 @@ a:hover {
 }
 
 .img-login {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.445), rgba(0, 0, 0, 0.445)), url("/assets/img/login.jpg");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.671), rgba(0, 0, 0, 0.671)), url("/assets/img/login.jpg");
   background-size: cover;
   background-position: center;
   min-height: 100vh;

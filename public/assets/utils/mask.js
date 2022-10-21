@@ -30,8 +30,8 @@ function maskAno(input) {
     $(`#${input}`).mask('0000');
 }
 
-function maskPlaca(input) {
-    $(`#${input}`).mask('AAA-0A00');
+function maskHoras(input) {
+    $(`#${input}`).mask('99:99');
 }
 
 function maskPercent(input) {

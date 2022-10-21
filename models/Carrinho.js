@@ -65,6 +65,7 @@ class Carrinho {
   getProdutosCarrinho(idVenda) {
     const sql = "SELECT * FROM leandromacedo.TB_PRODUTO WHERE PK_idProduto IN ( SELECT FK_idProduto FROM leandromacedo.TB_VENDA_PRODUTO WHERE FK_idVenda = ?)";
     const value = idVenda;
+
     try {
       return new Promise((res, rej) => {
         pool.getConnection((err, connection) => {

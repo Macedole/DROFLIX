@@ -82,6 +82,7 @@ a:hover {
   min-height: 100vh;
   min-width: 100vw;
   background-image: url("/assets/img/hero.jpg");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.671), rgba(0, 0, 0, 0.671)), url("/assets/img/hero.jpg");
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -89,9 +90,14 @@ a:hover {
   position: relative;
 }
 
-.overlay {
-  position: absolute;
+.heading {
   min-height: 100vh;
+  min-width: 100vw;
+}
+
+.overlay {
+  position: fixed;
+  min-height: 100%;
   min-width: 100vw;
   z-index: 3;
   top: 0;

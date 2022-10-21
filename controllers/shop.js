@@ -16,7 +16,6 @@ class ShopController {
     res.render("shop/enviar-parcerias", {
       paginaTitulo: "Enviar parcerias",
       isLoggedIn: false,
-      isAdmin: false,
     });
   }
 
@@ -26,7 +25,6 @@ class ShopController {
     res.render("shop/detalhes-servico", {
       servico: servico,
       paginaTitulo: `${servico.titulo}`,
-      isAdmin: false,
       isLoggedIn: false,
     });
   }
@@ -34,7 +32,6 @@ class ShopController {
   async renderAgendamento(req, res) {
     res.render("shop/agendar-servico", {
       paginaTitulo: "Agendar serviço",
-      isAdmin: false,
       isLoggedIn: false,
     });
   }

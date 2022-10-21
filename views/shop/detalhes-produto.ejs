@@ -1,42 +1,37 @@
 <%-include('../includes/head.ejs')%>
 <%-include('../includes/nav.ejs')%>
-<% if (isAdmin && isLoggedIn) { %>
-  <!-- FORMULÁRIO DE EDIÇÃO DE PRODUTO -->
-  <h1>Admin</h1>
-<% } else { %>
-  <main class="pt-5 cover d-flex align-items-center">
-    <div class="row p-5">
-      <div class="col-5">
-        <img class="rounded" src="<%=produto.urlImagem%>" alt="" />
-      </div>
-      <div class="col-7">
-        <div class="row">
-          <div class="info">
-            <h2><%=produto.nomeProduto%></h2>
-            <p class="small text-muted">Vendido por: Droflix Drogarias</p>
-            <h3 class="text-muted mb-3"><strong>R$<%=produto.preco%></strong></h3>
-          </div>
-          <div class="decricao">
-            <p>
-              <%=produto.descricao%>
-            </p>
-            <% if (isLoggedIn) { %>
-              <form action="/post-carrinho" method="POST">
-                <input type="hidden" name="id" value="<%=produto.PK_idProduto%>">
-                <button class="btn product-btn me-2 mt-2">Adicionar ao carrinho</>
-              </form>
-            <% } %>
-          </div>
-          <form action="" class="mt-5 col-5 bg-white p-3 rounded">
-            <label for="" class="text-muted text-small fs-6"><small>Calcular frete e prazo de entrega</small></label>
-            <div class="input-group">
-              <input type="text" name="" id="" placeholder="Informe o seu CEP" class="form-control input-sm">
-              <button class="input-group-text" type="submit" aria-label="calcular">Calcular</button>
-            </div>
-          </form>
+<main class="pt-5 cover d-flex align-items-center">
+  <div class="row p-5">
+    <div class="col-5">
+      <img class="rounded" src="<%=produto.urlImagem%>" alt="" />
+    </div>
+    <div class="col-7">
+      <div class="row">
+        <div class="info">
+          <h2><%=produto.nomeProduto%></h2>
+          <p class="small text-muted">Vendido por: Droflix Drogarias</p>
+          <h3 class="text-muted mb-3"><strong>R$<%=produto.preco%></strong></h3>
         </div>
+        <div class="decricao">
+          <p>
+            <%=produto.descricao%>
+          </p>
+          <% if (isLoggedIn) { %>
+            <form action="/post-carrinho" method="POST">
+              <input type="hidden" name="id" value="<%=produto.PK_idProduto%>">
+              <button class="btn product-btn me-2 mt-2">Adicionar ao carrinho</>
+            </form>
+          <% } %>
+        </div>
+        <form action="" class="mt-5 col-5 bg-white p-3 rounded">
+          <label for="" class="text-muted text-small fs-6"><small>Calcular frete e prazo de entrega</small></label>
+          <div class="input-group">
+            <input type="text" name="" id="" placeholder="Informe o seu CEP" class="form-control input-sm">
+            <button class="input-group-text" type="submit" aria-label="calcular">Calcular</button>
+          </div>
+        </form>
       </div>
     </div>
-  </main>
-<% } %>
+  </div>
+</main>
 <%-include('../includes/end.ejs')%>

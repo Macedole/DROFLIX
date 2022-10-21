@@ -13,12 +13,12 @@ class ProdutoController {
       categorias,
       tarja,
       loja,
-      acao: "P",
+      acao: "C",
     });
   }
 
   async storeProduto(req, res) {
-    const {acao, nome, url, categoria, tarja, preco, qtd, nLote, dtLote, descricao, loja} = req.body;
+    const { idProduto ,acao, nome, url, categoria, tarja, preco, qtd, nLote, dtLote, descricao, loja} = req.body;
     let mensagem = "";
     if (nome == "") {
       mensagem = "Preencha o nome corretamente!";
@@ -51,9 +51,16 @@ class ProdutoController {
     const precoFormatado = preco.replace(",", ".");
     let dataLoteFormatada = dtLote.split("/");
     dataLoteFormatada = `${dataLoteFormatada[2]}-${dataLoteFormatada[1]}-${dataLoteFormatada[0]}`;
+    
+
+    let id = idProduto.length == 0 ? idProduto : null
+    
+    
+
+    let id_produto = await modelProduto.getProduto(id);
 
     let produto = await modelProduto.storeProduto({
-      idProduto: 1,
+      idProduto: id_produto.length > 0 ? id_produto[0].PK_idProduto : null,
       acao,
       nome,
       url,
@@ -90,6 +97,27 @@ class ProdutoController {
       produto: produto[0],
       paginaTitulo: `${produto[0].nomeProduto}`,
       isAdmin: false,
+    });
+  }
+
+  async getAltProduto(req, res) {
+    const categorias = await modelProduto.getCategorias();
+    const tarja = await modelProduto.getTarja();
+    const loja = await modelProduto.getLoja();
+
+    const {id} = req.params;
+    const produto = await modelProduto.getProduto(id);
+    console.log(produto);
+
+    res.render("admin/cadastrar-produto", {
+      produto: produto[0],
+      paginaTitulo: `Cadastro de produto`,
+      isAdmin: true,
+      isLoggedIn: true,
+      categorias,
+      tarja,
+      loja,
+      acao: "U",
     });
   }
 }

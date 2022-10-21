@@ -21,7 +21,10 @@
               <%=produto.descricao%>
             </p>
             <% if (isLoggedIn) { %>
-              <button class="btn product-btn">Adicionar ao carrinho</button>
+              <form action="/post-carrinho" method="POST">
+                <input type="hidden" name="id" value="<%=produto.PK_idProduto%>">
+                <button class="btn product-btn me-2 mt-2">Adicionar ao carrinho</>
+              </form>
             <% } %>
           </div>
           <form action="" class="mt-5 col-5 bg-white p-3 rounded">

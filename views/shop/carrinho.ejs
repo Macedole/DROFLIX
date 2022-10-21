@@ -1,13 +1,13 @@
 <%-include('../includes/head.ejs')%>
 <%-include('../includes/nav.ejs')%>
-<main class="pt-5 cover d-flex align-items-center">
+<main class="pt-5 cover d-flex align-items-start">
   <div class="container p-5">
     <% if (produtos) { %>
       <div class="info ms-5">
         <h1 class="text-muted">Total: R$<%=valorCarrinho%></h1>
         <a class="btn compra-btn text-decoration-none" href="confirmacao.html">Confirmar compra</a>
-        <hr />
       </div>
+      <hr />
       <div class="d-flex flex-column align-items-center">
         <% for (const produto of produtos) { %>
           <div class="row bg-white p-3 mb-3 w-75 align-items-center">
@@ -17,7 +17,6 @@
             <div class="col col-md-10">
               <p><strong><%=produto.nomeProduto%></strong></p>
               <p class="text-muted"><strong>R$<%=produto.preco%></strong></p>
-              <p><strong>Quantidade:</strong> 1</p>
             </div>
             <form action="/delete-cart" method="POST">
               <input type="hidden" name="id" value="<%=produto.PK_idProduto%>">

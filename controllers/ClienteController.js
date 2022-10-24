@@ -1,6 +1,7 @@
 const modelCliente = require("../models/Cliente.js");
 const modelEndereco = require("../models/Endereco.js");
 const modelConvenio = require("../models/Convenio.js");
+const modelCarrinho = require("../models/Carrinho");
 
 const formatDate = require("../public/assets/utils/formatDate.js");
 
@@ -101,6 +102,14 @@ class ClienteController {
       senha: hash,
       idEndereco: idEndereco[0].id_endereco,
       idConvenio,
+    });
+
+    await modelCarrinho.criarCarrinho({
+      data: new Date(),
+      preco: 0,
+      desconto: 0,
+      idCliente: customer[0].idCliente,
+      idStatus: 3,
     });
 
     return res.json({

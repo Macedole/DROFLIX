@@ -37,6 +37,7 @@ async function auditoria(event){
     event.preventDefault();
 
     const acao = document.querySelector('#acao').value;
+    const idProduto = document.querySelector('#id_produto').value;
     const nome = document.querySelector("#nome").value;
     const url = document.querySelector("#imagem").value;
     const preco = document.querySelector("#preco").value;
@@ -89,7 +90,7 @@ async function auditoria(event){
         return warningAlert({ descricao: mensagem });
     }
 
-    const dados = {acao, nome, categoria, preco, qtd, nLote, dtLote, descricao, url, tarja, loja}
+    const dados = {idProduto, acao, nome, categoria, preco, qtd, nLote, dtLote, descricao, url, tarja, loja}
 
     try {
         const produto = await axios.post('/produto', dados);
@@ -105,8 +106,8 @@ async function auditoria(event){
         });
 
         return setTimeout(() => {
-            //location.href = `/produto/${produto.data.idProduto}`;
-            location.href = `/`;
+            location.href = `/produtos/${produto.data.idProduto}`;
+            //location.href = `/`;
         }, 3000);
 
     } catch (error) {

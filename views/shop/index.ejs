@@ -3,7 +3,7 @@
 <main class="pt-5">
   <!-- PROMOÇÕES -->
   <section class="hero">
-    <div class="overlay pt-5 d-flex justify-content-center flex-column">
+    <div class="heading pt-5 d-flex justify-content-center flex-column">
       <div class="container">
         <h1 class="text-white display-1">DROFLIX</h1>
         <p class="text-white lead">Oferecendo o melhor para a sua saúde</p>
@@ -51,15 +51,22 @@
                   <p class="card-text text-muted">R$<%=produto.preco%></p>
                 </div>
                 <div class="mt-3 d-flex flex-column justify-content-center">
-                  <a class="btn product-btn me-2" href="/produto/detalhes/<%=produto.PK_idProduto%>">Detalhes</a>
+                  <% if (isAdmin && isLoggedIn) { %>
+                    <a class="btn product-btn me-2 text-decoration-none" href="/produtos/<%=produto.PK_idProduto%>">Detalhes</a>
+                    <% } else { %>
+                      <a class="btn product-btn me-2 text-decoration-none" href="/produto/detalhes/<%=produto.PK_idProduto%>">Detalhes</a>
+                  <% } %>
                   <% if (!isAdmin && isLoggedIn) { %>
-                    <a class="btn product-btn me-2 mt-2" href="#">Adicionar ao carrinho</a>
+                    <form action="/post-carrinho" method="POST">
+                      <input type="hidden" name="id" value="<%=produto.PK_idProduto%>">
+                      <button class="btn product-btn me-2 mt-2">Adicionar ao carrinho</button>
+                    </form>
                   <% } %>
                 </div>
               </div>
             <% } %>
             <div class="d-flex justify-content-center">
-              <a href="/produtos" class="btn default-btn fs-5">Ver todos os produtos</a>
+              <a href="/produtos" class="btn default-btn fs-5 text-decoration-none">Ver todos os produtos</a>
             </div>
           <% } else { %>
             <%-include('../erro/404.ejs')%>
@@ -79,7 +86,7 @@
             <img src="<%=servico.img%>" class="card-img-top" />
             <div class="card-body">
               <h5 class="card-title"><%=servico.titulo%></h5>
-              <a href="/servico/<%=servico.id%>" class="btn agendar-btn">Saiba mais</a>
+              <a href="/servico/<%=servico.id%>" class="btn agendar-btn text-decoration-none">Saiba mais</a>
             </div>
           </div>
         <% } %>

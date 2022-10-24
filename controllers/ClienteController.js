@@ -151,7 +151,7 @@ class ClienteController {
     if (!bcrypt.compareSync(senha, customer[0].senhaCliente)) {
       return res.json({erro: true, mensagem: "E-mail ou senha incorretos!"});
     } else {
-      jwt.sign({idCliente: customer[0].id_Cliente}, jwtSecret.secret, {expiresIn: "3h"}, (err, token) => {
+      jwt.sign({idCliente: customer[0].id_Cliente}, jwtSecret.secret, {expiresIn: "1h"}, (err, token) => {
         if (err) {
           return res.json({erro: true, mensagem: "Houve um erro ao validar o cliente!"});
         } else {

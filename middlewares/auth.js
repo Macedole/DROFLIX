@@ -13,13 +13,14 @@ function auth(req, res, next) {
         res.status(401);
         res.json({err: "Token inválido!"});
       } else {
-        req.idCliente = data.idCliente;
+        if(!req.idCliente) {
+          req.idCliente = data.idCliente;
+        }
         next();
       }
     });
   } else {
     res.status(401);
-    //res.json({err: "Token inválido!"});
     res.render("erro/401", {
       paginaTitulo: "Erro",
     });

@@ -118,6 +118,7 @@ async function validaForm(event) {
   };
 
   try {
+    disableButton('btnCadastro');
     const cadastro = await axios.post("/cliente", dados);
 
     if (cadastro.data.erro) {
@@ -129,9 +130,19 @@ async function validaForm(event) {
     successAlert({
       titulo: cadastro.data.mensagem,
     });
-    return setTimeout(() => {
-      location.href = `/login`;
-    }, 3000);
+
+    enableButton('btnCadastro', 'Salvar');
+
+    if(acao == 'C') {
+      return setTimeout(() => {
+        location.href = `/login`;
+      }, 3000);
+    } else {
+      return setTimeout(() => {
+        location.href = `/cliente/${cadastro.data.idCustomer}`;
+      }, 3000);
+    }
+    
   } catch (error) {
     return warningAlert({descricao: error});
   }

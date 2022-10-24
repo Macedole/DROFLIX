@@ -187,19 +187,8 @@ class FuncionarioController {
     }
   }
 
-  async renderCadastroProduto(req, res) {
-    res.render("admin/cadastrar-produto", {
-      paginaTitulo: "Cadastrar produto",
-      isAdmin: true,
-    });
-  }
 
-  async renderCadastroServico(req, res) {
-    res.render("admin/cadastrar-servico", {
-      paginaTitulo: "Cadastrar serviço",
-      isAdmin: true,
-    });
-  }
+
 
   async procurarUsuario(req, res) {
     res.render("admin/procurar-usuarios", {

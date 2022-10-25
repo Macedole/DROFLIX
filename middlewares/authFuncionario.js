@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
-const jwtSecret = require("../middlewares/authConfig.json");
+const jwtSecret = require("./authConfig.json");
 
 function auth(req, res, next) {
-  const authToken = req.session.token;
+  const authToken = req.session.tokenFuncionario;
 
   if (authToken != undefined) {
     const bearer = authToken.split(" ");
@@ -13,8 +13,8 @@ function auth(req, res, next) {
         res.status(401);
         res.json({err: "Token inválido!"});
       } else {
-        if(!req.idCliente) {
-          req.idCliente = data.idCliente;
+        if(!req.idFuncionario) {
+          req.idFuncionario = data.idFuncionario;
         }
         next();
       }

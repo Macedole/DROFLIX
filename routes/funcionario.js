@@ -2,12 +2,16 @@ const express = require("express");
 const router = express.Router();
 const funcionarioController = require("../controllers/FuncionarioController.js");
 
-router.get("/funcionario", funcionarioController.renderCadastro);
-router.post("/funcionario", funcionarioController.storeFuncionario);
-router.get("/funcionario/:id", funcionarioController.getFuncionario);
+const auth = require("../middlewares/authFuncionario");
 
-router.get("/pesquisa", funcionarioController.procurarUsuario);
-router.post("/pesquisa", funcionarioController.pesquisaUsuario);
+router.get("/funcionario/login", funcionarioController.renderLogin);
+router.post("/funcionario/login", funcionarioController.getFuncionarioLogin);
+router.get("/funcionario", auth, funcionarioController.renderCadastro);
+router.post("/funcionario", auth, funcionarioController.storeFuncionario);
+router.get("/funcionario/:id", auth, funcionarioController.getFuncionario);
+
+router.get("/pesquisa", auth, funcionarioController.procurarUsuario);
+router.post("/pesquisa", auth, funcionarioController.pesquisaUsuario);
 
 router.get("/solicitacoes", funcionarioController.getSolicitacoes);
 router.get("/cupons", funcionarioController.getCupons);

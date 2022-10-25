@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const ClienteController = require("../controllers/ClienteController.js");
-const auth = require("../middlewares/auth.js");
+const auth = require("../middlewares/authCliente");
 
 router.get("/cliente", ClienteController.renderCadastro);
 router.post("/cliente/login", ClienteController.getCustomerLogin);

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const carrinhoController = require("../controllers/CarrinhoController");
-const auth = require("../middlewares/auth");
+const auth = require("../middlewares/authCliente");
 
 router.get("/carrinho", auth, carrinhoController.renderCarrinho);
 router.post("/post-carrinho", auth, carrinhoController.postCarrinho);

@@ -6,9 +6,18 @@ const dadosTeste = require("../dados-teste/dados.json");
 
 const formatDate = require("../public/assets/utils/formatDate.js");
 
+const jwt = require("jsonwebtoken");
+const jwtSecret = require("../middlewares/authConfig.json");
 const bcrypt = require("bcryptjs");
 
 class FuncionarioController {
+  renderLogin(req, res) {
+    return res.render("admin/login", {
+      paginaTitulo: "Login",
+      isLoggedIn: false,
+    });
+  }
+
   renderCadastro(req, res) {
     res.render("admin/cadastrar-funcionario.ejs", {
       paginaTitulo: "Cadastro de Funcionário",
@@ -16,7 +25,6 @@ class FuncionarioController {
       acao: "C",
     });
   }
-
   async storeFuncionario(req, res) {
     const {acao, cpf, nome, email, dataNasc, telefone, senha, confirmSenha, logradouro, numero, bairro, complemento, cidade, uf, cep} = req.body;
 
@@ -186,6 +194,32 @@ class FuncionarioController {
       });
     }
   }
+
+  async getFuncionarioLogin(req, res) {
+    const { email, senha } = req.body;
+
+    const funcionario = await modelFuncionario.getFuncionario({campo: "email", valor: email});
+
+    if (funcionario.length == 0) {
+      return res.json({erro: true, mensagem: "Funcionário não localizado em nossa base de dados!"});
+    }
+
+    if (!bcrypt.compareSync(senha, funcionario[0].senha)) {
+      return res.json({erro: true, mensagem: "E-mail ou senha incorretos!"});
+    } else {
+      jwt.sign({idFuncionario: funcionario[0].id_funcionario}, jwtSecret.secret, {expiresIn: "1h"}, (err, token) => {
+        if (err) {
+          return res.json({erro: true, mensagem: "Houve um erro ao validar o funcionário!"});
+        } else {
+          req.session.tokenFuncionario = `Bearer ${token}`;
+          req.session.isLoggedIn = true;
+          req.session.funcionario = funcionario[0].id_funcionario;
+          return res.json({erro: false, id: funcionario[0].id_funcionario});
+        }
+      });
+    }
+  }
+
 
 
 

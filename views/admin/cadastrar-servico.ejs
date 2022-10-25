@@ -14,7 +14,7 @@
         <div class="mb-3 row align-items-center">
           <div class="col-5">
             <label for="">Preço</label>
-            <input type="text" class="form-control" name="preco" id="preco" />
+            <input type="text" class="form-control" name="preco" id="preco" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44 "/>
           </div>
           <div class="col-7 mt-2">
             <label for="">Tempo de exame</label>

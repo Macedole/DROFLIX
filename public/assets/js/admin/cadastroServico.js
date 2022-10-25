@@ -1,6 +1,19 @@
-const btn = document.querySelector("#btnCadastro");
+window.addEventListener('load', () => {
+    maskMoney('preco');
+});
 
+const btn = document.querySelector("#btnCadastro");
 btn.addEventListener("click", auditoria);
+
+let Titulo = document.querySelector("#titulo");
+Titulo.addEventListener("keypress", function(e) {
+    var keyCode = (e.keyCode ? e.keyCode : e.which);
+  
+  if (keyCode > 47 && keyCode < 58) {
+    e.preventDefault();
+  }
+});
+
 
 async function auditoria(event){
     event.preventDefault();
@@ -15,10 +28,8 @@ async function auditoria(event){
 
     if(agenda.checked){
         agenda = document.querySelector("#agendamento").value;
-        console.log(agenda +" foi");
     }else{
         agenda = 0;
-        console.log(agenda +" não foi");
     }
 
     if(titulo ==""){
@@ -38,8 +49,6 @@ async function auditoria(event){
     }
 
     const dados = {titulo, duracao, agenda, preco, descricao, url}
-
-    //console.log(dados);
     
 
     try {

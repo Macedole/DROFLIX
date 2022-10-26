@@ -20,7 +20,7 @@ async function validaForm(event) {
     if (funcionario.data.erro) {
       return warningAlert({descricao: funcionario.data.mensagem});
     } else {
-      location.href = `http://localhost:3000/funcionario/${funcionario.data.id}`;
+      location.href = `http://localhost:3000/`;
     }
   } catch (error) {
     warningAlert({descricao: error});

@@ -17,7 +17,6 @@ router.get("/solicitacoes", funcionarioController.getSolicitacoes);
 router.get("/cupons", funcionarioController.getCupons);
 router.get("/entregas", funcionarioController.getEntregas);
 
-
 router.get("/solicitacao/:solicitacaoId", funcionarioController.getSolicitacao);
 
 module.exports = router;

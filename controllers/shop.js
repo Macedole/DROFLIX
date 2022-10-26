@@ -8,14 +8,12 @@ class ShopController {
       paginaTitulo: "Droflix",
       produtos: produtos,
       servicos: dadosTeste.servicos,
-      isAdmin: false,
     });
   }
 
   async getEnviarParcerias(req, res) {
     res.render("shop/enviar-parcerias", {
       paginaTitulo: "Enviar parcerias",
-      isLoggedIn: false,
     });
   }
 
@@ -25,14 +23,12 @@ class ShopController {
     res.render("shop/detalhes-servico", {
       servico: servico,
       paginaTitulo: `${servico.titulo}`,
-      isLoggedIn: false,
     });
   }
 
   async renderAgendamento(req, res) {
     res.render("shop/agendar-servico", {
       paginaTitulo: "Agendar serviço",
-      isLoggedIn: false,
     });
   }
 }

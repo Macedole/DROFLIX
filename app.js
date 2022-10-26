@@ -29,6 +29,8 @@ app.use(cookieParser("zlatanibrahimovic"));
 app.use((req, res, next) => {
   res.locals.isLoggedIn = req.session.isLoggedIn;
   res.locals.clienteId = req.session.cliente;
+  res.locals.funcionarioId = req.session.funcionario;
+  res.locals.isAdmin = req.session.isAdmin;
   next();
 });
 

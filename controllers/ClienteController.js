@@ -15,7 +15,6 @@ class ClienteController {
 
     res.render("auth/cadastro.ejs", {
       paginaTitulo: "Cadastro de Cliente",
-      isAdmin: false,
       acao: "C",
       convenios,
     });
@@ -131,7 +130,6 @@ class ClienteController {
       return res.status(404).render("erro/404.ejs", {
         item: "cliente",
         paginaTitulo: "Erro",
-        isAdmin: true,
       });
     }
 
@@ -141,7 +139,6 @@ class ClienteController {
 
     res.render("auth/cadastro.ejs", {
       paginaTitulo: "Dados do cliente",
-      isAdmin: false,
       cliente: customer[0],
       acao: "U",
       convenios,

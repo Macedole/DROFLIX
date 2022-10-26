@@ -21,7 +21,6 @@ class FuncionarioController {
   renderCadastro(req, res) {
     res.render("admin/cadastrar-funcionario.ejs", {
       paginaTitulo: "Cadastro de Funcionário",
-      isAdmin: true,
       acao: "C",
     });
   }
@@ -127,7 +126,6 @@ class FuncionarioController {
       return res.status(404).render("erro/404.ejs", {
         item: "funcionário",
         paginaTitulo: "Erro",
-        isAdmin: true,
       });
     }
 
@@ -135,7 +133,6 @@ class FuncionarioController {
 
     res.render("admin/cadastrar-funcionario.ejs", {
       paginaTitulo: "Cadastro de Funcionário",
-      isAdmin: true,
       funcionario: funcionario[0],
       acao: "U",
     });
@@ -155,7 +152,6 @@ class FuncionarioController {
         return res.status(404).render("erro/404.ejs", {
           item: "funcionário",
           paginaTitulo: "Erro",
-          isAdmin: true,
         });
       }
 
@@ -163,7 +159,6 @@ class FuncionarioController {
 
       res.render("admin/cadastrar-funcionario.ejs", {
         paginaTitulo: "Dados do funcionário",
-        isAdmin: true,
         funcionario: funcionario[0],
         acao: "U",
       });
@@ -177,7 +172,6 @@ class FuncionarioController {
         return res.status(404).render("erro/404.ejs", {
           item: "cliente",
           paginaTitulo: "Erro",
-          isAdmin: true,
         });
       }
 
@@ -187,7 +181,6 @@ class FuncionarioController {
 
       res.render("auth/cadastro.ejs", {
         paginaTitulo: "Dados do cliente",
-        isAdmin: false,
         cliente: customer[0],
         acao: "U",
         convenios,
@@ -196,7 +189,7 @@ class FuncionarioController {
   }
 
   async getFuncionarioLogin(req, res) {
-    const { email, senha } = req.body;
+    const {email, senha} = req.body;
 
     const funcionario = await modelFuncionario.getFuncionario({campo: "email", valor: email});
 
@@ -214,20 +207,16 @@ class FuncionarioController {
           req.session.tokenFuncionario = `Bearer ${token}`;
           req.session.isLoggedIn = true;
           req.session.funcionario = funcionario[0].id_funcionario;
+          req.session.isAdmin = true;
           return res.json({erro: false, id: funcionario[0].id_funcionario});
         }
       });
     }
   }
 
-
-
-
-
   async procurarUsuario(req, res) {
     res.render("admin/procurar-usuarios", {
       paginaTitulo: "Procurar usuários",
-      isAdmin: true,
     });
   }
 
@@ -235,7 +224,6 @@ class FuncionarioController {
     res.render("admin/solicitacoes", {
       paginaTitulo: "Solicitações",
       solicitacoes: dadosTeste.solicitacoes,
-      isAdmin: true,
     });
   }
 
@@ -245,7 +233,6 @@ class FuncionarioController {
     res.render("admin/solicitacao", {
       solicitacao: solicitacao,
       paginaTitulo: `Solicitação de ${solicitacao.nome}`,
-      isAdmin: true,
     });
   }
 
@@ -253,7 +240,6 @@ class FuncionarioController {
     res.render("admin/cupons", {
       cupons: dadosTeste.cupons,
       paginaTitulo: "Cupons de desconto",
-      isAdmin: true,
     });
   }
 
@@ -261,7 +247,6 @@ class FuncionarioController {
     res.render("admin/entregas", {
       paginaTitulo: "Entregas realizadas",
       entregas: dadosTeste.entregas,
-      isAdmin: true,
     });
   }
 

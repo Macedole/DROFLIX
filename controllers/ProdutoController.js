@@ -9,7 +9,6 @@ class ProdutoController {
     res.render("admin/cadastrar-produto", {
       paginaTitulo: "Cadastro de produto",
       isLoggedIn: true,
-      isAdmin: true,
       categorias,
       tarja,
       loja,
@@ -18,7 +17,7 @@ class ProdutoController {
   }
 
   async storeProduto(req, res) {
-    const { idProduto ,acao, nome, url, categoria, tarja, preco, qtd, nLote, dtLote, descricao, loja} = req.body;
+    const {idProduto, acao, nome, url, categoria, tarja, preco, qtd, nLote, dtLote, descricao, loja} = req.body;
     let mensagem = "";
     if (nome == "") {
       mensagem = "Preencha o nome corretamente!";
@@ -51,11 +50,8 @@ class ProdutoController {
     const precoFormatado = preco.replace(",", ".");
     let dataLoteFormatada = dtLote.split("/");
     dataLoteFormatada = `${dataLoteFormatada[2]}-${dataLoteFormatada[1]}-${dataLoteFormatada[0]}`;
-    
 
-    let id = idProduto.length == 0 ? idProduto : null
-    
-    
+    let id = idProduto.length == 0 ? idProduto : null;
 
     let id_produto = await modelProduto.getProduto(id);
 
@@ -86,7 +82,6 @@ class ProdutoController {
     res.render("shop/produtos", {
       produtos: produtos,
       paginaTitulo: "Produtos",
-      isAdmin: false,
     });
   }
 
@@ -96,7 +91,6 @@ class ProdutoController {
     res.render("shop/detalhes-produto", {
       produto: produto[0],
       paginaTitulo: `${produto[0].nomeProduto}`,
-      isAdmin: false,
     });
   }
 
@@ -112,7 +106,6 @@ class ProdutoController {
     res.render("admin/cadastrar-produto", {
       produto: produto[0],
       paginaTitulo: `Cadastro de produto`,
-      isAdmin: true,
       isLoggedIn: true,
       categorias,
       tarja,

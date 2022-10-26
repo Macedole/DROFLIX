@@ -11,7 +11,6 @@ class CarrinhoController {
     if (!vendaProdutos) {
       return res.render("shop/carrinho", {
         paginaTitulo: "Carrinho",
-        isAdmin: false,
         produtos: null,
         valorCarrinho: null,
       });
@@ -26,7 +25,6 @@ class CarrinhoController {
     // renderizar a página
     res.render("shop/carrinho", {
       paginaTitulo: "Carrinho",
-      isAdmin: false,
       produtos: produtos,
       valorCarrinho: valorCarrinho.toFixed(2),
     });

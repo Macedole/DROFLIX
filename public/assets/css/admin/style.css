@@ -128,11 +128,11 @@ footer {
   line-height: 60px;
 }
 
-.link-cep a{
+.link-cep a, .ativo{
   color: #0c564d;
 }
 
-.required{
+.required, .inativo{
   color: #ff0000;
 }
 
@@ -149,4 +149,9 @@ footer {
   height: 100%;
   border-radius: 3px;
   background-color: #ff0000;
+}
+
+/* cupons */
+#codigo {
+  text-transform: uppercase;
 }

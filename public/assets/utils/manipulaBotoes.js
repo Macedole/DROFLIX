@@ -9,7 +9,7 @@ function disableButton(idButton) {
 function enableButton(idButton, text) {
     const button = document.querySelector(`#${idButton}`);
 
-    button.removeAttribute('disable');
+    button.removeAttribute('disabled');
 
     button.innerHTML = text;
 }

@@ -34,7 +34,7 @@ class Funcionario {
                 });
             });
         } catch (error) {
-            throw new Error('Erro ao cadastrar o funcionário!', error);
+            throw new Error('Erro ao pesquisar o funcionário!', error);
         }
     }
 

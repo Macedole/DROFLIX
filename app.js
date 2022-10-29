@@ -41,6 +41,7 @@ const clienteRoutes = require("./routes/cliente");
 const produtoRoutes = require("./routes/produto");
 const carrinhoRoutes = require("./routes/carrinho");
 const servicoRoutes = require("./routes/servico");
+const cupomRoutes = require("./routes/cupom");
 
 app.use(shopRoutes);
 app.use(authRoutes);
@@ -49,5 +50,6 @@ app.use(clienteRoutes);
 app.use(produtoRoutes);
 app.use(carrinhoRoutes);
 app.use(servicoRoutes);
+app.use(cupomRoutes);
 
 app.listen(port, () => console.log(`Servidor em execução na porta ${port}...`));

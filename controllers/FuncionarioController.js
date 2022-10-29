@@ -236,13 +236,6 @@ class FuncionarioController {
     });
   }
 
-  async getCupons(req, res) {
-    res.render("admin/cupons", {
-      cupons: dadosTeste.cupons,
-      paginaTitulo: "Cupons de desconto",
-    });
-  }
-
   async getEntregas(req, res) {
     res.render("admin/entregas", {
       paginaTitulo: "Entregas realizadas",

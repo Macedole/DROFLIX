@@ -14,7 +14,6 @@ router.get("/pesquisa", auth, funcionarioController.procurarUsuario);
 router.post("/pesquisa", auth, funcionarioController.pesquisaUsuario);
 
 router.get("/solicitacoes", funcionarioController.getSolicitacoes);
-router.get("/cupons", funcionarioController.getCupons);
 router.get("/entregas", funcionarioController.getEntregas);
 
 router.get("/solicitacao/:solicitacaoId", funcionarioController.getSolicitacao);

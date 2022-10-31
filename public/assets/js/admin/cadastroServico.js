@@ -1,5 +1,6 @@
 window.addEventListener('load', () => {
     maskMoney('preco');
+    maskHoras('duracao');
 });
 
 const btn = document.querySelector("#btnCadastro");
@@ -19,6 +20,8 @@ async function auditoria(event){
     event.preventDefault();
     let mensagem = '';
 
+    const servicoId = document.querySelector('#idServico').value;
+    const acao = document.querySelector('#acao').value;
     const titulo = document.querySelector('#titulo').value;
     const preco = document.querySelector("#preco").value;
     const duracao = document.querySelector('#duracao').value;
@@ -48,7 +51,7 @@ async function auditoria(event){
         return warningAlert({ descricao: mensagem });
     }
 
-    const dados = {titulo, duracao, agenda, preco, descricao, url}
+    const dados = {servicoId, acao, titulo, duracao, agenda, preco, descricao, url}
     
 
     try {
@@ -65,8 +68,7 @@ async function auditoria(event){
         });
 
         return setTimeout(() => {
-            //location.href = `/servico/${produto.data.idProduto}`;
-            location.href = `/`;
+            location.href = `/servicos/${servico.data.idServico}`;
         }, 3000);
 
     } catch (error) {

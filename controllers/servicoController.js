@@ -4,50 +4,65 @@ class servicoController {
   async renderCadastroServico(req, res) {
     res.render("admin/cadastrar-servico", {
       paginaTitulo: "Cadastrar serviço",
+      acao: "C",
     });
   }
 
-  async storeServico(req, res) {
-    const {titulo, duracao, agenda, preco, descricao, url} = req.body;
+  async storeServico(req, res){
+    const {servicoId, acao, titulo, duracao, agenda, preco, descricao, url} = req.body;
 
     let mensagem = "";
 
-    if (titulo == "") {
-      mensagem = "Preencha o titulo corretamente!";
-    } else if (!url) {
-      mensagem = "Informe a url da imagem!";
-    } else if (!duracao) {
-      mensagem = "Informe a duração do serviço!";
-    } else if (!preco) {
-      mensagem = "Informe o preço do serviço!";
-    } else if (!descricao) {
-      mensagem = "Informe uma breve descrição do serviço!";
-    } else if (!agenda) {
-      mensagem = "houve um erro no Necessita de agendamento";
+    if(titulo ==""){
+        mensagem = "Preencha o titulo corretamente!";
+    }else if(!url) {
+        mensagem = 'Informe a url da imagem!';
+    }else if(!duracao) {
+        mensagem = 'Informe a duração do serviço!';
+    }else if(!preco) {
+        mensagem = 'Informe o preço do serviço!';
+    }else if(!descricao) {
+        mensagem = 'Informe uma breve descrição do serviço!';
     }
-
+    
     if (mensagem !== "") {
-      return res.json({mensagem, erro: true});
+        return res.json({mensagem, erro: true});
     }
 
     const precoFormatado = preco.replace(",", ".");
-    const duracaoFormatado = duracao.replace(":", ".");
 
-    let servico = await modelServico.storeServico({
+    let servico = await modelServico.getServico(
+      servicoId
+    );
+
+    servico = await modelServico.storeServico({
+      servicoId: servico.length > 0 ? servico[0].id : null,
+      acao,
       titulo,
-      duracao: duracaoFormatado,
-      agenda,
+      duracao, 
+      agenda, 
       preco: precoFormatado,
       descricao,
       url,
     });
 
     return res.json({
-      erro: false,
-      idServico: servico[0].idServico,
-      mensagem: servico[0].mensagem,
+        erro: false,
+        idServico: servico[0].idServico,
+        mensagem: servico[0].mensagem,
+    });
+  }
+
+  async getServicos(req,res){
+    const {id} = req.params;
+    const servico = await modelServico.getServico(id);
+    console.log(servico);
+    res.render("admin/cadastrar-servico",{
+      paginaTitulo: "Cadastrar serviço",
+      isAdmin: true,
+      servico: servico[0],
+      acao: "U",
     });
   }
 }
-
 module.exports = new servicoController();

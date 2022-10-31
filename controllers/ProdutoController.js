@@ -101,7 +101,6 @@ class ProdutoController {
 
     const {id} = req.params;
     const produto = await modelProduto.getProduto(id);
-    console.log(produto);
 
     res.render("admin/cadastrar-produto", {
       produto: produto[0],

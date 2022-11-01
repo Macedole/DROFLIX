@@ -25,7 +25,7 @@
         </div>
         <div class="mb-3">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="agendamento" id="agendamento" value="1" autocomplete="off" />
+            <input class="form-check-input" type="checkbox" name="agendamento" id="agendamento" value="1" autocomplete="off" <%= servico.agendavel ? 'checked' : '' %> />
             <label class="form-check-label" for="">Necessita de agendamento</label>
           </div>
         </div>

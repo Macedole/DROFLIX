@@ -1,0 +1,85 @@
+<header>
+  <nav class="navbar d-flex justify-content-around fixed-top navbar-dark navbar-expand-lg">
+    <div class="container">
+      <!-- categories -->
+      <div class="dropdown">
+        <a href="#" class="btn-dropdown" data-bs-toggle="dropdown"><i class="text-light fas fa-bars"></i></a>
+
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/produtos/categoria/1">Medicamentos</a></li>
+          <li><a class="dropdown-item" href="/produtos/categoria/2">Cosméticos</a></li>
+          <li><a class="dropdown-item" href="/produtos/categoria/3">Perfumes</a></li>
+          <li><a class="dropdown-item" href="/produtos/categoria/4">Higiene Pessoal</a></li>
+          <li><a class="dropdown-item" href="/produtos/categoria/5">Cuidado Infantil</a></li>
+          <li><a class="dropdown-item" href="#servicos">Serviços</a></li>
+          <li class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="/enviar-parcerias">Seja nosso parceiro</a></li>
+        </ul>
+      </div>
+
+      <!-- logo -->
+      <a href="/" class="navbar-brand me-5 ms-5"><i class="fas fa-solid fa-capsules"></i></a>
+
+      <!-- responsive nav -->
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="nav">
+        <!-- search bar -->
+        <form action="/search" method="POST" class="form-inline my-3 my-md-0">
+          <div class="input-group">
+            <input type="text" name="productTitle" class="nav-input form-control" placeholder="Pesquisar produtos" />
+            <button class="input-group-text" type="submit" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></button>
+          </div>
+        </form>
+
+        <!-- links -->
+        <ul class="navbar-nav ms-auto">
+          <% if (!isLoggedIn) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/cliente">Cadastre-se</a>
+            </li>
+          <% } else if (isLoggedIn && isAdmin) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="minha-conta.html">Minha conta</a>
+            </li>
+            <li role="button" class="nav-item dropdown nav-link open-sidebar">
+              Admin
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href=""><i class="fas fa-bell"></i></a>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/cliente/<%=clienteId%>">Minha conta</a>
+            </li>
+            <li class="nav-item">
+              <a href="/carrinho" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="overlay hidden"></div>
+  <navbar class="navbar-dark sidebar hidden">
+    <ul class="navbar-nav ">
+      <li class="nav-item mt-5"><a href="/produto" class="nav-link">Cadastrar produto</a></li>
+      <li class="nav-item"><a href="/funcionario" class="nav-link">Cadastrar funcionário</a></li>
+      <li class="nav-item"><a href="/servico" class="nav-link">Cadastrar serviço</a></li>
+      <li class="nav-item"><a href="" class="nav-link">Cadastrar loja parceira</a></li>
+      <li class="nav-item"><a href="/cupons" class="nav-link">Cupons de desconto</a></li>
+      <li class="nav-item"><a href="" class="nav-link">Agendamentos</a></li>
+      <li class="nav-item"><a href="" class="nav-link">Relatórios</a></li>
+      <li class="nav-item"><a href="/pesquisa" class="nav-link">Procurar usuários</a></li>
+      <li class="nav-item"><a href="/solicitacoes" class="nav-link">Solicitações</a></li>
+      <li class="nav-item"><a href="/entregas" class="nav-link">Entregas realizadas</a></li>
+      <li class="dropdown-divider bg-light"></li>
+      <li class="nav-item"><a href="" class="nav-link">Sair <i class="fas fa-sign-out-alt"></i></a></li>
+    </ul>
+  </navbar>
+</header>

@@ -1,0 +1,40 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+<main class="cover d-flex justify-content-center align-items-center">
+  <div class="container p-5">
+    <form class="row mt-5">
+      <!-- coluna -->
+      <div class="col col-5">
+        <div class="mb-3">
+          <label for="">Nome*</label>
+          <input class="form-control" type="text" name="" id="" />
+        </div>
+        <div class="mb-3">
+          <label for="">E-mail*</label>
+          <input class="form-control" type="email" name="" id="" />
+        </div>
+        <div class="mb-3">
+          <label for="">CNPJ*</label>
+          <input class="form-control" type="number" name="" id="" />
+        </div>
+        <div class="mb-3">
+          <label for="">Telefone*</label>
+          <input type="number" name="" id="" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="">Nome da loja*</label>
+          <input type="text" name="" id="" class="form-control" />
+        </div>
+      </div>
+
+      <!-- coluna -->
+      <div class="col-7">
+        <label for="">Descrição da solicitação</label>
+        <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+      </div>
+    </form>
+    <div class="mt-2">
+      <a href="/" class="btn login-btn">Enviar solicitação</a>
+    </div>
+  </div>
+  <%-include('../includes/end.ejs')%>

@@ -1,0 +1,24 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+<main class="cover pt-5 d-flex align-items-center justify-content-center">
+  <div class="container p-5">
+    <h1 class="text-muted">Procurar usuários</h1>
+    <form action="/pesquisa" method="post" class="form-inline my-3 my-md-0">
+      <div class="input-group">
+        <input type="text" name="email" class="form-control p-3" placeholder="Digite o e-mail do usuário" />
+        <button class="input-group-text" type="submit" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></button>
+      </div>
+      <div class="d-flex flex-row mt-2">
+        <div class="form-check">
+          <input type="radio" class="form-check-input" name="usuario" value="funcionario" id="" checked>
+          <label for="">Funcionário</label>
+        </div>
+        <div class="ms-4 form-check">
+          <input type="radio" class="form-check-input" name="usuario" value="cliente" id="">
+          <label for="">Cliente</label>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
+<%-include('../includes/end.ejs')%>

@@ -1,0 +1,34 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+<main>
+  <div class="row">
+    <div class="col-4 p-5 d-flex align-items-center justify-content-center">
+      <div class="container">
+        <form>
+          <h3 class="text-center">Login de Funcionários</h3>
+          <div class="mb-3">
+            <label class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email"/>
+          </div>
+    
+          <div class="mb-3">
+            <label for="password">Senha</label>
+            <input type="password" class="form-control" id="senha"/>
+          </div>
+    
+          <div class="mt-5">
+            <button type="submit" class="btn default-btn fs-6" id="btnLogin">Entrar</button>
+            <a class="ms-3 text-success">Redefinir senha</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-8 img-login d-flex align-items-center justify-content-center flex-column">
+      <h1 class="text-white display-1">DROFLIX</h1>
+      <p class="text-white lead">Oferecendo o melhor para a sua saúde</p>
+    </div>
+  </div>
+  
+
+  <script src="/assets/js/admin/loginFuncionario.js"></script>
+  <%-include('../includes/end.ejs')%>

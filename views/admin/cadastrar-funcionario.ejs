@@ -1,0 +1,127 @@
+<%- include('../includes/head.ejs') %>
+<%- include('../includes/nav.ejs') %>
+
+<main class="cover d-flex align-items-center justify-content-center">
+  <div class="p-5 container">
+    <form action="" class="p-5">
+      <input type="hidden" name="acao" id="acao" value="<%= acao %>">
+      <h3>Cadastro de Funcionário</h3>
+      <h5>Informações Básicas</h5>
+
+      <div class="mb-3 row">
+        <div class="col-6">
+          <label for="nome">Nome <span class="required">*</span></label>
+          <input type="text" class="form-control" name="nome" id="nome" value="<%= acao == 'U' ? funcionario.nome : '' %>" <%= acao == 'U' ? 'readonly' : '' %> />
+        </div>
+        <div class="col-3">
+          <label for="cpf">CPF <span class="required">*</span></label>
+          <input type="text" class="form-control" name="cpf" id="cpf" value="<%= acao == 'U' ? funcionario.cpf : '' %>" <%= acao == 'U' ? 'readonly' : '' %> />
+        </div>
+        <div class="col-3">
+          <label for="dataNasc">Data de Nascimento <span class="required">*</span></label>
+          <input type="text" class="form-control" name="dataNasc" id="dataNasc" value="<%= acao == 'U' ? funcionario.dataNasc : '' %>" />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <div class="col-6">
+          <label for="email">E-mail <span class="required">*</span></label>
+          <input type="email" name="email" class="form-control" id="email" value="<%= acao == 'U' ? funcionario.email : '' %>" />
+        </div>
+        <div class="col-3">
+          <label for="telefone">Celular <span class="required">*</span></label>
+          <input type="text" name="telefone" class="form-control" id="telefone" value="<%= acao == 'U' ? funcionario.telefone : '' %>" />
+        </div>
+      </div>
+      <% if (acao === 'C') { %>
+      <div class="mb-3 row">
+        <div class="col-6">
+          <label for="senha">Senha <span class="required">*</span></label>
+          <input type="password" name="senha" class="form-control" id="senha">
+          <div id="validadorSenha">
+            <div id="loadSenha">
+
+            </div>
+          </div>
+          <p id="labelValidadorSenha">Senha Fraca</p>
+          <input type="hidden" name="nivelSenha" id="nivelSenha" value="0">
+        </div>
+        <div class="col-6">
+          <label for="confirmSenha">Confirme a Senha <span class="required">*</span></label>
+          <input type="password" name="confirmSenha" class="form-control" id="confirmSenha">
+        </div>
+      </div>
+      <% } %>
+
+      <h5>Endereço</h5>
+
+      <div class="mb-3 row">
+        <div class="col-3">
+          <label for="cep">CEP <span class="required">*</span></label>
+          <input type="text" name="cep" id="cep" class="form-control" value="<%= acao == 'U' ? funcionario.cep : '' %>" />
+        </div>
+        <div class="col-3 link-cep">
+          <a class="text-success" target="_blank" href="https://buscacepinter.correios.com.br/app/endereco/index.php">Não sei o CEP</a>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <div class="col-6">
+          <label for="logradouro">Logradouro <span class="required">*</span></label>
+          <input type="text" name="logradouro" id="logradouro" class="form-control" value="<%= acao == 'U' ? funcionario.logradouro : '' %>" readonly />
+        </div>
+        <div class="col-2">
+          <label for="numero">Número <span class="required">*</span></label>
+          <input type="text" name="numero" id="numero" class="form-control" value="<%= acao == 'U' ? funcionario.numero : '' %>" />
+        </div>
+        <div class="col-4">
+          <label for="bairro">Bairro <span class="required">*</span></label>
+          <input type="text" name="bairro" id="bairro" class="form-control" value="<%= acao == 'U' ? funcionario.bairro : '' %>" readonly />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <div class="col-4">
+          <label for="complemento">Complemento</label>
+          <input type="text" name="complemento" id="complemento" class="form-control" value="<%= acao == 'U' ? funcionario.complemento : '' %>" />
+        </div>
+        <div class="col-6">
+          <label for="cidade">Cidade <span class="required">*</span></label>
+          <input type="text" name="cidade" id="cidade" class="form-control" value="<%= acao == 'U' ? funcionario.cidade : '' %>" readonly />
+        </div>
+        <div class="col-2">
+          <label for="uf">UF <span class="required">*</span></label>
+          <select name="uf" id="uf" class="form-control" disabled>
+            <option class="option" value="AC" <%= acao == 'U' ? (funcionario.uf == 'AC' ? 'selected' : '') : '' %>>AC</option>
+            <option class="option" value="AL" <%= acao == 'U' ? (funcionario.uf == 'AL' ? 'selected' : '') : '' %>>AL</option>
+            <option class="option" value="AM" <%= acao == 'U' ? (funcionario.uf == 'AM' ? 'selected' : '') : '' %>>AM</option>
+            <option class="option" value="AP" <%= acao == 'U' ? (funcionario.uf == 'AP' ? 'selected' : '') : '' %>>AP</option>
+            <option class="option" value="BA" <%= acao == 'U' ? (funcionario.uf == 'BA' ? 'selected' : '') : '' %>>BA</option>
+            <option class="option" value="CE" <%= acao == 'U' ? (funcionario.uf == 'CE' ? 'selected' : '') : '' %>>CE</option>
+            <option class="option" value="DF" <%= acao == 'U' ? (funcionario.uf == 'DF' ? 'selected' : '') : '' %>>DF</option>
+            <option class="option" value="ES" <%= acao == 'U' ? (funcionario.uf == 'ES' ? 'selected' : '') : '' %>>ES</option>
+            <option class="option" value="GO" <%= acao == 'U' ? (funcionario.uf == 'GO' ? 'selected' : '') : '' %>>GO</option>
+            <option class="option" value="MA" <%= acao == 'U' ? (funcionario.uf == 'MA' ? 'selected' : '') : '' %>>MA</option>
+            <option class="option" value="MG" <%= acao == 'U' ? (funcionario.uf == 'MG' ? 'selected' : '') : '' %>>MG</option>
+            <option class="option" value="MS" <%= acao == 'U' ? (funcionario.uf == 'MS' ? 'selected' : '') : '' %>>MS</option>
+            <option class="option" value="MT" <%= acao == 'U' ? (funcionario.uf == 'MT' ? 'selected' : '') : '' %>>MT</option>
+            <option class="option" value="PA" <%= acao == 'U' ? (funcionario.uf == 'PA' ? 'selected' : '') : '' %>>PA</option>
+            <option class="option" value="PB" <%= acao == 'U' ? (funcionario.uf == 'PB' ? 'selected' : '') : '' %>>PB</option>
+            <option class="option" value="PE" <%= acao == 'U' ? (funcionario.uf == 'PE' ? 'selected' : '') : '' %>>PE</option>
+            <option class="option" value="PI" <%= acao == 'U' ? (funcionario.uf == 'PI' ? 'selected' : '') : '' %>>PI</option>
+            <option class="option" value="PR" <%= acao == 'U' ? (funcionario.uf == 'PR' ? 'selected' : '') : '' %>>PR</option>
+            <option class="option" value="RJ" <%= acao == 'U' ? (funcionario.uf == 'RJ' ? 'selected' : '') : '' %>>RJ</option>
+            <option class="option" value="RN" <%= acao == 'U' ? (funcionario.uf == 'RN' ? 'selected' : '') : '' %>>RN</option>
+            <option class="option" value="RO" <%= acao == 'U' ? (funcionario.uf == 'RO' ? 'selected' : '') : '' %>>RO</option>
+            <option class="option" value="RR" <%= acao == 'U' ? (funcionario.uf == 'RR' ? 'selected' : '') : '' %>>RR</option>
+            <option class="option" value="RS" <%= acao == 'U' ? (funcionario.uf == 'RS' ? 'selected' : '') : '' %>>RS</option>
+            <option class="option" value="SC" <%= acao == 'U' ? (funcionario.uf == 'SC' ? 'selected' : '') : '' %>>SC</option>
+            <option class="option" value="SE" <%= acao == 'U' ? (funcionario.uf == 'SE' ? 'selected' : '') : '' %>>SE</option>
+            <option class="option" value="SP" <%= acao == 'U' ? (funcionario.uf == 'SP' ? 'selected' : '') : '' %>>SP</option>
+            <option class="option" value="TO" <%= acao == 'U' ? (funcionario.uf == 'TO' ? 'selected' : '') : '' %>>TO</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn default-btn fs-6" id="btnCadastro">Salvar</button>
+    </form>
+  </div>
+
+  <script src="/assets/js/admin/cadastroFuncionario.js"></script>
+  <%- include('../includes/end.ejs') %>

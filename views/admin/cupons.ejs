@@ -1,0 +1,72 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+    <main class="cover pt-5">
+      <div class="container p-5">
+        <div class="d-flex flex-row justify-content-between">
+          <h3 class="text-muted">Cupons de desconto</h3>
+          <button class="btn default-btn fs-6" data-bs-toggle="modal" data-bs-target="#modalCadastro">Cadastrar cupom</button>
+        </div>
+        <ul class="mt-4 d-flex justify-content-center flex-column">
+          <% for (const cupom of cupons) { %>
+            <li class="bg-white p-3 d-flex flex-row justify-content-between rounded mb-2">
+              <div>
+                <p><strong>Código:</strong> <%= cupom.codigo %></>
+                <p><strong>Porcentagem de desconto:</strong> <%= cupom.desconto * 100 %>%</p>
+                <p><strong>Produtos em que este cupom pode ser utilizado:</strong> <%= cupom.categoria %></p>
+                <p>
+                  <strong>Status:</strong> 
+                  <span class="<%= cupom.status == 'Ativo' ? 'ativo' : 'inativo' %>">
+                    <%= cupom.status %>
+                  </span>
+                </p>
+                <p><strong>Cadastrado em</strong> <%= cupom.data_cadastro %> <strong>por</strong> <%= cupom.funcionario %></p>
+              </div>
+              <div>
+                <% if (cupom.status == 'Ativo') { %>
+                  <i class="fas fa-trash text-danger btnExclusao" data-cupom="<%= cupom.id_cupom %>" data-acao="desativar"></i>
+                <% } else { %>
+                  <button class="btnAtivar" data-cupom="<%= cupom.id_cupom %>" data-acao="ativar">Ativar</button>
+                <% } %>
+              </div>
+            </li>
+          <% } %>
+        </ul>
+      </div>  
+    </main>
+
+    <div class="modal" id="modalCadastro" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Cadastrar Cupom</h3>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form action="">
+              <div class="mb-3">
+                <label for="">Código do cupom</label>
+                <input type="text" class="form-control" id="codigo" name="codigo" maxlength="20">
+              </div>
+              <div class="mb-3">
+                <label for="">Porcentagem de desconto</label>
+                <input type="text" class="form-control" id="desconto" name="desconto" maxlength="3">
+              </div>
+              <div class="mb-3">
+                <label for="">Produtos em que este cupom pode ser utilizado</label>
+                <select name="categorias" id="categoria" name="categoria" class="form-control">
+                  <% categorias.forEach(categoria => { %>
+                    <option value="<%= categoria.PK_idCategoria %>"><%= categoria.nome %></option>
+                  <% }); %>
+                </select>
+              </div>
+              <div class="modal-footer">
+                <button class="btn default-btn fs-6" id="btnCadastro">Cadastrar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/assets/js/admin/cupons.js"></script>
+    <%-include('../includes/end.ejs')%>

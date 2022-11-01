@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+body {
+  margin: 0;
+  font-family: "poppins", sans-serif;
+  background: #f4f4f4;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: inherit;
+}
+
+/* utils */
+.cover {
+  min-height: 100vh;
+}
+
+.img-small {
+  width: 5rem;
+}
+
+/* navbar */
+.navbar {
+  background-color: #0c564d;
+}
+
+.navbar-brand {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.btn-dropdown {
+  font-size: 1.5rem;
+}
+
+/* buttons */
+.product-btn,
+.login-btn,
+.signup-btn,
+.agendar-btn,
+.compra-btn,
+.default-btn {
+  text-decoration: none;
+  color: #0c564d;
+  border: 1px solid #0c564d;
+  font-weight: 400;
+  font-size: 0.7rem;
+}
+
+.product-btn:hover,
+.login-btn:hover,
+.signup-btn:hover,
+.agendar-btn:hover,
+.compra-btn:hover,
+.default-btn:hover {
+  background-color: #0c564d;
+  color: white;
+}
+
+.login-btn,
+.compra-btn {
+  font-size: 0.9rem;
+}
+
+/* hero */
+.hero {
+  min-height: 100vh;
+  min-width: 100vw;
+  background-image: url("/assets/img/hero.jpg");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.671), rgba(0, 0, 0, 0.671)), url("/assets/img/hero.jpg");
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.heading {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.overlay {
+  position: fixed;
+  min-height: 100%;
+  min-width: 100vw;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  background-color: #2525259d;
+  color: white;
+}
+
+/* cards */
+.card-features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bolder;
+}
+
+.card-features > i {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-servico {
+  width: 20rem;
+  padding: 1rem;
+}
+
+.produto {
+  font-weight: 500;
+  padding: 2.5rem;
+  width: 15rem;
+}
+
+/* login */
+.login-form {
+  width: 40rem;
+}
+
+.img-login {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.671), rgba(0, 0, 0, 0.671)), url("/assets/img/login.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  min-width: 50vw;
+}
+
+/* minha conta */
+.opcao-conta:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* sidebar admin */
+.sidebar {
+  position: fixed;
+  z-index: 4;
+  display: block;
+  min-height: 100vh;
+  width: 20%;
+  padding: 2rem;
+  background-color: #0c564d;
+  right: 0;
+  animation: openSidebar 1s;
+}
+
+.hidden {
+  display: none;
+}
+
+/* erros */
+.svg-error {
+  width: 25rem;
+}
+
+.txt-error {
+  font-size: 1.8rem;
+  font-family: inherit;
+}
+
+/* footer */
+footer {
+  margin-top: auto;
+  background-color: #0c564d;
+}
+
+/* animations */
+@keyframes openSidebar {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}

@@ -1,0 +1,19 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+    <main class="cover pt-5">
+      <div class="container p-5">
+        <h3 class="text-muted">Solicitações de parceria</h3>
+        <ul class="mt-4 d-flex justify-content-center flex-column">
+          <% for (const solicitacao of solicitacoes) { %>
+            <li class="bg-white row p-2 rounded w-100 mb-2">
+              <strong class="col-9"><%=solicitacao.nomeLoja%></strong>
+              <div class="col-3">
+                <a href="/solicitacao/<%=solicitacao.id%>"><i class="fas fa-reply mx-3 text-primary"></i></a>
+                <i class="fas fa-trash text-danger"></i>
+              </div>
+            </li>
+          <% } %>
+        </ul>
+      </div>  
+    </main>
+    <%-include('../includes/end.ejs')%>

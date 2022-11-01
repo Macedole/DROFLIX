@@ -1,0 +1,122 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+<main class="pt-1 cover d-flex align-items-center justify-content-center">
+  <div class="container">
+    <div class="card">
+      <div class="card-header text-center" >
+        <h3>CADASTRO DE PRODUTO</h3>
+      </div>
+      <div class="card-body">
+        <form action="">
+          <input type="hidden" name="acao" id="acao" value="<%= acao %>">
+          <input type="hidden" name="id_produto" id="id_produto" value="<%= acao =='U' ? produto.PK_idProduto :'' %>"/>
+          <div class="mb-3 row">
+            <div class="col-3">
+              <label for=""><span class="required">*</span>Nome do produto:</label>
+              <input type="text" class="form-control" name="nome" id="nome" autocomplete="off" 
+              value="<%= acao =='U' ? produto.nomeProduto :'' %>"/>
+            </div>
+            <div class="col-6">
+              <label for=""><span class="required">*</span> URL da imagem do produto:</label>
+              <input type="url" class="form-control" name="imagem" id="imagem" autocomplete="off" value="<%= acao =='U' ? produto.urlImagem :'' %>"/>
+            </div>
+            <div class="col-3">
+              <label for=""><span class="required">*</span>Categoria:</label>
+              <select class="form-select" id='categorias' autocomplete="off">
+                <% if( acao == 'U'){%>
+                  <option value="<%= produto.PK_idCategoria %>"><%= produto.categoria%></option>
+                  <% categorias.forEach(categoria => { %>
+                    <option value="<%= categoria.PK_idCategoria %>"><%= categoria.nome %></option>
+                  <% }); %>
+                <%}else{%>
+                  <option value="0">NENHUMA</option>
+                  <% categorias.forEach(categoria => { %>
+                    <option value="<%= categoria.PK_idCategoria %>"><%= categoria.nome %></option>
+                  <% }); %>
+                <%}%>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3 row" id="drug">
+            <div class="col-2">
+              <label for=""><span class="required">*</span>Tarja:</label>
+              <select class="form-select" id="tarja">
+                <% if( acao == 'U'){%>
+                  <option value="<%= produto.PK_idTarja %>"><%= produto.tarja %></option>
+                  <% tarja.forEach(tarja => { %>
+                    <option value="<%= tarja.PK_idTarja %>"><%= tarja.cor %></option>
+                  <% }); %>
+                <%}else{%>
+                  <option value="0">SELECIONE!</option>
+                  <% tarja.forEach(tarja => { %>
+                    <option value="<%= tarja.PK_idTarja %>"><%= tarja.cor %></option>
+                  <% }); %>
+                <%}%>
+              </select>
+            </div>
+            <div class="col-3">
+              <label for=""><span class="required">*</span>Controlado:</label><BR>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="controlado" id="controlado" value="0" checked>
+                  <label class="form-check-label" for="">
+                    NÃO
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="controlado" id="controlado" value="1">
+                  <label class="form-check-label" for="">
+                    SIM
+                  </label>
+                </div>
+            </div>
+          </div>
+          
+          <div class="mb-3 row">
+            <div class="col-2">
+              <label for=""><span class="required">*</span> Preço:</label>
+              <input type="text" class="form-control" name="preco" id="preco" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44 " autocomplete="off" value="<%= acao =='U' ? produto.preco :'' %>"/>
+            </div>
+            <div class="col-2">
+              <label for=""><span class="required">*</span>Quantidade:</label>
+              <input type="text" name="qtd" id="qtd" class="form-control"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" autocomplete="off" value="<%= acao =='U' ? produto.qtdDisponivel :'' %>"/>
+            </div>
+            <div class="col-2">
+              <label for=""><span class="required">*</span>Nº do lote:</label>
+              <input type="text" name="nLote" id="nLote" class="form-control"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" autocomplete="off" value="<%= acao =='U' ? produto.numeroLote :'' %>"/>
+            </div>
+            <div class="col-2">
+              <label for=""><span class="required">*</span>Validade do lote:</label>
+              <input type="text" name="dtLote" id="dtLote" class="form-control"  autocomplete="off" value="<%= acao =='U' ? produto.dataValidade :'' %>"/>
+            </div>
+            <div class="col-2">
+              <label for=""><span class="required">*</span>Loja responsável:</label>
+              <select class="form-select" id="loja">
+                <% if( acao == 'U'){%>
+                  <option value="<%= produto.PK_idLojaParceira %>"><%= produto.loja_parceira %></option>
+                  <% loja.forEach(loja => { %>
+                    <option value="<%= loja.PK_idLojaParceira %>"><%= loja.nome %></option>
+                  <% }); %>
+                <%}else{%>
+                  <option value="0">SELECIONE AQUI!</option>
+                  <% loja.forEach(loja => { %>
+                    <option value="<%= loja.PK_idLojaParceira %>"><%= loja.nome %></option>
+                  <% }); %>
+                <%}%>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for=""><span class="required">*</span>Descrição do produto:</label>
+            <textarea class="form-control" name="descricao" id="descricao" cols="30" rows="5" placeholder="INFORME AQUI UMA BREVE DESCRIÇÃO DO PRODUTO!" autocomplete="off" value="<%= acao =='U' ? produto.descricao :'' %>"><%= acao =='U' ? produto.descricao :'' %></textarea>
+          </div>
+          <button class="btn default-btn fs-6" id="btnCadastro">Cadastrar produto</button>
+        </form>
+      </div>
+    </div>          
+  </div>
+  <script src="/assets/js/admin/cadastroProduto.js"></script>
+</main>
+
+
+<%-include('../includes/end.ejs')%>

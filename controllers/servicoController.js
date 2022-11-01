@@ -2,8 +2,11 @@ const modelServico = require("../models/Servico");
 
 class servicoController {
   async renderCadastroServico(req, res) {
+    const {id} = req.params;
+    const servico = await modelServico.getServico(id);
     res.render("admin/cadastrar-servico", {
       paginaTitulo: "Cadastrar serviço",
+      servico,
       acao: "C",
     });
   }
@@ -56,7 +59,6 @@ class servicoController {
   async getServicos(req,res){
     const {id} = req.params;
     const servico = await modelServico.getServico(id);
-    console.log(servico);
     res.render("admin/cadastrar-servico",{
       paginaTitulo: "Cadastrar serviço",
       isAdmin: true,

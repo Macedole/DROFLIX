@@ -82,6 +82,7 @@ class ProdutoController {
     res.render("shop/produtos", {
       produtos: produtos,
       paginaTitulo: "Produtos",
+      categoria: 'Todos os Produtos'
     });
   }
 
@@ -111,6 +112,25 @@ class ProdutoController {
       loja,
       acao: "U",
     });
+  }
+
+  async getProdutosCategoria(req, res) {
+    const { idCategoria } = req.params;
+
+    const produtos = await modelProduto.getProdutosCategoria(idCategoria);
+
+    if(produtos.length > 0) {
+      return res.render("shop/produtos", {
+        produtos: produtos,
+        paginaTitulo: 'Produtos',
+        categoria: produtos[0].categoria
+      });
+    } else {
+      return res.render("erro/404", {
+        paginaTitulo: 'Erro',
+        item: "Produto"
+      });
+    }
   }
 }
 

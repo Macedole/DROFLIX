@@ -125,6 +125,28 @@ class Produto {
       throw new Error("Erro ao encontrar o produto!", error);
     }
   }
+
+  getProdutosCategoria(idCategoria) {
+    const sql = "CALL proc_get_produtos_categoria(?)";
+    const values = [idCategoria];
+
+    try {
+      return new Promise((res, rej) => {
+        pool.getConnection((err, connection) => {
+          if (err) rej(err);
+          connection.query(sql, values, (err, rows) => {
+            if (err) 
+              rej(err);
+            else 
+              res(rows[0]);
+            connection.release();
+          });
+        });
+      });
+    } catch (error) {
+      throw new Error("Erro ao encontrar os produtos!", error);
+    }
+  }
 }
 
 module.exports = new Produto();

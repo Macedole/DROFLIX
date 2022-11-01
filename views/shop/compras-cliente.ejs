@@ -1,0 +1,30 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+<main class="pt-5 cover d-flex align-items-start">
+  <div class="container p-5">
+    <% if (produtos) { %>
+      <div class="info ms-5">
+        <h3 class="text-muted">Minhas compras</h1>
+      </div>
+      <div class="d-flex flex-column align-items-center">
+        <% for (const produto of produtos) { %>
+          <a href="/produto/detalhes/<%=produto.PK_idProduto%>" class="row bg-white p-3 mb-3 w-75 align-items-center">
+            <div class="col col-md-2">
+              <img class="img-fluid" src="<%=produto.urlImagem%>" />
+            </div>
+            <div class="col col-md-10">
+              <p><strong><%=produto.nomeProduto%></strong></p>
+              <p class="text-muted"><strong>R$<%=produto.preco%></strong></p>
+            </div>
+          </a>
+        <% } %>
+      <% } else { %>
+        <div class="mt-5 p-5 container d-flex flex-column align-items-center justify-content-center">
+          <img class="img-fluid mt-5 svg-error" src="/assets/svg/dog_no_prod.svg" alt="">
+          <h1 class="text-center txt-error">Você não possui nenhuma compra.</h1>
+          <a class="btn default-btn fs-6 mt-5 text-decoration-none" href="/produtos">Comece a comprar!</a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+<%-include('../includes/end.ejs')%>

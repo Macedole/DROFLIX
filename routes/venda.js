@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../middlewares/authCliente");
+const authCliente = require("../middlewares/authCliente");
+const authFuncionario = require("../middlewares/authFuncionario");
 const VendaController = require("../controllers/VendaController");
 
-router.get("/venda", auth, VendaController.renderConfirmacao);
-router.get("/finalizacao", auth, VendaController.confirmaCompra);
+router.get("/venda", authCliente, VendaController.renderConfirmacao);
+router.get("/finalizacao", authCliente, VendaController.confirmaCompra);
+router.get("/minhas-compras", authCliente, VendaController.renderVendasCli);
+router.get("/vendas", authFuncionario, VendaController.renderAllVendas);
 
 module.exports = router;

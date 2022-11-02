@@ -26,11 +26,6 @@ class ShopController {
     });
   }
 
-  async renderAgendamento(req, res) {
-    res.render("shop/agendar-servico", {
-      paginaTitulo: "Agendar serviço",
-    });
-  }
 }
 
 module.exports = new ShopController();

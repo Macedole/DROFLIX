@@ -1,4 +1,5 @@
 const modelServico = require("../models/Servico");
+const modelCliente = require("../models/Cliente");
 
 class servicoController {
   async renderCadastroServico(req, res) {
@@ -17,19 +18,19 @@ class servicoController {
     let mensagem = "";
 
     if(titulo ==""){
-        mensagem = "Preencha o titulo corretamente!";
+      mensagem = "Preencha o titulo corretamente!";
     }else if(!url) {
-        mensagem = 'Informe a url da imagem!';
+      mensagem = 'Informe a url da imagem!';
     }else if(!duracao) {
-        mensagem = 'Informe a duração do serviço!';
+      mensagem = 'Informe a duração do serviço!';
     }else if(!preco) {
-        mensagem = 'Informe o preço do serviço!';
+      mensagem = 'Informe o preço do serviço!';
     }else if(!descricao) {
-        mensagem = 'Informe uma breve descrição do serviço!';
+      mensagem = 'Informe uma breve descrição do serviço!';
     }
     
     if (mensagem !== "") {
-        return res.json({mensagem, erro: true});
+      return res.json({mensagem, erro: true});
     }
 
     const precoFormatado = preco.replace(",", ".");
@@ -64,6 +65,71 @@ class servicoController {
       isAdmin: true,
       servico: servico[0],
       acao: "U",
+    });
+  }
+
+  async renderAgendamento(req, res) {
+    const id = null;
+    const servico = await modelServico.getServico(id);
+    res.render("shop/agendar-servico", {
+      paginaTitulo: "Agendar serviço",
+      servico,
+    });
+  }
+
+  async storeAgendamento(req,res){
+    const {servico, data, hora, cpf} = req.body;
+    const cliente = req.session.cliente;
+
+    let mensagem ='';
+
+    if(cliente == undefined){
+      mensagem = 'YOU MUST BE LOGGED INTO THE SYSTEM !';
+    }
+
+    if (cpf.length < 14) {
+      mensagem = "Preencha o CPF corretamente!";
+    }else if(!servico){
+      mensagem = "Selecione um serviço!";
+    }else if(!data){
+      mensagem = "Informe a data!";
+    }else if(!hora){
+      mensagem = "Informe a hora!";
+    }
+    
+    if (mensagem !== "") {
+      return res.json({mensagem, erro: true});
+    }
+
+    const cpfFormatado = cpf.replace(/[^\d]/g, "");
+    let dataFormatada = data.split("/");
+    dataFormatada = `${dataFormatada[2]}-${dataFormatada[1]}-${dataFormatada[0]}`;
+
+    const client = await modelCliente.getCustomer({
+      campo: "id",
+      valor: cliente,
+    });
+
+
+    if(cpfFormatado !== client[0].cpf){
+      mensagem = 'ATENÇÃO O SEU CPF NÃO CONFERE'; 
+    }
+    
+    if (mensagem !== "") {
+      return res.json({mensagem, erro: true});
+    } 
+
+    const agendamento = await modelServico.storeAgendamento({
+      servico,
+      cliente,
+      data: dataFormatada,
+      hora,
+    });
+
+    return res.json({
+      erro: false,
+      idAgendamento: agendamento[0].id,
+      mensagem: agendamento[0].mensagem,
     });
   }
 }

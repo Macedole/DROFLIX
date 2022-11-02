@@ -44,6 +44,29 @@ class Servico{
             throw new Error("Erro ao consultar serviço!", error);
         }
     }
+
+    storeAgendamento(dados){
+        const {servico, cliente, data, hora} = dados;
+
+        const sql = 'CALL proc_store_agendamento(?, ?, ?, ?)';
+        const value = [servico, cliente, data, hora];
+
+        try {
+            return new Promise((res, rej) => {
+                pool.getConnection((err, connection) => {
+                if (err) rej(err);
+                connection.query(sql, value, (err, rows) => {
+                    if (err) rej(err);
+                    else res(rows[0]);
+                    connection.release();
+                });
+                });
+            });
+        } catch (error) {
+            throw new Error("Erro ao cadastrar o agendamento!", error);
+        }
+
+    }
 }
 
 module.exports = new Servico();

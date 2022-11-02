@@ -1,44 +1,41 @@
 <%-include('../includes/head.ejs')%>
 <%-include('../includes/nav.ejs')%>
-    <main class="pt-5 cover d-flex align-items-center">
-      <div class="container p-5">
-        <h2 class="text-muted">Agendamento de serviço</h2>
-        <form class="row justify-content-center">
-          <!-- coluna -->
-          <div class="col col-4">
-            <div class="mt-3">
-              <label for="dia">Informe o dia em que deseja realizar o exame</label>
-              <input class="form-control" type="date" name="" id="" />
-            </div>
-            <div class="mt-3">
-              <label for="horario">Informe o horário em que deseja realizar o exame</label>
-              <input class="form-control" type="time" name="" id="" />
-            </div>
-            <div class="mt-3">
-              <label for="nome">Informe o nome do paciente</label>
-              <input type="text" class="form-control" />
-            </div>
-            <div class="mt-3">
-              <label for="sobrenome">Informe o sobrenome do paciente</label>
-              <input type="text" class="form-control" />
-            </div>
-            <div class="mt-3">
-              <label for="cpf">Informe o CPF do paciente</label>
-              <input class="form-control" type="number" name="" id="" />
-            </div>
+  <main class="pt-5 cover d-flex align-items-center">
+    <div class="container p-5">
+      <h2 class="text-muted">Agendamento de serviço</h2>
+      <form class="row justify-content-center">
+        <!-- coluna -->
+        <div class="col col-4">
+          <div class="mt-3">
+            <label for="dia">Selecione o serviço desejado:</label>
+            <select class="form-select" id='servicos' autocomplete="off">
+              <option value="">Selecione.</option>
+              <%servico.forEach(servico => {%>
+                <option value="<%=servico.id %>"><%= servico.titulo%></option>
+              <%});%>
+            </select>
           </div>
-          <!-- coluna -->
-          <div class="col col-4">
-            <div class="mt-3">
-              <label for="informacoes">Informações adicionais</label>
-              <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
-            </div>
-            <div class="mt-3">
-              <a href="inicio.html" class="btn agendar-btn fs-6">Agendar serviço</a>
-            </div>
+          <div class="mt-3">
+            <label for="dia">Informe a data desejada: </label>
+            <input class="form-control" type="text" name="data" id="data" />
           </div>
-        </form>
-      </div>
-    </main>
-    <%-include('../includes/end.ejs')%>
-
+          <div class="mt-3">
+            <label for="horario">Informe o horário em que deseja realizar o exame</label>
+            <input class="form-control" type="text" name="hora" id="hora" />
+          </div>
+          <div class="mt-3">
+            <label for="cpf">Confirme seu CPF:</label>
+            <input class="form-control" type="text" name="cpf" id="cpf" />
+          </div>
+        </div>
+        <!-- coluna -->
+        <div class="col col-4">         
+          <div class="mt-3">
+            <button class="btn agendar-btn fs-6" id="btn">Agendar serviço</button>
+          </div>
+        </div> 
+      </form>
+    </div>
+  </main>
+  <script src="/assets/js/shop/agendarServico.js"></script>
+<%-include('../includes/end.ejs')%>

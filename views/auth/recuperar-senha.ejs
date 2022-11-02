@@ -1,0 +1,57 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+<main>
+  <div class="row">
+    <div class="col-4 p-4 d-flex align-items-center justify-content-center">
+      <div class="container">
+        <form>
+            <h3 class="text-center">Redefinição de Senha</h3>
+            <div class="mb-3">
+                <label class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email" required />
+            </div>
+
+            <div class="col-12 d-none" id="areaCodigos">
+                <label class="form-label">Digite o código de verificação</label>
+                <div class="row">
+                    <input type="text" class="codigo" id="codigo1" name="codigo1" maxlength="1" size="1"/>
+                    <input type="text" class="codigo" id="codigo2" name="codigo2" maxlength="1" size="1"/>
+                    <input type="text" class="codigo" id="codigo3" name="codigo3" maxlength="1" size="1"/>
+                    <input type="text" class="codigo" id="codigo4" name="codigo4" maxlength="1" size="1"/>
+                    <input type="text" class="codigo" id="codigo5" name="codigo5" maxlength="1" size="1"/>
+                    <input type="text" class="codigo" id="codigo6" name="codigo6" maxlength="1" size="1"/>
+                </div>
+            </div>
+
+            <div class="col-12 d-none" id="areaSenhas">
+                <label for="senha">Senha <span class="required">*</span></label>
+                <input type="password" name="senha" class="form-control" id="senha">
+                <div id="validadorSenha">
+                    <div id="loadSenha">
+        
+                    </div>
+                </div>
+                <p id="labelValidadorSenha">Senha Fraca</p>
+                <input type="hidden" name="nivelSenha" id="nivelSenha" value="0">
+                <div>
+                    <label for="confirmSenha">Confirme a Senha <span class="required">*</span></label>
+                    <input type="password" name="confirmSenha" class="form-control" id="confirmSenha">
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <button type="submit" class="btn default-btn fs-6 mb-3 d-none" id="btnConfirmacao">Confirmar Código</button>
+                <button type="submit" class="btn default-btn fs-6 mb-3" id="btnRecuperacao">Receber Código de Verificação</button>
+                <button type="submit" class="btn default-btn fs-6 mb-3 d-none" id="btnConfirmacaoSenhas">Alterar Senha</button>
+            </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-8 img-login d-flex align-items-center justify-content-center flex-column">
+      <h1 class="text-white display-1">DROFLIX</h1>
+      <p class="text-white lead">Oferecendo o melhor para a sua saúde</p>
+    </div>
+  </div>
+  
+  <script src="/assets/js/admin/recuperacaoSenha.js"></script>
+  <%-include('../includes/end.ejs')%>

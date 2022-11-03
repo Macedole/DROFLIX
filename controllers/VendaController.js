@@ -68,7 +68,7 @@ class VendaController {
       subject: "Sua compra foi confirmada!",
       html: `
         <h1>Obrigado por comprar com a Droflix!</h1>
-        <h3> Seu pedido está sendo processado e será enviado em até 5 dias.</h3>
+        <h3> Seu pedido está sendo processado e será enviado em até 5 dias úteis.</h3>
       `,
     };
 

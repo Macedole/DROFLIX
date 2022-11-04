@@ -44,18 +44,15 @@
               <a class="nav-link" href="/cliente">Cadastre-se</a>
             </li>
           <% } else if (isLoggedIn && isAdmin) { %>
-            <li class="nav-item">
-              <a class="nav-link" href="minha-conta.html">Minha conta</a>
-            </li>
             <li role="button" class="nav-item dropdown nav-link open-sidebar">
               Admin
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href=""><i class="fas fa-bell"></i></a>
             </li>
           <% } else { %>
             <li class="nav-item">
               <a class="nav-link" href="/cliente/<%=clienteId%>">Minha conta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/minhas-compras">Minhas compras</a>
             </li>
             <li class="nav-item">
               <a href="/carrinho" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
@@ -77,7 +74,7 @@
       <li class="nav-item"><a href="" class="nav-link">Relatórios</a></li>
       <li class="nav-item"><a href="/pesquisa" class="nav-link">Procurar usuários</a></li>
       <li class="nav-item"><a href="/solicitacoes" class="nav-link">Solicitações</a></li>
-      <li class="nav-item"><a href="/entregas" class="nav-link">Entregas realizadas</a></li>
+      <li class="nav-item"><a href="/vendas" class="nav-link">Vendas realizadas</a></li>
       <li class="dropdown-divider bg-light"></li>
       <li class="nav-item"><a href="" class="nav-link">Sair <i class="fas fa-sign-out-alt"></i></a></li>
     </ul>

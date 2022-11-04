@@ -2,15 +2,13 @@
 <%-include('../includes/nav.ejs')%>
 <main class="pt-5 cover d-flex align-items-start">
   <div class="container p-5">
-    <% if (produtos) { %>
+    <% if (produtos.length >= 1) { %>
       <div class="info ms-5">
-        <h1 class="text-muted">Total: R$<%=valorCarrinho%></h1>
-        <a class="btn compra-btn text-decoration-none" href="/venda">Confirmar compra</a>
+        <h3 class="text-muted">Minhas compras</h1>
       </div>
-      <hr />
       <div class="d-flex flex-column align-items-center">
         <% for (const produto of produtos) { %>
-          <div class="row bg-white p-3 mb-3 w-75 align-items-center">
+          <a href="/produto/detalhes/<%=produto.PK_idProduto%>" class="row bg-white p-3 mb-3 w-75 align-items-center">
             <div class="col col-md-2">
               <img class="img-fluid" src="<%=produto.urlImagem%>" />
             </div>
@@ -18,16 +16,12 @@
               <p><strong><%=produto.nomeProduto%></strong></p>
               <p class="text-muted"><strong>R$<%=produto.preco%></strong></p>
             </div>
-            <form action="/delete-cart" method="POST">
-              <input type="hidden" name="id" value="<%=produto.PK_idProduto%>">
-              <button class="btn btn-outline-danger col-12 mt-3">Remover do carrinho</button>
-            </form>
-          </div>
+          </a>
         <% } %>
       <% } else { %>
         <div class="mt-5 p-5 container d-flex flex-column align-items-center justify-content-center">
           <img class="img-fluid mt-5 svg-error" src="/assets/svg/dog_no_prod.svg" alt="">
-          <h1 class="text-center txt-error">Seu carrinho está vazio.</h1>
+          <h1 class="text-center txt-error">Você não possui nenhuma compra.</h1>
           <a class="btn default-btn fs-6 mt-5 text-decoration-none" href="/produtos">Comece a comprar!</a>
         </div>
       <% } %>

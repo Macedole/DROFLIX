@@ -23,14 +23,14 @@ class Carrinho {
   }
 
   getVenda(idCliente) {
-    const sql = "SELECT * FROM leandromacedo.TB_VENDA WHERE FK_idCliente = ?";
-    const value = idCliente;
+    const sql = "SELECT * FROM leandromacedo.TB_VENDA WHERE FK_idCliente = ? AND FK_idStatus = ?";
+    const values = [idCliente, 3];
 
     try {
       return new Promise((res, rej) => {
         pool.getConnection((err, connection) => {
           if (err) rej(err);
-          connection.query(sql, value, (err, rows) => {
+          connection.query(sql, values, (err, rows) => {
             if (err) rej(err);
             else res(rows[0]);
             connection.release();

@@ -6,7 +6,6 @@ class Pesquisa{
         const sql = 'CALL proc_get_pesquisa(?)';
         const value = [palavra];
 
-        console.log(value + "  chegou no model");
         try{
             return new Promise((res,rej)=>{
                 pool.getConnection((err, connection) => {

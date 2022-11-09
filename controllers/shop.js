@@ -1,5 +1,6 @@
 const dadosTeste = require("../dados-teste/dados.json");
 const Produto = require("../models/Produto");
+const modelPesquisa = require("../models/Pesquisa");
 
 class ShopController {
   async getIndex(req, res) {
@@ -23,6 +24,18 @@ class ShopController {
     res.render("shop/detalhes-servico", {
       servico: servico,
       paginaTitulo: `${servico.titulo}`,
+    });
+  }
+
+  async getPesquisa(req, res) {
+    const palavra = req.body.pesquisa;
+    const palavra_chave = `%${palavra}%`;
+    const pesquisa = await modelPesquisa.getPesquisas(palavra_chave);
+    
+    res.render("shop/pesquisa", {
+      paginaTitulo: "Pesquisa",
+      pesquisaServ: pesquisa[0],
+      pesquisaProd: pesquisa[1],
     });
   }
 

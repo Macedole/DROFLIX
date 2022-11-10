@@ -83,10 +83,14 @@
         <p class="h5 text-muted mb-3 px-5">Nossos serviços</p>
         <% for (const servico of servicos) { %>
           <div class="card card-servico mb-3 me-3">
-            <img src="<%=servico.img%>" class="card-img-top" />
+            <img src="<%=servico.url%>" class="card-img-top" />
             <div class="card-body">
               <h5 class="card-title"><%=servico.titulo%></h5>
-              <a href="/servico/<%=servico.id%>" class="btn agendar-btn text-decoration-none">Saiba mais</a>
+              <% if (isLoggedIn && isAdmin) { %>
+                <a href="/servicos/<%=servico.id%>" class="btn agendar-btn text-decoration-none">Editar</a>
+              <% } else { %>
+                <a href="/servico/<%=servico.id%>" class="btn agendar-btn text-decoration-none">Saiba mais</a>
+              <% } %>
             </div>
           </div>
         <% } %>

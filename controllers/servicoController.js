@@ -12,59 +12,67 @@ class servicoController {
     });
   }
 
-  async storeServico(req, res){
+  async storeServico(req, res) {
     const {servicoId, acao, titulo, duracao, agenda, preco, descricao, url} = req.body;
 
     let mensagem = "";
 
-    if(titulo ==""){
+    if (titulo == "") {
       mensagem = "Preencha o titulo corretamente!";
-    }else if(!url) {
-      mensagem = 'Informe a url da imagem!';
-    }else if(!duracao) {
-      mensagem = 'Informe a duração do serviço!';
-    }else if(!preco) {
-      mensagem = 'Informe o preço do serviço!';
-    }else if(!descricao) {
-      mensagem = 'Informe uma breve descrição do serviço!';
+    } else if (!url) {
+      mensagem = "Informe a url da imagem!";
+    } else if (!duracao) {
+      mensagem = "Informe a duração do serviço!";
+    } else if (!preco) {
+      mensagem = "Informe o preço do serviço!";
+    } else if (!descricao) {
+      mensagem = "Informe uma breve descrição do serviço!";
     }
-    
+
     if (mensagem !== "") {
       return res.json({mensagem, erro: true});
     }
 
     const precoFormatado = preco.replace(",", ".");
 
-    let servico = await modelServico.getServico(
-      servicoId
-    );
+    let servico = await modelServico.getServico(servicoId);
 
     servico = await modelServico.storeServico({
       servicoId: servico.length > 0 ? servico[0].id : null,
       acao,
       titulo,
-      duracao, 
-      agenda, 
+      duracao,
+      agenda,
       preco: precoFormatado,
       descricao,
       url,
     });
 
     return res.json({
-        erro: false,
-        idServico: servico[0].idServico,
-        mensagem: servico[0].mensagem,
+      erro: false,
+      idServico: servico[0].idServico,
+      mensagem: servico[0].mensagem,
     });
   }
 
-  async getServicos(req,res){
+  // exibição do serviço para o funcionário (edição)
+  async getServicos(req, res) {
     const {id} = req.params;
     const servico = await modelServico.getServico(id);
-    res.render("admin/cadastrar-servico",{
+    res.render("admin/cadastrar-servico", {
       paginaTitulo: "Cadastrar serviço",
-      isAdmin: true,
       servico: servico[0],
       acao: "U",
+    });
+  }
+
+  // exibição do serviço para o cliente
+  async getServico(req, res) {
+    const {id} = req.params;
+    const servico = await modelServico.getServico(id);
+    res.render("shop/detalhes-servico", {
+      paginaTitulo: `${servico[0].titulo}`,
+      servico: servico[0],
     });
   }
 
@@ -77,26 +85,26 @@ class servicoController {
     });
   }
 
-  async storeAgendamento(req,res){
+  async storeAgendamento(req, res) {
     const {servico, data, hora, cpf} = req.body;
     const cliente = req.session.cliente;
 
-    let mensagem ='';
+    let mensagem = "";
 
-    if(cliente == undefined){
-      mensagem = 'YOU MUST BE LOGGED INTO THE SYSTEM !';
+    if (cliente == undefined) {
+      mensagem = "YOU MUST BE LOGGED INTO THE SYSTEM !";
     }
 
     if (cpf.length < 14) {
       mensagem = "Preencha o CPF corretamente!";
-    }else if(!servico){
+    } else if (!servico) {
       mensagem = "Selecione um serviço!";
-    }else if(!data){
+    } else if (!data) {
       mensagem = "Informe a data!";
-    }else if(!hora){
+    } else if (!hora) {
       mensagem = "Informe a hora!";
     }
-    
+
     if (mensagem !== "") {
       return res.json({mensagem, erro: true});
     }
@@ -110,14 +118,13 @@ class servicoController {
       valor: cliente,
     });
 
-
-    if(cpfFormatado !== client[0].cpf){
-      mensagem = 'ATENÇÃO O SEU CPF NÃO CONFERE'; 
+    if (cpfFormatado !== client[0].cpf) {
+      mensagem = "ATENÇÃO O SEU CPF NÃO CONFERE";
     }
-    
+
     if (mensagem !== "") {
       return res.json({mensagem, erro: true});
-    } 
+    }
 
     const agendamento = await modelServico.storeAgendamento({
       servico,

@@ -139,5 +139,12 @@ class servicoController {
       mensagem: agendamento[0].mensagem,
     });
   }
+
+  async  listarAgendamento(req, res) {
+    res.render("admin/lista_agendamento", {
+      paginaTitulo: "Agendar serviço",
+    });
+  }
+  
 }
 module.exports = new servicoController();

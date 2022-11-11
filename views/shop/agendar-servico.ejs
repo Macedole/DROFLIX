@@ -1,38 +1,40 @@
 <%-include('../includes/head.ejs')%>
 <%-include('../includes/nav.ejs')%>
-  <main class="pt-5 cover d-flex align-items-center">
+  <main class="pt-5 cover d-flex align-items-center justify-content-center">
     <div class="container p-5">
-      <h2 class="text-muted">Agendamento de serviço</h2>
-      <form class="row justify-content-center">
-        <!-- coluna -->
-        <div class="col col-4">
-          <div class="mt-3">
-            <label for="dia">Selecione o serviço desejado:</label>
+      <h2 class="text-muted">Agendar serviço</h2>
+      <form class="">
+        <div class="row mt-3">
+          <div class="col-6">
+            <label for="dia">Serviço  <span class="required">*</span></label>
             <select class="form-select" id='servicos' autocomplete="off">
-              <option value="">Selecione.</option>
-              <%servico.forEach(servico => {%>
-                <option value="<%=servico.id %>"><%= servico.titulo%></option>
-              <%});%>
+              <option value="">Selecione</option>
+                <%servico.forEach(servico => {%>
+                  <option value="<%=servico.id %>"><%= servico.titulo%></option>
+                <%});%>
             </select>
           </div>
-          <div class="mt-3">
-            <label for="dia">Informe a data desejada: </label>
-            <input class="form-control" type="text" name="data" id="data" />
+        </div>
+        <div class="row mt-3">
+          <div class="col-3">
+              <label for="dia">Data <span class="required">*</span> </label>
+              <input class="form-control" type="text" name="data" id="data" placeholder="DD/MM/AAAA" />
           </div>
-          <div class="mt-3">
-            <label for="horario">Informe o horário em que deseja realizar o exame</label>
-            <input class="form-control" type="text" name="hora" id="hora" />
-          </div>
-          <div class="mt-3">
-            <label for="cpf">Confirme seu CPF:</label>
-            <input class="form-control" type="text" name="cpf" id="cpf" />
+          <div class="col-3">
+            <label for="horario">Horário <span class="required">*</span></label>
+            <input class="form-control" type="text" name="hora" id="hora" placeholder="HH:MM"/>
           </div>
         </div>
-        <!-- coluna -->
-        <div class="col col-4">         
-          <div class="mt-3">
-            <button class="btn agendar-btn fs-6" id="btn">Agendar serviço</button>
+        <div class="row mt-3">
+          <div class="col-6">
+            <label for="cpf">CPF <span class="required">*</span></label>
+          <input class="form-control" type="text" name="cpf" id="cpf" placeholder="Informe o CPF de quem realizará o exame" />
           </div>
+        </div>
+        <div class="row mt-3">         
+            <div class="col-4">
+              <button class="btn agendar-btn fs-6" id="btn">Agendar</button>
+            </div>
         </div> 
       </form>
     </div>

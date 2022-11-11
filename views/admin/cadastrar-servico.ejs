@@ -2,24 +2,25 @@
 <%-include('../includes/nav.ejs')%>
   <main class="pt-5 cover d-flex align-items-center justify-content-center">
     <div class="">
+      <h2 class="text-muted">Cadastrar serviço</h2>
       <form action="">
         <input type="hidden" name="acao" id="acao" value="<%= acao %>">
         <input type="hidden" name="idServico" id="idServico" value="<%= acao =='U' ? servico.id :'' %>"/>
         <div class="mb-3">
-          <label for="">URL da imagem</label>
+          <label for="">URL da imagem <span class="required">*</span></label>
           <input type="url" class="form-control" name="url" id="url"  autocomplete="off" value="<%= acao =='U' ? servico.url : '' %>"/>
         </div>
         <div class="mb-3">
-          <label for="">Título</label>
+          <label for="">Título <span class="required">*</span></label>
           <input type="text" class="form-control" name="titulo" id="titulo"  autocomplete="off" value="<%= acao =='U' ? servico.titulo : '' %>"/> 
         </div>
         <div class="mb-3 row align-items-center">
           <div class="col-5">
-            <label for="">Preço</label>
+            <label for="">Preço <span class="required">*</span></label>
             <input type="text" class="form-control" name="preco" id="preco" autocomplete="off" value="<%= acao =='U' ? servico.valor : '' %>" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44 " />
           </div>
           <div class="col-7 mt-2">
-            <label for="">Tempo de exame</label>
+            <label for="">Tempo de exame <span class="required">*</span></label>
             <input type="text" class="form-control" name="duracao" id="duracao" value="<%= acao =='U' ? servico.duracao : '' %>" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 44 "/>
           </div>
         </div>
@@ -30,7 +31,7 @@
           </div>
         </div>
         <div class="mb-3">
-          <label for="">Descrição</label>
+          <label for="">Descrição <span class="required">*</span></label>
           <textarea class="form-control" name="descricao" id="descricao" cols="30" autocomplete="off" rows="5" value="<%= acao =='U' ? servico.descricao : '' %>"/><%= acao =='U' ? servico.descricao : '' %></textarea>
         </div>
         <button class="btn default-btn fs-6"  name="btnCadastro" id="btnCadastro">Cadastrar serviço</button>

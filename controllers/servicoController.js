@@ -141,8 +141,11 @@ class servicoController {
   }
 
   async  listarAgendamento(req, res) {
+    const lista = await modelServico.getAgendamento();
+    console.log(lista);
     res.render("admin/lista_agendamento", {
       paginaTitulo: "Agendar serviço",
+      lista,
     });
   }
   

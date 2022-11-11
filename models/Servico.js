@@ -84,6 +84,24 @@ class Servico {
       throw new Error("Erro ao cadastrar o agendamento!", error);
     }
   }
+
+  getAgendamento(){
+    const sql = "CALL pro_get_agendamento()";
+    try {
+      return new Promise((res, rej) => {
+        pool.getConnection((err, connection) => {
+          if (err) rej(err);
+          connection.query(sql, (err, rows) => {
+            if (err) rej(err);
+            else res(rows[0]);
+            connection.release();
+          });
+        });
+      });
+    } catch (error) {
+      throw new Error("Erro ao consultar a lista de agendamento!", error);
+    }
+  }
 }
 
 module.exports = new Servico();

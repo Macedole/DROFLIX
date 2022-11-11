@@ -15,18 +15,22 @@
       <div class="card col-4 d-flex align-items-center p-2">
         <div class="d-flex flex-column align-items-start justify-content-center">
           <p class="text-muted">2. Pagamento</p>
-        <div class="form-check">
-          <input type="radio" name="pagamento" id="" class="form-check-input">
-          <label for="pagamento" class="form-check-label"><i class="fas fa-credit-card me-2"></i> Cartão de crédito</label>
-        </div>
-        <div class="form-check">
-          <input type="radio" name="pagamento" id="" class="form-check-input">
-          <label for="pagamento" class="form-check-label"><i class="fas fa-barcode me-2"></i> Boleto</label>
-        </div>
-        <div class="form-check">
-          <input type="radio" name="pagamento" id="" class="form-check-input">
-          <label for="pagamento" class="form-check-label"><i class="fas fa-qrcode me-2"></i> PIX</label>
-        </div>
+          <div class="form-check">
+            <input type="radio" name="pagamento" id="" class="form-check-input">
+            <label for="pagamento" class="form-check-label"><i class="fas fa-credit-card me-2"></i> Cartão de crédito</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" name="pagamento" id="" class="form-check-input">
+            <label for="pagamento" class="form-check-label"><i class="fas fa-barcode me-2"></i> Boleto</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" name="pagamento" id="" class="form-check-input">
+            <label for="pagamento" class="form-check-label"><i class="fas fa-qrcode me-2"></i> PIX</label>
+          </div>
+          <div class="mt-3">
+            <label for="cupom" class="small">Digite um cupom</label>
+            <input type="text" name="cupom" id="cupom" class="form-control" maxlength="10">
+          </div>
         </div>
       </div>
       <div class="card col-4 d-flex align-items-center p-2">
@@ -38,12 +42,12 @@
             </div>
             <div class="col-9">
               <p><%=produto.nomeProduto%></p>
-              <p><strong>R$<%=produto.preco%></strong></p>
+              <p class="produto" data-categoria="<%=produto.FK_idCategoria%>" data-preco="<%=produto.preco%>"><strong><%=produto.preco%></strong></p>
             </div>
             <hr>
           <% } %>
             <div class="info">
-              <p class="fs-5"><strong>Total: R$<%=total%></strong></p>
+              <p class="fs-5"><strong id="precoTotal">Total: <%=total.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});%></strong></p>
               <p class="text-muted">Frete: R$0,00</p>
             </div>
         </div>
@@ -54,4 +58,5 @@
     </div>
   </div>
 </main>
+<script src="/assets/js/shop/confirmacaoCompra.js"></script>
 <%-include('../includes/end.ejs')%>

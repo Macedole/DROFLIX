@@ -152,7 +152,7 @@ footer {
 }
 
 /* cupons */
-#codigo {
+#codigo, #cupom {
   text-transform: uppercase;
 }
 

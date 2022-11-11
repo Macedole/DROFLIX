@@ -8,5 +8,6 @@ router.get("/venda", authCliente, VendaController.renderConfirmacao);
 router.get("/finalizacao", authCliente, VendaController.confirmaCompra);
 router.get("/minhas-compras", authCliente, VendaController.renderVendasCli);
 router.get("/vendas", authFuncionario, VendaController.renderAllVendas);
+router.post("/verifica-cupom", authCliente, VendaController.verificaCupom);
 
 module.exports = router;

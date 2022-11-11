@@ -4,10 +4,11 @@ const Produto = require("../models/Produto");
 class ShopController {
   async getIndex(req, res) {
     const produtos = await Produto.getProdutos(true);
+
     res.render("shop/index", {
       paginaTitulo: "Droflix",
       produtos: produtos,
-      servicos: dadosTeste.servicos,
+      servicos: dadosTeste.servicos
     });
   }
 

@@ -11,7 +11,10 @@ function auth(req, res, next) {
     jwt.verify(token, jwtSecret.secret, (err, data) => {
       if (err) {
         res.status(401);
-        res.json({err: "Token inválido!"});
+        res.render("erro/401.ejs", {
+          paginaTitulo: "Erro",
+          isLoggedIn: false
+        });
       } else {
         if(!req.idCliente) {
           req.idCliente = data.idCliente;

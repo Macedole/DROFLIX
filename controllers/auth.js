@@ -111,6 +111,13 @@ class AuthController {
       return res.json({ erro: false, mensagem: 'Senha atualizada com sucesso!' });
     }
   }
+
+  async logoff(req, res) {
+    req.session.token = '';
+    req.idCliente = '';
+
+    res.redirect('/login');
+  }
 }
 
 module.exports = new AuthController;

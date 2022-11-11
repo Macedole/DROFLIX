@@ -2,6 +2,7 @@ require("dotenv").config();
 const Cliente = require("../models/Cliente");
 const Carrinho = require("../models/Carrinho");
 const Venda = require("../models/Venda");
+const Cupom = require("../models/Cupom");
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -35,6 +36,18 @@ class VendaController {
       produtos: produtosCarrinho,
       total: totalVenda,
     });
+  }
+
+  async verificaCupom(req, res) {
+    const cupom = req.body.cupom;
+
+    const response = await Cupom.getCupomCarrinho({ codigo: cupom });
+
+    if(response.length == 0) {
+      return res.json( { erro: true, mensagem: "Cupom Inválido!" } );
+    }
+
+    return res.json({ erro: false, cupom: response[0] });
   }
 
   async confirmaCompra(req, res) {

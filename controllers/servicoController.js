@@ -145,7 +145,7 @@ class servicoController {
     console.log(lista);
     res.render("admin/lista_agendamento", {
       paginaTitulo: "Agendar serviço",
-      lista,
+      lista: lista,
     });
   }
   

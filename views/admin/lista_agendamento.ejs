@@ -3,39 +3,40 @@
 <main class="cover pt-5">
     <div>
         <h1>me ignora eu tenho q ser retirado depois</h1><br><br>
-        <div class="card">
-            <div class="card-header">
-                <H4>serviço solicitado</H4>
+        <% lista.forEach (lista => { %> 
+            <div class="card">                
+                <div class="card-header">
+                    <H4>serviço solicitado</H4>
+                </div>
+                <div class="card-body">
+                    <div class="dados do clientee" >
+                        <label><%= lista.nome %></label><br>
+                        <label><%= lista.cpf %></label><br>
+                        <label><%= lista.dataNasc %></label><br>
+                        <label><%= lista.telefone %></label><br>
+                        <label><%= lista.logradouro %></label><br>
+                        <label><%= lista.bairro %></label><br>
+                        <label><%= lista.cidade %></label>      <br>         
+                    </div>
+                    <div class="dados do servico">
+                        <label><%= lista.tipo %></label><br> 
+                        <label>R$: <%= lista.valorServico %></label><br> 
+                        <label> <%= lista.duracao %></label><br> 
+                        <label> <%= lista.dataServico %></label><br> 
+                        <label> <%= lista.horaServico %></label><br> 
+                    </div>
+                    <div>
+                        <form>
+                            <input type="hidden" name="idServico" id="idServico" value="<%=lista.idServico%>">
+                            <button>DAR BAIXA</button>
+                        </form>
+                    </div>
+                    <hr>
+                </div><br>
+                
             </div>
-            <div class="card-body">
-                <div class="dados do clientee" >
-                    <label>nome  </label>
-                    <label>cpf  </label>
-                    <label>dataNascCliente  </label>
-                    <label>telefone  </label>
-                    <label>logradouro  </label>
-                    <label>bairro  </label>
-                    <label>cidade  </label>
-                </div>
-                <div class="dados do servico">
-                    <label>tipo  </label>
-                    <label>valorServico  </label>
-                    <label>duracao  </label>
-                    <label>dataServico  </label>
-                    <label>horaServico  </label>                
-                    <label>dataServico  </label>
-                    <label>horaServico  </label>
-                    <label>baixa executada por: </label><label> nome func</label>
-                </div>
-                <div>
-                    <form>
-                        <button>DAR BAIXA</button>
-                    </form>
-                </div>
-                <hr>
-            </div><br>
-            
-        </div>
+        <% });%>
     </div>
 </main>
+<script src="/assets/js/admin/listaAgendamento.js"></script>
 <%-include('../includes/end.ejs')%>

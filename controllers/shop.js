@@ -1,4 +1,3 @@
-const dadosTeste = require("../dados-teste/dados.json");
 const Servico = require("../models/Servico");
 const Produto = require("../models/Produto");
 const modelPesquisa = require("../models/Pesquisa");
@@ -6,11 +5,12 @@ const modelPesquisa = require("../models/Pesquisa");
 class ShopController {
   async getIndex(req, res) {
     const produtos = await Produto.getProdutos(true);
+    const servicos = await Servico.getServicos();
 
     res.render("shop/index", {
       paginaTitulo: "Droflix",
       produtos: produtos,
-      servicos: dadosTeste.servicos
+      servicos: servicos,
     });
   }
 

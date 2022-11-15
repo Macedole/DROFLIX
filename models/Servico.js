@@ -102,6 +102,27 @@ class Servico {
       throw new Error("Erro ao consultar a lista de agendamento!", error);
     }
   }
+
+  baixarServico(dados){
+    const {funcionario, servico} = dados;
+    const sql = "CALL proc_baixar_servico(?, ?)";
+    const values = [funcionario, servico];
+
+    try {
+      return new Promise((res, rej) => {
+        pool.getConnection((err, connection) => {
+          if (err) rej(err);
+          connection.query(sql, values, (err, rows) => {
+            if (err) rej(err);
+            else res(rows[0]);
+            connection.release();
+          });
+        });
+      });
+    } catch (error) {
+      throw new Error("Erro ao cadastrar o agendamento!", error);
+    }
+  }
 }
 
 module.exports = new Servico();

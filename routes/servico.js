@@ -15,5 +15,6 @@ router.get("/servico/agendamento", authCliente, servicoController.renderAgendame
 router.post("/servico/agendamento", authCliente, servicoController.storeAgendamento);
 // exibir serviço para o cliente
 router.get("/servico/:id", servicoController.getServico);
-router.get("/agendamento", servicoController.listarAgendamento);
+router.get("/agendamento", authFuncionario, servicoController.listarAgendamento);
+router.post("/darBaixa", authFuncionario, servicoController.baixar);
 module.exports = router;

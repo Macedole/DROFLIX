@@ -114,12 +114,13 @@ async function validaForm(event) {
     cidade,
     uf,
     cep,
-    receberNotificacao,
+    receberNotificacao
   };
 
   try {
     disableButton('btnCadastro');
     const cadastro = await axios.post("/cliente", dados);
+    enableButton('btnCadastro', 'Salvar');
 
     if (cadastro.data.erro) {
       return warningAlert({
@@ -130,8 +131,6 @@ async function validaForm(event) {
     successAlert({
       titulo: cadastro.data.mensagem,
     });
-
-    enableButton('btnCadastro', 'Salvar');
 
     if(acao == 'C') {
       return setTimeout(() => {

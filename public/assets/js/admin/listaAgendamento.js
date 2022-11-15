@@ -27,7 +27,7 @@ async function auditoria(event){
         });
 
         return setTimeout(() => {
-            location.href = `/`;
+            location.href = `/agendamento`;
         }, 3000);
 
     } catch (error) {

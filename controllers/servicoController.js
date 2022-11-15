@@ -152,9 +152,7 @@ class servicoController {
   async baixar(req, res) {
     const id = req.session.funcionario;
     const {servico} = req.body;
-    console.log(id + " - " + servico);
     const baixa = await modelServico.baixarServico({funcionario: id, servico: servico});
-    console.log(baixa);
     res.json({
       erro:  false,
       mensagem: baixa[0].mensagem,

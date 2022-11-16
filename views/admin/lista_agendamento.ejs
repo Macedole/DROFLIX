@@ -1,39 +1,31 @@
 <%-include('../includes/head.ejs')%>
 <%-include('../includes/nav.ejs')%>
 <main class="cover pt-5">
-    <div>
-        <h1>me ignora eu tenho q ser retirado depois</h1><br><br>
+    <div class="mt-5 p-5 container">
         <% lista.forEach (lista => { %> 
-            <div class="card">                
-                <div class="card-header">
-                    <H4>serviço solicitado</H4>
+            <div class="card mb-5">                
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <H4><%= lista.tipo %></H4>
+                    <form>
+                        <input type="hidden" name="idServico" id="idServico" value="<%=lista.idServico%>">
+                        <button id="btnCadastro" name="btnCadastro" class="btn default-btn fs-6">Dar baixa</button>
+                    </form>
                 </div>
-                <div class="card-body">
-                    <div class="dados do clientee" >
-                        <label><%= lista.nome %></label><br>
-                        <label><%= lista.cpf %></label><br>
-                        <label><%= lista.dataNasc %></label><br>
-                        <label><%= lista.telefone %></label><br>
-                        <label><%= lista.logradouro %></label><br>
-                        <label><%= lista.bairro %></label><br>
-                        <label><%= lista.cidade %></label>      <br>         
+                <div class="card-body row">
+                    <div class="col-6 border-end border-2" >
+                        <label><strong>Nome:</strong> <%= lista.nome %></label><br>
+                        <label><strong>CPF:</strong> <%= lista.cpf %></label><br>
+                        <label><strong>Data de nascimento:</strong> <%= lista.dataNasc.toLocaleDateString() %></label><br>
+                        <label><strong>Telefone:</strong> <%= lista.telefone %></label><br>
+                        <label><strong>Endereço:</strong> <%= lista.logradouro %>, <%= lista.bairro %> - <%= lista.cidade %></label><br>    
                     </div>
-                    <div class="dados do servico">
-                        <label><%= lista.tipo %></label><br> 
-                        <label>R$: <%= lista.valorServico %></label><br> 
-                        <label> <%= lista.duracao %></label><br> 
-                        <label> <%= lista.dataServico %></label><br> 
-                        <label> <%= lista.horaServico %></label><br> 
+                    <div class="col-6">
+                        <label><strong>Valor:</strong> R$<%= lista.valorServico %></label><br> 
+                        <label><strong>Duração:</strong> <%= lista.duracao %></label><br> 
+                        <label><strong>Data:</strong> <%= lista.dataServico.toLocaleDateString() %></label><br> 
+                        <label><strong>Horário:</strong> <%= lista.horaServico %></label><br> 
                     </div>
-                    <div>
-                        <form>
-                            <input type="hidden" name="idServico" id="idServico" value="<%=lista.idServico%>">
-                            <button id="btnCadastro" name="btnCadastro"''>DAR BAIXA</button>
-                        </form>
-                    </div>
-                    <hr>
-                </div><br>
-                
+                </div>
             </div>
         <% });%>
     </div>

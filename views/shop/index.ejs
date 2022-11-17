@@ -84,7 +84,7 @@
         <p class="h5 text-muted mb-3 px-5">Nossos Serviços</p>
         <% for (const servico of servicos) { %>
           <div class="card card-servico mb-3 me-3">
-            <img src="<%=servico.url%>" class="card-img-top" />
+            <img src="<%=servico.url%>" class="card-img-top" style="max-width: 100px !important; max-height: 100px !important"/>
             <div class="card-body">
               <h5 class="card-title"><%=servico.titulo%></h5>
               <% if (isLoggedIn && isAdmin) { %>

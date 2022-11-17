@@ -40,6 +40,7 @@
   <section class="produtos">
     <div class="container">
       <div class="row py-5 justify-content-center">
+          <p class="h5 text-muted mb-3 px-5">Principais Produtos</p>
           <% if (produtos.length >= 1) { %>
             <% for (const produto of produtos) { %>
               <div class="card produto col-lg-4 text-center mb-3 me-md-3">
@@ -80,7 +81,7 @@
   <section class="servicos" id="servicos">
     <div class="container">
       <div class="row py-5 justify-content-center">
-        <p class="h5 text-muted mb-3 px-5">Nossos serviços</p>
+        <p class="h5 text-muted mb-3 px-5">Nossos Serviços</p>
         <% for (const servico of servicos) { %>
           <div class="card card-servico mb-3 me-3">
             <img src="<%=servico.url%>" class="card-img-top" />

@@ -1,5 +1,4 @@
 const Carrinho = require("../models/Carrinho");
-const Produto = require("../models/Produto");
 
 class CarrinhoController {
   async renderCarrinho(req, res) {
@@ -19,7 +18,7 @@ class CarrinhoController {
     const produtos = await Carrinho.getProdutosCarrinho(vendaProdutos.FK_idVenda);
     // cálculo do total do carrinho
     const valorCarrinho = produtos.reduce((acc, obj) => {
-      return acc + + (obj.preco * obj.quantidade);
+      return acc + +(obj.preco * obj.quantidade);
     }, 0);
 
     // renderizar a página

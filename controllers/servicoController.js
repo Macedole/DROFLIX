@@ -140,11 +140,11 @@ class servicoController {
     });
   }
 
-  async  listarAgendamento(req, res) {
+  async listarAgendamento(req, res) {
     const lista = await modelServico.getAgendamento();
 
     res.render("admin/lista_agendamento", {
-      paginaTitulo: "Agendar serviço",
+      paginaTitulo: "Agendamentos",
       lista: lista,
     });
   }
@@ -154,10 +154,9 @@ class servicoController {
     const {servico} = req.body;
     const baixa = await modelServico.baixarServico({funcionario: id, servico: servico});
     res.json({
-      erro:  false,
+      erro: false,
       mensagem: baixa[0].mensagem,
     });
   }
-  
 }
 module.exports = new servicoController();

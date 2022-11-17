@@ -23,9 +23,9 @@
               </div>
               <div>
                 <% if (cupom.status == 'Ativo') { %>
-                  <i class="fas fa-trash text-danger btnExclusao" data-cupom="<%= cupom.id_cupom %>" data-acao="desativar"></i>
+                  <button class="btn"><i class="fas fa-trash text-danger btnExclusao" data-cupom="<%= cupom.id_cupom %>" data-acao="desativar"></i></button>
                 <% } else { %>
-                  <button class="btnAtivar" data-cupom="<%= cupom.id_cupom %>" data-acao="ativar">Ativar</button>
+                  <button class="btnAtivar btn default-btn fs-6" data-cupom="<%= cupom.id_cupom %>" data-acao="ativar">Ativar</button>
                 <% } %>
               </div>
             </li>

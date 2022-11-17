@@ -53,6 +53,56 @@ class Cliente {
       throw new Error("Erro ao buscar o Cliente!", error);
     }
   }
+
+  storeCodigoVerificacao(dados) {
+    const { tabela, id, codigo } = dados;
+
+    const sql = "CALL proc_store_cod_verificacao(?,?,?)";
+    const values = [tabela, id, codigo];
+
+    try {
+      return new Promise((res, rej) => {
+        pool.getConnection((err, connection) => {
+          if (err) 
+            rej(err);
+          connection.query(sql, values, (err, rows) => {
+            if (err) 
+              rej(err);
+            else 
+              res(rows);
+            connection.release();
+          });
+        });
+      });
+    } catch (error) {
+      throw new Error("Erro ao atualizar código!", error);
+    }
+  }
+
+  updateSenha (dados) {
+    const { tabela, id, senha } = dados;
+
+    const sql = "CALL proc_update_senha (?,?,?)";
+    const values = [tabela, id, senha];
+
+    try {
+      return new Promise((res, rej) => {
+        pool.getConnection((err, connection) => {
+          if (err) 
+            rej(err);
+          connection.query(sql, values, (err, rows) => {
+            if (err) 
+              rej(err);
+            else 
+              res(rows);
+            connection.release();
+          });
+        });
+      });
+    } catch (error) {
+      throw new Error("Erro ao atualizar a senha!", error);
+    }
+  }
 }
 
 module.exports = new Cliente();

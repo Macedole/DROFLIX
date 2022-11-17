@@ -1,13 +1,16 @@
-const dadosTeste = require("../dados-teste/dados.json");
+const Servico = require("../models/Servico");
 const Produto = require("../models/Produto");
+const modelPesquisa = require("../models/Pesquisa");
 
 class ShopController {
   async getIndex(req, res) {
     const produtos = await Produto.getProdutos(true);
+    const servicos = await Servico.getServicos();
+
     res.render("shop/index", {
       paginaTitulo: "Droflix",
       produtos: produtos,
-      servicos: dadosTeste.servicos,
+      servicos: servicos,
     });
   }
 
@@ -17,18 +20,15 @@ class ShopController {
     });
   }
 
-  async getServico(req, res) {
-    const servicoId = req.params.servicoId;
-    const servico = dadosTeste.servicos.find((servico) => servico.id.toString() === servicoId);
-    res.render("shop/detalhes-servico", {
-      servico: servico,
-      paginaTitulo: `${servico.titulo}`,
-    });
-  }
+  async getPesquisa(req, res) {
+    const palavra = req.body.pesquisa;
+    const palavra_chave = `%${palavra}%`;
+    const pesquisa = await modelPesquisa.getPesquisas(palavra_chave);
 
-  async renderAgendamento(req, res) {
-    res.render("shop/agendar-servico", {
-      paginaTitulo: "Agendar serviço",
+    res.render("shop/pesquisa", {
+      paginaTitulo: "Pesquisa",
+      pesquisaServ: pesquisa[0],
+      pesquisaProd: pesquisa[1],
     });
   }
 }

@@ -152,6 +152,15 @@ footer {
 }
 
 /* cupons */
-#codigo {
+#codigo, #cupom {
   text-transform: uppercase;
+}
+
+.codigo {
+  width: 14%;
+  height: 40px;
+  margin: 4px;
+  border: solid 1px #CED4DA;
+  border-radius: 3px;
+  text-align: center;
 }

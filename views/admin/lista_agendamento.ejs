@@ -1,0 +1,34 @@
+<%-include('../includes/head.ejs')%>
+<%-include('../includes/nav.ejs')%>
+<main class="cover pt-5">
+    <div class="mt-5 p-5 container">
+        <% lista.forEach (lista => { %> 
+            <div class="card mb-5">                
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <H4><%= lista.tipo %></H4>
+                    <form>
+                        <input type="hidden" name="idServico" id="idServico" value="<%=lista.idServico%>">
+                        <button id="btnCadastro" name="btnCadastro" class="btn default-btn fs-6">Dar baixa</button>
+                    </form>
+                </div>
+                <div class="card-body row">
+                    <div class="col-6 border-end border-2" >
+                        <label><strong>Nome:</strong> <%= lista.nome %></label><br>
+                        <label><strong>CPF:</strong> <%= lista.cpf %></label><br>
+                        <label><strong>Data de nascimento:</strong> <%= lista.dataNasc.toLocaleDateString() %></label><br>
+                        <label><strong>Telefone:</strong> <%= lista.telefone %></label><br>
+                        <label><strong>Endereço:</strong> <%= lista.logradouro %>, <%= lista.bairro %> - <%= lista.cidade %></label><br>    
+                    </div>
+                    <div class="col-6">
+                        <label><strong>Valor:</strong> R$<%= lista.valorServico %></label><br> 
+                        <label><strong>Duração:</strong> <%= lista.duracao %></label><br> 
+                        <label><strong>Data:</strong> <%= lista.dataServico.toLocaleDateString() %></label><br> 
+                        <label><strong>Horário:</strong> <%= lista.horaServico %></label><br> 
+                    </div>
+                </div>
+            </div>
+        <% });%>
+    </div>
+</main>
+<script src="/assets/js/admin/listaAgendamento.js"></script>
+<%-include('../includes/end.ejs')%>

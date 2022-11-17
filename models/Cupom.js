@@ -48,6 +48,31 @@ class Cupom {
         }
     }
 
+    getCupomCarrinho(dados) {
+        const { codigo } = dados;
+
+        const sql = 'CALL proc_get_cupom_codigo(?);';
+        const values = [codigo];
+
+        try {
+            return new Promise((res, rej) => {
+                pool.getConnection((err, connection) => {
+                    if(err)
+                        rej(err);
+                    connection.query(sql, values, (err, rows) => {
+                        if(err)
+                            rej(err);
+                        else
+                            res(rows[0]);
+                        connection.release();
+                    });
+                });
+            });
+        } catch (error) {
+            throw new Error('Erro ao pesquisar o cupom!', error);
+        }
+    }
+
     storeCupom(dados) {
         const { codigo, idCategoria, desconto, idFuncionario } = dados;
 

@@ -243,8 +243,14 @@ class FuncionarioController {
     });
   }
 
-  async teste(req, res) {
-    return res.json({req: req.body});
+  async logoff(req, res) {
+    req.session.tokenFuncionario = "";
+    req.idFuncionario = "";
+    req.session.funcionario = "";
+    req.session.isAdmin = "";
+    req.session.isLoggedIn = "";
+
+    res.redirect("/funcionario/login");
   }
 }
 

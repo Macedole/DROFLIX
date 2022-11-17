@@ -246,6 +246,8 @@ class FuncionarioController {
   async logoff(req, res) {
     req.session.tokenFuncionario = '';
     req.idFuncionario = '';
+    req.session.funcionario = '';
+    req.session.isAdmin = '';
 
     res.redirect('/funcionario/login');
   }

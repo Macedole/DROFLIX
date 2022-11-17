@@ -115,7 +115,8 @@ class AuthController {
   async logoff(req, res) {
     req.session.token = '';
     req.idCliente = '';
-
+    req.session.isLoggedIn = '';
+    req.session.cliente = '';
     res.redirect('/login');
   }
 }

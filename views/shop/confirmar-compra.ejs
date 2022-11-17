@@ -42,7 +42,12 @@
             </div>
             <div class="col-9">
               <p><%=produto.nomeProduto%></p>
-              <p class="produto" data-categoria="<%=produto.FK_idCategoria%>" data-preco="<%=produto.preco%>"><strong><%=produto.preco%></strong></p>
+              <p>Quantidade: <%= produto.quantidade %></p>
+              <p class="produto" data-categoria="<%=produto.FK_idCategoria%>" data-preco="<%=produto.preco * produto.quantidade%>">
+                <strong>
+                  <%=produto.preco * produto.quantidade%>
+                </strong>
+              </p>
             </div>
             <hr>
           <% } %>

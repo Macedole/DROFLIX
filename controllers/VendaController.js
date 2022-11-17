@@ -27,7 +27,7 @@ class VendaController {
 
     // calcular o valor total da compra
     totalVenda = produtosCarrinho.reduce((acc, obj) => {
-      return acc + +obj.preco;
+      return acc + + (obj.preco * obj.quantidade);
     }, 0);
 
     res.render("shop/confirmar-compra", {

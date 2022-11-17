@@ -4,7 +4,7 @@
   <div class="container p-5">
     <% if (produtos) { %>
       <div class="info ms-5">
-        <h1 class="text-muted">Total: R$<%=valorCarrinho%></h1>
+        <h1 class="text-muted">Total: <%=Number(valorCarrinho).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});%></h1>
         <a class="btn compra-btn text-decoration-none" href="/venda">Confirmar compra</a>
       </div>
       <hr />
@@ -16,7 +16,9 @@
             </div>
             <div class="col col-md-10">
               <p><strong><%=produto.nomeProduto%></strong></p>
-              <p class="text-muted"><strong>R$<%=produto.preco%></strong></p>
+              <p class="text-muted"><strong>Preço unitário: R$<%=produto.preco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});%></strong></p>
+              <p class="text-muted"><strong>Quantidade: <%=produto.quantidade%></strong></p>
+              <p class="text-muted"><strong><%=(produto.quantidade * produto.preco).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});%></strong></p>
             </div>
             <form action="/delete-cart" method="POST">
               <input type="hidden" name="id" value="<%=produto.PK_idProduto%>">
